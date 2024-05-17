@@ -53,6 +53,8 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:29.0.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     //MPAndroidChart
 
 }

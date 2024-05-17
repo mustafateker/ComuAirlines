@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".bilet_detaylari">
+
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="329dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/uni_logo" />
+
+    <TextView
+        android:id="@+id/ucus_tittle"
+        android:layout_width="274dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:autoLink="web"
+        android:clickable="true"
+        android:focusable="true"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="@string/bilet_detaylari"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/ucus_no"
+        android:layout_width="274dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:autoLink="web"
+        android:clickable="true"
+        android:contentDescription="uçuş no"
+        android:focusable="true"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/bilet_no"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:autoLink="web"
+        android:clickable="true"
+        android:contentDescription="bilet no"
+        android:focusable="true"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/ucus_tarihi"
+        android:layout_width="273dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:autoLink="web"
+        android:contentDescription="uçuş tarihi"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/kalkıs_tarihi"
+        android:layout_width="272dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:autoLink="web"
+        android:clickable="true"
+        android:contentDescription="kalkış tarihi"
+        android:focusable="true"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/varıs_noktası"
+        android:layout_width="275dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:autoLink="web"
+        android:clickable="true"
+        android:contentDescription="varış noktası"
+        android:focusable="true"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/odeme_yap"
+        android:layout_width="365dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#0D1831"
+        android:text="@string/odemeyap"
+        android:textSize="20sp" />
+
+</LinearLayout>

@@ -32,5 +32,7 @@
         <item>Gaziantep</item>
     </string-array>
 
+    <string name="bilet_detaylari">Bilet Detayları</string>
+    <string name="odemeyap">Ödeme Yap</string>
 
 </resources>
