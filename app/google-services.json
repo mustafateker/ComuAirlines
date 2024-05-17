@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1008981045314",
+    "firebase_url": "https://comuhavayollari-5a95d-default-rtdb.firebaseio.com",
+    "project_id": "comuhavayollari-5a95d",
+    "storage_bucket": "comuhavayollari-5a95d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008981045314:android:ac43f82fe165d17e6bbddb",
+        "android_client_info": {
+          "package_name": "com.project.comuhavayollari"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5yRCiwpMMTgxL6frqJruJQ021cB1_fr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

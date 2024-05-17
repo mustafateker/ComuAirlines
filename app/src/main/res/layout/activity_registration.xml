@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/plane_background"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/kaydolmascroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/scrollLinearLayout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/GirisTittle"
+                android:layout_width="196dp"
+                android:layout_marginTop="70dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:autoSizeMinTextSize="50sp"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="Kaydol"
+                android:textColor="#F6F3F3"
+                android:textColorHighlight="#FAF7F7"
+                android:textSize="50sp"
+                android:visibility="visible"
+                app:barrierAllowsGoneWidgets="false"
+                app:chainUseRtl="false"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/ad"
+                android:layout_width="365dp"
+                android:layout_height="73dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="true"
+                android:background="@drawable/edit_text_background"
+                android:backgroundTint="#00FFFFFF"
+                android:backgroundTintMode="src_atop"
+                android:contextClickable="true"
+                android:cursorVisible="true"
+                android:ems="10"
+                android:hapticFeedbackEnabled="true"
+                android:hint="@string/kullanici_ad"
+                android:inputType="text"
+                android:isScrollContainer="false"
+                android:scrollbars="none"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textIsSelectable="false"
+                android:textSize="20sp"
+                android:visibility="visible"
+                app:barrierAllowsGoneWidgets="false"
+                app:chainUseRtl="false"
+                tools:visibility="visible" />
+
+            <EditText
+                android:id="@+id/soyad"
+                android:layout_width="365dp"
+                android:layout_height="73dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:autofillHints="true"
+                android:background="@drawable/edit_text_background"
+                android:backgroundTint="#00FFFFFF"
+                android:backgroundTintMode="src_atop"
+                android:contextClickable="true"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:hapticFeedbackEnabled="true"
+                android:hint="@string/kullanici_soyad"
+                android:inputType="text"
+                android:isScrollContainer="false"
+                android:scrollbars="none"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textIsSelectable="false"
+                android:textSize="20sp"
+                android:visibility="visible"
+                app:barrierAllowsGoneWidgets="false"
+                app:chainUseRtl="false"
+                tools:visibility="visible" />
+
+            <EditText
+                android:id="@+id/UsernameText"
+                android:layout_width="365dp"
+                android:layout_height="73dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/edit_text_background"
+                android:backgroundTint="#00FFFFFF"
+                android:backgroundTintMode="src_atop"
+                android:contextClickable="true"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:hapticFeedbackEnabled="true"
+                android:hint="@string/kullanici_e_mail"
+                android:inputType="text"
+                android:isScrollContainer="false"
+                android:scrollbars="none"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textIsSelectable="false"
+                android:textSize="20sp"
+                android:visibility="visible"
+                app:barrierAllowsGoneWidgets="false"
+                app:chainUseRtl="false"
+                tools:visibility="visible" />
+
+            <EditText
+                android:id="@+id/yas"
+                android:layout_width="365dp"
+                android:layout_height="73dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/edit_text_background"
+                android:backgroundTint="#00FFFFFF"
+                android:backgroundTintMode="src_atop"
+                android:contextClickable="true"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:hapticFeedbackEnabled="true"
+                android:hint="@string/kullanici_nickname"
+                android:inputType="text"
+                android:isScrollContainer="false"
+                android:scrollbars="none"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textIsSelectable="false"
+                android:textSize="20sp"
+                android:visibility="visible"
+                app:barrierAllowsGoneWidgets="false"
+                app:chainUseRtl="false"
+                tools:visibility="visible" />
+
+            <EditText
+                android:id="@+id/Ikametgah"
+                android:layout_width="365dp"
+                android:layout_height="73dp"
+                android:layout_marginTop="10dp"
+                android:autofillHints="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/edit_text_background"
+                android:backgroundTint="#00FFFFFF"
+                android:backgroundTintMode="src_atop"
+                android:contextClickable="true"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:hapticFeedbackEnabled="true"
+                android:hint="@string/ikametgah"
+                android:inputType="text"
+                android:isScrollContainer="false"
+                android:scrollbars="none"
+                android:singleLine="true"
+                android:textAllCaps="false"
+                android:textIsSelectable="false"
+                android:textSize="20sp"
+                android:visibility="visible"
+                app:barrierAllowsGoneWidgets="false"
+                app:chainUseRtl="false"
+                tools:visibility="visible" />
+
+            <EditText
+                android:id="@+id/Parola1"
+                android:layout_width="365dp"
+                android:layout_height="73dp"
+                android:layout_marginTop="10dp"
+                android:allowUndo="true"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:forceHasOverlappingRendering="false"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/parola"
+                android:hyphenationFrequency="none"
+                android:inputType="textPassword"
+                android:isScrollContainer="false"
+                android:linksClickable="false"
+                android:longClickable="true"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+            <EditText
+                android:id="@+id/ParolaTekrar"
+                android:layout_width="365dp"
+                android:layout_height="73dp"
+                android:layout_marginTop="10dp"
+                android:allowUndo="true"
+                android:autofillHints=""
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/edit_text_background"
+                android:ems="10"
+                android:forceHasOverlappingRendering="false"
+                android:hint="@string/parolatekrar"
+                android:hyphenationFrequency="none"
+                android:inputType="textPassword"
+                android:isScrollContainer="false"
+                android:linksClickable="false"
+                android:longClickable="true"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/cinsiyetSpinner"
+                    android:layout_width="365dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="73dp" />
+
+
+
+            <Button
+                android:id="@+id/JoininButton"
+                android:layout_width="365dp"
+                android:layout_height="73dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#0D1831"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/kaydol"
+                android:textSize="20sp"
+
+                tools:ignore="VisualLintButtonSize" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

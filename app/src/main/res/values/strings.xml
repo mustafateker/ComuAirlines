@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">ÇÖMÜ Airlines</string>
+    <string name="giris">Giriş</string>
+    <string name="kaydol">Kaydol</string>
+    <string name="parola">Parola</string>
+    <string name="parolatekrar">Parola Tekrar</string>
+    <string name="todo">TODO</string>
+    <string name="kullanici_ad">Ad</string>
+    <string name="kullanici_soyad">Soyad</string>
+    <string name="kullanici_e_mail">E-mail</string>
+    <string name="ikametgah">Yaşadığı Şehir</string>
+    <string name="loginkullanici_email_or_username">Kullanıcı Adı veya E-mail</string>
+    <string name="kullanici_nickname">Yaş</string>
+    <string name="hesab_n_z_yok_mu_hemen_kaydolun">Hesabınız yok mu? Hemen Kaydolun</string>
+    <string name="parolami_unuttum">Parolamı unuttum</string>
+    <string name="hos_geldin_user_id">Hos geldin /USER</string>
+    <string name="cinsiyet">Cinsiyet</string>
+    <string-array name="cinsiyet_array">
+        <item>Erkek</item>
+        <item>Kadın</item>
+    </string-array>
+</resources>
