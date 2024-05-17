@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminLoginActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/plane_background_light"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        tools:context=".AdminLoginActivity">
+        <ImageView
+            android:id="@+id/login_screen_plane_icon"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center"
+            app:srcCompat = "@drawable/plane_icon"
+            android:layout_width="100dp"
+            android:layout_height="60dp"/>
+
+        <TextView
+            android:id="@+id/GirisTittle2"
+            android:layout_width="320dp"
+            android:layout_height="87dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:autoSizeMinTextSize="50sp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text=" Admin Giriş"
+            android:textColor="#F6F3F3"
+            android:textColorHighlight="#FAF7F7"
+            android:textSize="50sp"
+            android:visibility="visible"
+            app:barrierAllowsGoneWidgets="false"
+            app:chainUseRtl="false"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/UsernameText1"
+            android:layout_width="365dp"
+            android:layout_height="73dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:autofillHints="true"
+            android:background="@drawable/edit_text_background"
+            android:backgroundTint="#00FFFFFF"
+            android:backgroundTintMode="src_atop"
+            android:contextClickable="true"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:hapticFeedbackEnabled="true"
+            android:hint="@string/loginkullanici_email_or_username"
+            android:inputType="text"
+            android:isScrollContainer="false"
+            android:scrollbars="none"
+            android:singleLine="true"
+            android:textAllCaps="false"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            android:visibility="visible"
+            app:barrierAllowsGoneWidgets="false"
+            app:chainUseRtl="false"
+            tools:visibility="visible" />
+        <EditText
+            android:id="@+id/Parola2"
+            android:layout_width="365dp"
+            android:layout_height="73dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:autofillHints=""
+            android:background="@drawable/edit_text_background"
+            android:ems="10"
+            android:hint="@string/parola"
+            android:inputType="textPassword"
+            android:isScrollContainer="false"
+            android:linksClickable="false"
+            android:longClickable="true"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+        <CheckBox
+            android:id="@+id/BeniHatirla1"
+            android:layout_width="134dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="30dp"
+            android:buttonTint="#FFFFFF"
+            android:text="Beni Hatırla "
+            android:textColor="#F3F3F3" />
+        <Button
+            android:id="@+id/LoginButton1"
+            android:layout_width="365dp"
+            android:layout_height="73dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/giris"
+            android:textSize="20sp"
+            android:backgroundTint="#0D1831"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/parolamı_unuttum2"
+            android:layout_width="308dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:autoLink="web"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="hemenKaydolClicked"
+            android:text="@string/parolami_unuttum"
+            android:textColor="#FFFEFC"
+            android:textColorHighlight="#FAF6F6"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="@color/white"
+            android:textSize="16sp"
+            tools:ignore="TextSizeCheck" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

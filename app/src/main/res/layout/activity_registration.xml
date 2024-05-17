@@ -92,7 +92,7 @@
                 tools:visibility="visible" />
 
             <EditText
-                android:id="@+id/UsernameText"
+                android:id="@+id/UsernameText1"
                 android:layout_width="365dp"
                 android:layout_height="73dp"
                 android:layout_marginTop="10dp"
@@ -173,7 +173,7 @@
                 tools:visibility="visible" />
 
             <EditText
-                android:id="@+id/Parola1"
+                android:id="@+id/Parola2"
                 android:layout_width="365dp"
                 android:layout_height="73dp"
                 android:layout_marginTop="10dp"

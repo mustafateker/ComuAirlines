@@ -1,8 +1,5 @@
 package com.project.comuhavayollari;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,49 +7,34 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
+public class AdminLoginActivity extends AppCompatActivity {
     private DatabaseReference mReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_admin_login);
 
-        TextView hemenKaydolLink = findViewById(R.id.hemenKaydolLink);
-
-        hemenKaydolLink.setOnClickListener(v -> {
-            Intent JoinInPage = new Intent(getApplicationContext(), RegistrationActivity.class);
-            startActivity(JoinInPage);
-        });
-        Button adminLoginButton = findViewById(R.id.adminLoginButton);
-        adminLoginButton.setOnClickListener(v -> {
-            Intent adminLoginIntent = new Intent(LoginActivity.this, AdminLoginActivity.class);
-            startActivity(adminLoginIntent);
-        });
 
         Button LoginBtn = findViewById(R.id.LoginButton1);
         EditText EmailLoginText = findViewById(R.id.UsernameText1);
         EditText PasswordText = findViewById(R.id.Parola2);
-
         CheckBox benihatirla = findViewById(R.id.BeniHatirla1);
 
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        if (benihatirla.isClickable()) {
+        if (benihatirla.isChecked()) {
             editor.putBoolean("rememberMe", true);
-            editor.putString("username", "kullaniciAdi");
-            editor.putString("password", "sifre");
+            editor.putString("username", EmailLoginText.getText().toString().trim());
+            editor.putString("password", PasswordText.getText().toString().trim());
         } else {
             editor.clear();
         }
@@ -61,9 +43,9 @@ public class LoginActivity extends AppCompatActivity {
 
         LoginBtn.setOnClickListener(v -> {
             if (TextUtils.isEmpty(EmailLoginText.getText().toString().trim())) {
-                Toast.makeText(LoginActivity.this, "Lütfen mail adresinizi giriniz.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminLoginActivity.this, "Lütfen mail adresinizi giriniz.", Toast.LENGTH_SHORT).show();
             } else if (TextUtils.isEmpty(PasswordText.getText().toString().trim())) {
-                Toast.makeText(LoginActivity.this, "Lütfen parola giriniz.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminLoginActivity.this, "Lütfen parola giriniz.", Toast.LENGTH_SHORT).show();
             } else {
                 String emailorusername = EmailLoginText.getText().toString().trim();
                 String password = PasswordText.getText().toString().trim();
@@ -97,30 +79,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void authenticate(String email, String password) {
-        FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser firebaseUser = task.getResult().getUser();
-                        if (firebaseUser != null) {
-                            Toast.makeText(LoginActivity.this, "Giriş başarılı", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            intent.putExtra("user_id", firebaseUser.getUid());
-                            intent.putExtra("email_id", email);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "FirebaseUser null hatası", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+    private boolean containsAtSymbol(String emailorusername) {
+        return emailorusername.contains("@");
     }
 
-    private boolean containsAtSymbol(String input) {
-        return input.contains("@");
+    private void authenticate(String email, String password) {
+        // Firebase Authentication kodları burada olacak.
     }
 }

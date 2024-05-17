@@ -38,8 +38,8 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         Button registerButton = findViewById(R.id.JoininButton);
-        EditText emailText = findViewById(R.id.UsernameText);
-        EditText parola1 = findViewById(R.id.Parola1);
+        EditText emailText = findViewById(R.id.UsernameText1);
+        EditText parola1 = findViewById(R.id.Parola2);
         EditText parolaTekrar = findViewById(R.id.ParolaTekrar);
         EditText ad = findViewById(R.id.ad);
         EditText soyad = findViewById(R.id.soyad);
@@ -190,7 +190,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void validatePasswords() {
-        EditText textPassword = findViewById(R.id.Parola1);
+        EditText textPassword = findViewById(R.id.Parola2);
         EditText textPassword2 = findViewById(R.id.ParolaTekrar);
 
         String parola = textPassword.getText().toString();
