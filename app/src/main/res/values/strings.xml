@@ -20,4 +20,17 @@
         <item>Erkek</item>
         <item>Kadın</item>
     </string-array>
+
+    <string-array name="cities_array">
+        <item>Ankara</item>
+        <item>İstanbul</item>
+        <item>İzmir</item>
+        <item>Antalya</item>
+        <item>Van</item>
+        <item>Trabzon</item>
+        <item>Çanakkale</item>
+        <item>Gaziantep</item>
+    </string-array>
+
+
 </resources>

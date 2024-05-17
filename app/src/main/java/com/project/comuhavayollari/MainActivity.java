@@ -9,9 +9,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
-
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(adminLoginIntent);
         });
 
-        @SuppressLint("MissingInflatedId") ImageButton biletlistelebuton= findViewById(R.id.bilet_listele_button);
+        ImageButton biletlistelebuton = findViewById(R.id.bilet_listele_button);
         biletlistelebuton.setOnClickListener(v -> {
-            Intent biletlisteleIntent=new Intent(MainActivity.this,BiletListele.class);
+            Intent biletlisteleIntent = new Intent(MainActivity.this, BiletListele.class);
             startActivity(biletlisteleIntent);
         });
-
     }
 }
+

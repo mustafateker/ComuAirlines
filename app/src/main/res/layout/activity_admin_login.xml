@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".AdminLoginActivity">
         <ImageView
-            android:id="@+id/login_screen_plane_icon"
+            android:id="@+id/adminlogin_screen_plane_icon"
             android:layout_marginTop="100dp"
             android:layout_gravity="center"
             app:srcCompat = "@drawable/plane_icon"
@@ -20,7 +20,7 @@
             android:layout_height="60dp"/>
 
         <TextView
-            android:id="@+id/GirisTittle2"
+            android:id="@+id/adminGirisTittle"
             android:layout_width="320dp"
             android:layout_height="87dp"
             android:layout_gravity="center_horizontal"
@@ -38,7 +38,7 @@
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/UsernameText1"
+            android:id="@+id/adminUsernameText"
             android:layout_width="365dp"
             android:layout_height="73dp"
             android:layout_gravity="center_horizontal"
@@ -64,7 +64,7 @@
             app:chainUseRtl="false"
             tools:visibility="visible" />
         <EditText
-            android:id="@+id/Parola2"
+            android:id="@+id/adminParola"
             android:layout_width="365dp"
             android:layout_height="73dp"
             android:layout_gravity="center_horizontal"
@@ -81,7 +81,7 @@
             android:textColor="#000000"
             android:textSize="20sp" />
         <CheckBox
-            android:id="@+id/BeniHatirla1"
+            android:id="@+id/adminBeniHatirla"
             android:layout_width="134dp"
             android:layout_height="48dp"
             android:layout_marginStart="30dp"
@@ -89,7 +89,7 @@
             android:text="Beni Hatırla "
             android:textColor="#F3F3F3" />
         <Button
-            android:id="@+id/LoginButton1"
+            android:id="@+id/adminLoginButton"
             android:layout_width="365dp"
             android:layout_height="73dp"
             android:layout_gravity="center_horizontal"
@@ -99,7 +99,7 @@
             tools:ignore="VisualLintButtonSize" />
 
         <TextView
-            android:id="@+id/parolamı_unuttum2"
+            android:id="@+id/adminparolamı_unuttum"
             android:layout_width="308dp"
             android:layout_height="48dp"
             android:layout_marginStart="30dp"

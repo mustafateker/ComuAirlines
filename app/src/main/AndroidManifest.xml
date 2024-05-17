@@ -13,6 +13,12 @@
         android:theme="@style/Theme.COMUHavaYollari"
         tools:targetApi="31">
         <activity
+            android:name=".AdminMain"
+            android:exported="false" />
+        <activity
+            android:name=".SeferEkle"
+            android:exported="false" />
+        <activity
             android:name=".BiletListele"
             android:exported="false" />
         <activity
