@@ -19,6 +19,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.widget.AdapterView;
+
 
 public class UcusAra extends AppCompatActivity {
 
@@ -43,6 +46,7 @@ public class UcusAra extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 
+
             return insets;
         });
         spinnerFrom = findViewById(R.id.spinnerFrom);
@@ -59,6 +63,23 @@ public class UcusAra extends AppCompatActivity {
 
         departureDateCalendar = Calendar.getInstance();
         returnDateCalendar = Calendar.getInstance();
+
+        listViewFlights.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Tıklanan öğenin hangisi olduğunu belirle
+                String selectedFlight = flightList.get(position);
+
+                // Yeni Activity'e geçiş için Intent oluştur
+                Intent intent = new Intent(UcusAra.this, SeatSelectionActivity.class);
+
+                // İlgili veriyi Intent'e ekle (Opsiyonel)
+                intent.putExtra("selectedFlight", selectedFlight);
+
+                // Yeni Activity'i başlat
+                startActivity(intent);
+            }
+        });
 
         // Spinner veri kaynakları
         String[] cities = {"Istanbul", "Ankara", "Izmir", "Antalya", "Bursa"};
@@ -96,6 +117,7 @@ public class UcusAra extends AppCompatActivity {
                 showDatePickerDialog(departureDateCalendar, buttonDepartureDate);
             }
         });
+
 
         buttonReturnDate.setOnClickListener(new View.OnClickListener() {
             @Override
