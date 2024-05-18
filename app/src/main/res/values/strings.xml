@@ -15,8 +15,10 @@
     <string name="parolami_unuttum">Parolamı unuttum</string>
     <string name="hos_geldin_user_id">Hos geldin /USER</string>
     <string name="admin_giris">Admin giriş için tıklayınız</string>
+    <string name="uyelık_tipi">Üyelik Tipi</string>
     <string name="cinsiyet">Cinsiyet</string>
     <string-array name="cinsiyet_array">
+
         <item>Erkek</item>
         <item>Kadın</item>
     </string-array>

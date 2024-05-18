@@ -1,4 +1,3 @@
-
 package com.project.comuhavayollari;
 
 import android.content.Intent;
@@ -29,7 +28,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
         seatRecyclerView = findViewById(R.id.seat_recycler_view);
         confirmButton = findViewById(R.id.confirm_button);
 
-        // Intent'ten gelen uçuş bilgisini al
         Intent intent = getIntent();
         String selectedFlight = "";
         if (intent != null && intent.hasExtra("selectedFlight")) {
@@ -42,24 +40,25 @@ public class SeatSelectionActivity extends AppCompatActivity {
         seatList = generateSeatList();
         seatAdapter = new SeatAdapter(seatList);
         seatRecyclerView.setAdapter(seatAdapter);
-        seatRecyclerView.setLayoutManager(new GridLayoutManager(this, 6));
 
-        // Örneğin, VIP yolcu geldiyse bu metodu çağırın
-        boolean isVipPassenger = true; // Bu durumu uygun şekilde ayarlayın
-        if (isVipPassenger) {
-            assignVipSeat();
-        }
+        // GridLayoutManager ile RecyclerView'in düzenini özelleştir
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
+        seatRecyclerView.setLayoutManager(layoutManager);
 
         confirmButton.setOnClickListener(v -> {
             for (Seat seat : seatList) {
                 if (seat.getStatus() == SeatStatus.SELECTED) {
-                    Toast.makeText(this, "Selected Seat: " + (seatList.indexOf(seat) + 1), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Koltuk Seçildi: " + (seatList.indexOf(seat) + 1), Toast.LENGTH_SHORT).show();
+                    Intent intent1 = new Intent(SeatSelectionActivity.this, BiletDetaylari.class);
+                    startActivity(intent1);
                     break;
                 }
             }
         });
-    }
 
+
+
+    }
 
     private List<Seat> generateSeatList() {
         List<Seat> seats = new ArrayList<>();
@@ -75,22 +74,5 @@ public class SeatSelectionActivity extends AppCompatActivity {
         return seats;
     }
 
-    private void assignVipSeat() {
-        for (Seat seat : seatList) {
-            if (seat.getStatus() == SeatStatus.VIP) {
-                seat.setStatus(SeatStatus.OCCUPIED);
-                seatAdapter.notifyDataSetChanged();
-                return;
-            }
-        }
-
-        for (Seat seat : seatList) {
-            if (seat.getStatus() == SeatStatus.AVAILABLE) {
-                seat.setStatus(SeatStatus.SELECTED);
-                seatAdapter.notifyDataSetChanged();
-                return;
-            }
-        }
-    }
 }
 

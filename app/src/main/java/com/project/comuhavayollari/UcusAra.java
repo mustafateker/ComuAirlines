@@ -2,10 +2,12 @@ package com.project.comuhavayollari;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -66,7 +68,22 @@ public class UcusAra extends AppCompatActivity {
 
         departureDateCalendar = Calendar.getInstance();
         returnDateCalendar = Calendar.getInstance();
+        listViewFlights.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Tıklanan öğenin hangisi olduğunu belirle
+                String selectedFlight = flightList.get(position);
 
+                // Yeni Activity'e geçiş için Intent oluştur
+                Intent intent = new Intent(UcusAra.this, SeatSelectionActivity.class);
+
+                // İlgili veriyi Intent'e ekle (Opsiyonel)
+                intent.putExtra("selectedFlight", selectedFlight);
+
+                // Yeni Activity'i başlat
+                startActivity(intent);
+            }
+        });
         // Spinner veri kaynakları
         String[] cities = {"Istanbul", "Ankara", "Izmir", "Antalya", "Bursa"};
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
@@ -139,10 +156,10 @@ public class UcusAra extends AppCompatActivity {
                     String flightTime = flightInfoSnapshot.child("flightTime").getValue(String.class);
 
                     // Uçuşları programatik olarak filtrele
-                    if (fromCity.equals(fetchedFromCity) && toCity.equals(fetchedToCity) && departureDate.equals(flightDate)) {
+
                         String flightInfo = flightNumber + " - " + flightTime + " - " + fetchedFromCity + " -> " + fetchedToCity;
                         flightList.add(flightInfo);
-                        }
+
 
                 }
 

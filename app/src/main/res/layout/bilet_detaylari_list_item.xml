@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".bilet_detaylari">
+    tools:context=".BiletDetaylari">
 
 
     <ImageView
@@ -70,7 +70,7 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/kalkıs_tarihi"
+        android:id="@+id/kalkıs_noktası"
         android:layout_width="272dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
