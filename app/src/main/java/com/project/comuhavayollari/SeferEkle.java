@@ -4,27 +4,34 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.AdapterView;
+import android.widget.TimePicker;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
+import java.util.UUID;
 
 
 public class SeferEkle extends AppCompatActivity {
 
+        private DatabaseReference mReferance;
     private Spinner spinnerFrom, spinnerTo;
     private Button buttonDate, buttonTime, buttonSave, buttonClear;
     private EditText editTextPNR;
@@ -158,8 +165,8 @@ public class SeferEkle extends AppCompatActivity {
     }
 
     private void saveFlightDetails() {
-        String fromCity = spinnerFrom.getSelectedItem().toString(); // Şehir seçimi burada alınmalı
-        String toCity = spinnerTo.getSelectedItem().toString(); // Varış noktası burada alınmalı
+        String fromCity = spinnerFrom.getSelectedItem().toString();
+        String toCity = spinnerTo.getSelectedItem().toString();
         String flightNumber = editTextPNR.getText().toString();
         String flightDate = buttonDate.getText().toString();
         String flightTime = buttonTime.getText().toString();
@@ -167,11 +174,24 @@ public class SeferEkle extends AppCompatActivity {
         if (fromCity.isEmpty() || toCity.isEmpty() || flightNumber.isEmpty() || flightDate.equals("Tarih Seç") || flightTime.equals("Saat Seç")) {
             Toast.makeText(this, "Lütfen tüm bilgileri doldurun", Toast.LENGTH_SHORT).show();
         } else {
-            // Uçuş detaylarını kaydetmek için gereken kod buraya gelecek
-            Toast.makeText(this, "Uçuş kaydedildi", Toast.LENGTH_SHORT).show();
+            String flightId = UUID.randomUUID().toString();
+            // Uçuş detaylarını kaydetmek için gereken kod
+            mReferance = FirebaseDatabase.getInstance().getReference("flights").child(flightId).child("flight_info");
+
+
+            // Uçuş detaylarını içeren bir Flight objesi oluştur
+            Flight flight = new Flight(flightId, fromCity, toCity, flightNumber, flightDate, flightTime);
+
+            // Veritabanına verileri ekle
+            mReferance.setValue(flight).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(this, "Uçuş kaydedildi", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Uçuş kaydedilemedi", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
-
     private void clearForm() {
         spinnerFrom.setSelection(0);
         updateToSpinner(cities.get(0));

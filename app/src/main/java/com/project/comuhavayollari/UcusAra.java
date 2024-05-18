@@ -1,41 +1,45 @@
 package com.project.comuhavayollari;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Calendar;
-import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.widget.AdapterView;
-
 
 public class UcusAra extends AppCompatActivity {
-
     private Spinner spinnerFrom, spinnerTo, spinnerPassengerCount;
-    private RadioGroup radioGroupTripType;
-    private RadioButton radioOneWay, radioRoundTrip;
+    private RadioButton radioRoundTrip;
     private TextView textViewReturnDate;
     private Button buttonDepartureDate, buttonReturnDate;
-    private Button btnSearch;
-    private ListView listViewFlights;
     private ArrayAdapter<String> flightsAdapter;
     private ArrayList<String> flightList;
 
     private Calendar departureDateCalendar, returnDateCalendar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,40 +50,22 @@ public class UcusAra extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 
-
             return insets;
         });
         spinnerFrom = findViewById(R.id.spinnerFrom);
         spinnerTo = findViewById(R.id.spinnerTo);
-        radioGroupTripType = findViewById(R.id.radioGroupTripType);
-        radioOneWay = findViewById(R.id.radioOneWay);
+        RadioGroup radioGroupTripType = findViewById(R.id.radioGroupTripType);
+        RadioButton radioOneWay = findViewById(R.id.radioOneWay);
         radioRoundTrip = findViewById(R.id.radioRoundTrip);
         textViewReturnDate = findViewById(R.id.textViewReturnDate);
         buttonDepartureDate = findViewById(R.id.buttonDepartureDate);
         buttonReturnDate = findViewById(R.id.buttonReturnDate);
         spinnerPassengerCount = findViewById(R.id.spinnerPassengerCount);
-        btnSearch = findViewById(R.id.btnSearch);
-        listViewFlights = findViewById(R.id.listViewFlights);
+        Button btnSearch = findViewById(R.id.btnSearch);
+        ListView listViewFlights = findViewById(R.id.listViewFlights);
 
         departureDateCalendar = Calendar.getInstance();
         returnDateCalendar = Calendar.getInstance();
-
-        listViewFlights.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Tıklanan öğenin hangisi olduğunu belirle
-                String selectedFlight = flightList.get(position);
-
-                // Yeni Activity'e geçiş için Intent oluştur
-                Intent intent = new Intent(UcusAra.this, SeatSelectionActivity.class);
-
-                // İlgili veriyi Intent'e ekle (Opsiyonel)
-                intent.putExtra("selectedFlight", selectedFlight);
-
-                // Yeni Activity'i başlat
-                startActivity(intent);
-            }
-        });
 
         // Spinner veri kaynakları
         String[] cities = {"Istanbul", "Ankara", "Izmir", "Antalya", "Bursa"};
@@ -98,51 +84,29 @@ public class UcusAra extends AppCompatActivity {
         flightsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, flightList);
         listViewFlights.setAdapter(flightsAdapter);
 
-        radioGroupTripType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.radioOneWay) {
-                    textViewReturnDate.setVisibility(View.GONE);
-                    buttonReturnDate.setVisibility(View.GONE);
-                } else if (checkedId == R.id.radioRoundTrip) {
-                    textViewReturnDate.setVisibility(View.VISIBLE);
-                    buttonReturnDate.setVisibility(View.VISIBLE);
-                }
+        radioGroupTripType.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radioOneWay) {
+                textViewReturnDate.setVisibility(View.GONE);
+                buttonReturnDate.setVisibility(View.GONE);
+            } else if (checkedId == R.id.radioRoundTrip) {
+                textViewReturnDate.setVisibility(View.VISIBLE);
+                buttonReturnDate.setVisibility(View.VISIBLE);
             }
         });
 
-        buttonDepartureDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(departureDateCalendar, buttonDepartureDate);
-            }
-        });
+        buttonDepartureDate.setOnClickListener(v -> showDatePickerDialog(departureDateCalendar, buttonDepartureDate));
 
+        buttonReturnDate.setOnClickListener(v -> showDatePickerDialog(returnDateCalendar, buttonReturnDate));
 
-        buttonReturnDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog(returnDateCalendar, buttonReturnDate);
-            }
-        });
-
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchFlights();
-            }
-        });
+        btnSearch.setOnClickListener(v -> searchFlights());
     }
 
     private void showDatePickerDialog(final Calendar calendar, final Button button) {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                button.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
-            }
+        @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            button.setText(year + "-" + (month + 1) + "-" + dayOfMonth);
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
     }
@@ -151,28 +115,49 @@ public class UcusAra extends AppCompatActivity {
         String fromCity = spinnerFrom.getSelectedItem().toString();
         String toCity = spinnerTo.getSelectedItem().toString();
         String departureDate = buttonDepartureDate.getText().toString();
+
         String returnDate = null;
         if (radioRoundTrip.isChecked()) {
             returnDate = buttonReturnDate.getText().toString();
         }
         int passengerCount = Integer.parseInt(spinnerPassengerCount.getSelectedItem().toString());
 
-        // Örnek uçuş verileri
-        flightList.clear();
-        if (fromCity.equals("Istanbul") && toCity.equals("Ankara")) {
-            flightList.add("TK101 - 08:00 - Istanbul -> Ankara");
-            flightList.add("TK103 - 12:00 - Istanbul -> Ankara");
-        } else if (fromCity.equals("Istanbul") && toCity.equals("Izmir")) {
-            flightList.add("TK201 - 09:00 - Istanbul -> Izmir");
-            flightList.add("TK203 - 15:00 - Istanbul -> Izmir");
-        } else if (fromCity.equals("Ankara") && toCity.equals("Istanbul")) {
-            flightList.add("TK301 - 10:00 - Ankara -> Istanbul");
-            flightList.add("TK303 - 14:00 - Ankara -> Istanbul");
-        } else if (fromCity.equals("Izmir") && toCity.equals("Istanbul")) {
-            flightList.add("TK401 - 11:00 - Izmir -> Istanbul");
-            flightList.add("TK403 - 17:00 - Izmir -> Istanbul");
-        } // Diğer şehirler için benzer koşullar ekleyin
+        DatabaseReference flightsRef = FirebaseDatabase.getInstance().getReference("flights");
 
-        flightsAdapter.notifyDataSetChanged();
+        flightList.clear();
+
+        flightsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot flightSnapshot : dataSnapshot.getChildren()) {
+                    DataSnapshot flightInfoSnapshot = flightSnapshot.child("flight_info");
+
+                    String fetchedFromCity = flightInfoSnapshot.child("fromCity").getValue(String.class);
+                    String fetchedToCity = flightInfoSnapshot.child("toCity").getValue(String.class);
+                    String flightDate = flightInfoSnapshot.child("flightDate").getValue(String.class);
+                    String flightNumber = flightInfoSnapshot.child("flightNumber").getValue(String.class);
+                    String flightTime = flightInfoSnapshot.child("flightTime").getValue(String.class);
+
+                    // Uçuşları programatik olarak filtrele
+                    if (fromCity.equals(fetchedFromCity) && toCity.equals(fetchedToCity) && departureDate.equals(flightDate)) {
+                        String flightInfo = flightNumber + " - " + flightTime + " - " + fetchedFromCity + " -> " + fetchedToCity;
+                        flightList.add(flightInfo);
+                        }
+
+                }
+
+
+                flightsAdapter.notifyDataSetChanged();
+
+
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("FirebaseData", "searchFlights:onCancelled", databaseError.toException());
+                Toast.makeText(UcusAra.this, "Uçuş araması başarısız oldu.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
