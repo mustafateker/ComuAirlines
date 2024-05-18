@@ -1,27 +1,29 @@
 package com.project.comuhavayollari;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-public class BiletDetaylari {
+public class BiletDetaylari extends AppCompatActivity {
     private String ucus_no;
     private String bilet_no;
     private String ucus_tarihi;
-    private String kalkıs_noktası;
-    private String varıs_noktası;
+    private String kalkis_noktasi;
+    private String varis_noktasi;
 
+    // Boş yapıcı kaldırıldı
 
-    public BiletDetaylari(String ucus_no, String bilet_no, String ucus_tarihi, String kalkıs_noktası, String varı_snoktası) {
+    public BiletDetaylari(String ucus_no, String bilet_no, String ucus_tarihi, String kalkis_noktasi, String varis_noktasi) {
         this.ucus_no = ucus_no;
         this.bilet_no = bilet_no;
         this.ucus_tarihi = ucus_tarihi;
-        this.kalkıs_noktası = kalkıs_noktası;
-        this.varıs_noktası = varıs_noktası;
+        this.kalkis_noktasi = kalkis_noktasi;
+        this.varis_noktasi = varis_noktasi;
     }
 
     public void setUcusNo(String ucus_no) {
         this.ucus_no = ucus_no;
     }
 
-    public String getUcusno() {
+    public String getUcusNo() {
         return ucus_no;
     }
 
@@ -37,31 +39,34 @@ public class BiletDetaylari {
         this.ucus_tarihi = ucus_tarihi;
     }
 
-    public String getUcustarihi() {
+    public String getUcusTarihi() {
         return ucus_tarihi;
     }
 
-    public void setKalkisnoktasioktasi(String kalkıs_noktası) {
-        this.kalkıs_noktası = kalkıs_noktası;
+    public void setKalkisNoktasi(String kalkis_noktasi) {
+        this.kalkis_noktasi = kalkis_noktasi;
     }
 
     public String getKalkisNoktasi() {
-        return kalkıs_noktası;
+        return kalkis_noktasi;
     }
 
-    public void setVarisnoktasioktasi(String varisnoktasi) {
-        this.varıs_noktası = varisnoktasi;
+    public void setVarisNoktasi(String varis_noktasi) {
+        this.varis_noktasi = varis_noktasi;
     }
+
     public String getVarisNoktasi() {
-        return varıs_noktası;
+        return varis_noktasi;
     }
+
     @Override
     public String toString() {
-        return "BiletDetaylariModel{" +
-                "Uçuş_Numarası=" + ucus_no +
-                ", Bilet_Numarası='" + bilet_no + '\'' +
-                ", Ucus_Tarihi='" + ucus_tarihi + '\'' +
-                ", Kalkıs_Noktası='" + kalkıs_noktası + '\'' +
-                ", Varıs_Noktası='" + varıs_noktası + '\'' +
+        return "BiletDetaylari{" +
+                "ucus_no='" + ucus_no + '\'' +
+                ", bilet_no='" + bilet_no + '\'' +
+                ", ucus_tarihi='" + ucus_tarihi + '\'' +
+                ", kalkis_noktasi='" + kalkis_noktasi + '\'' +
+                ", varis_noktasi='" + varis_noktasi + '\'' +
                 '}';
-    } }
+    }
+}

@@ -77,7 +77,8 @@
             android:layout_below="@id/textViewDepartureDate"
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
-            android:text="Gidiş Tarihi Seç" />
+            android:text="Gidiş Tarihi Seç"
+            android:backgroundTint="#0D1831"/>
 
         <TextView
             android:id="@+id/textViewReturnDate"
@@ -128,7 +129,8 @@
             android:layout_below="@id/spinnerPassengerCount"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            android:text="Uçuş Ara" />
+            android:text="Uçuş Ara"
+            android:backgroundTint="#0D1831"/>
 
         <!-- Uçuş Listesi ListView -->
         <ListView

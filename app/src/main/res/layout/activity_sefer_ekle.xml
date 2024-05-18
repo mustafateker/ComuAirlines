@@ -39,7 +39,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"/>
+        android:paddingEnd="16dp"
+        android:minHeight="48dp"/> <!-- Dokunma hedefini genişletmek için minHeight ekledik -->
 
     <TextView
         android:id="@+id/textViewToLabel"
@@ -59,7 +60,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewToLabel"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:minHeight="48dp"/> <!-- Dokunma hedefini genişletmek için minHeight ekledik -->
 
     <TextView
         android:id="@+id/textViewDateLabel"
@@ -80,7 +82,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewDateLabel"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:backgroundTint="#0D1831"/>
 
     <TextView
         android:id="@+id/textViewTimeLabel"
@@ -100,8 +103,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTimeLabel"
         android:layout_marginTop="8dp"
+
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:backgroundTint="#0D1831"/>
 
     <TextView
         android:id="@+id/textViewPNRLabel"
@@ -122,7 +127,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewPNRLabel"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:minHeight="48dp"/> <!-- Dokunma hedefini genişletmek için minHeight ekledik -->
 
     <Button
         android:id="@+id/buttonSave"
@@ -134,7 +140,8 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPNR"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:backgroundTint="#0D1831"/>
 
     <Button
         android:id="@+id/buttonClear"
@@ -146,7 +153,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonSave"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:backgroundTint="#0D1831"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

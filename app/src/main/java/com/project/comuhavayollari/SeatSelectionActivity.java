@@ -49,15 +49,12 @@ public class SeatSelectionActivity extends AppCompatActivity {
             for (Seat seat : seatList) {
                 if (seat.getStatus() == SeatStatus.SELECTED) {
                     Toast.makeText(this, "Koltuk Seçildi: " + (seatList.indexOf(seat) + 1), Toast.LENGTH_SHORT).show();
-                    Intent intent1 = new Intent(SeatSelectionActivity.this, BiletDetaylari.class);
+                    Intent intent1 = new Intent(SeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
                     startActivity(intent1);
                     break;
                 }
             }
         });
-
-
-
     }
 
     private List<Seat> generateSeatList() {
@@ -73,6 +70,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
         seats.get(9).setStatus(SeatStatus.RESERVED);
         return seats;
     }
-
 }
+
 
