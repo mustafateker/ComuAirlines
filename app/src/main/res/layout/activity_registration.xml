@@ -4,9 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/plane_background"
+    android:background="@drawable/flat_font"
     android:layout_height="match_parent"
     tools:context=".RegistrationActivity">
+    <LinearLayout
+        android:id="@+id/TopBackgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="294dp"
+        android:background="@drawable/plane_design_outofapp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/comulogoyeni"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-132dp"
+            tools:layout_editor_absoluteY="-67dp" />
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/kaydolmascroll"
@@ -20,32 +38,33 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/GirisTittle"
-                android:layout_width="196dp"
-                android:layout_marginTop="70dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/adminGirisTittle"
+                android:layout_width="313dp"
+                android:layout_height="57dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:autoSizeMinTextSize="50sp"
+                android:background="#fffdfe"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="Kaydol"
-                android:textColor="#F6F3F3"
-                android:textColorHighlight="#FAF7F7"
-                android:textSize="50sp"
+                android:text="@string/kaydolTittle"
+                android:textColor="#246395"
+                android:textColorHighlight="#FFFDFE"
+                android:textSize="40sp"
                 android:visibility="visible"
-                app:barrierAllowsGoneWidgets="false"
-                app:chainUseRtl="false"
-                tools:ignore="MissingConstraints" />
+                tools:layout_editor_absoluteX="89dp"
+                tools:layout_editor_absoluteY="16dp" />
 
             <EditText
                 android:id="@+id/ad"
                 android:layout_width="365dp"
                 android:layout_height="73dp"
+
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:autofillHints="true"
                 android:background="@drawable/edit_text_background"
-                android:backgroundTint="#00FFFFFF"
+                android:backgroundTint="#E3F6FF"
                 android:backgroundTintMode="src_atop"
                 android:contextClickable="true"
                 android:cursorVisible="true"
@@ -72,10 +91,11 @@
                 android:layout_marginTop="10dp"
                 android:autofillHints="true"
                 android:background="@drawable/edit_text_background"
-                android:backgroundTint="#00FFFFFF"
+                android:backgroundTint="#E3F6FF"
                 android:backgroundTintMode="src_atop"
                 android:contextClickable="true"
                 android:cursorVisible="false"
+
                 android:ems="10"
                 android:hapticFeedbackEnabled="true"
                 android:hint="@string/kullanici_soyad"
@@ -99,7 +119,7 @@
                 android:autofillHints="true"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/edit_text_background"
-                android:backgroundTint="#00FFFFFF"
+                android:backgroundTint="#E3F6FF"
                 android:backgroundTintMode="src_atop"
                 android:contextClickable="true"
                 android:cursorVisible="false"
@@ -126,7 +146,7 @@
                 android:autofillHints="true"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/edit_text_background"
-                android:backgroundTint="#00FFFFFF"
+                android:backgroundTint="#E3F6FF"
                 android:backgroundTintMode="src_atop"
                 android:contextClickable="true"
                 android:cursorVisible="false"
@@ -153,7 +173,7 @@
                 android:autofillHints="true"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/edit_text_background"
-                android:backgroundTint="#00FFFFFF"
+                android:backgroundTint="#E3F6FF"
                 android:backgroundTintMode="src_atop"
                 android:contextClickable="true"
                 android:cursorVisible="false"
@@ -179,6 +199,7 @@
                 android:layout_marginTop="10dp"
                 android:allowUndo="true"
                 android:autofillHints=""
+                android:backgroundTint="#E3F6FF"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
                 android:forceHasOverlappingRendering="false"
@@ -202,6 +223,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/edit_text_background"
                 android:ems="10"
+                android:backgroundTint="#E3F6FF"
                 android:forceHasOverlappingRendering="false"
                 android:hint="@string/parolatekrar"
                 android:hyphenationFrequency="none"
@@ -217,6 +239,7 @@
                     android:id="@+id/cinsiyetSpinner"
                     android:layout_width="365dp"
                     android:layout_marginTop="10dp"
+                    android:backgroundTint="#E3F6FF"
                     android:layout_gravity="center_horizontal"
                     android:layout_height="73dp" />
 

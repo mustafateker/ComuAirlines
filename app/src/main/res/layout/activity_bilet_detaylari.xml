@@ -1,18 +1,43 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ana_menu"
+    android:background="@drawable/flat_font"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".BiletDetaylari">
 
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:background="@drawable/plane_design_inapp"/>
+
+
+
+    <TextView
+        android:id="@+id/ucus_tittle"
+        android:layout_width="313dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:autoLink="web"
+        android:background="@drawable/edit_text_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/bilet_detaylari"
+        android:textColor="#246395"
+        android:textSize="45dp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="16dp" />
     <TextView
         android:id="@+id/ucus_no"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:autoLink="web"
         android:background="@drawable/edit_text_background"
         android:clickable="true"
@@ -28,6 +53,7 @@
         android:id="@+id/bilet_no"
         android:layout_width="324dp"
         android:layout_height="48dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:autoLink="web"
         android:background="@drawable/edit_text_background"
@@ -45,6 +71,7 @@
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:autoLink="web"
         android:background="@drawable/edit_text_background"
         android:clickable="true"
@@ -56,29 +83,13 @@
         tools:layout_editor_absoluteX="29dp"
         tools:layout_editor_absoluteY="384dp" />
 
-    <TextView
-        android:id="@+id/ucus_tittle"
-        android:layout_width="313dp"
-        android:layout_height="57dp"
-        android:layout_gravity="center"
-        android:autoLink="web"
-        android:background="@drawable/edit_text_background"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
-        android:text="@string/bilet_detaylari"
-        android:textColor="#246395"
-        android:textSize="45dp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="16dp" />
 
     <TextView
         android:id="@+id/kalkıs_noktası"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:autoLink="web"
         android:background="@drawable/edit_text_background"
         android:clickable="true"
@@ -96,6 +107,7 @@
         android:layout_height="48dp"
         android:layout_gravity="center"
         android:autoLink="web"
+        android:layout_marginTop="10dp"
         android:background="@drawable/edit_text_background"
         android:clickable="true"
         android:contentDescription="varış noktası"
@@ -114,6 +126,7 @@
         android:backgroundTint="#246395"
         android:text="@string/rezerve"
         android:textSize="20sp"
+        android:layout_marginTop="10dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="28dp"
         tools:layout_editor_absoluteY="576dp" />
@@ -123,6 +136,7 @@
         android:layout_width="339dp"
         android:layout_height="59dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#246395"
         android:text="@string/odemeyap"
         android:textSize="20sp"
@@ -131,4 +145,4 @@
         tools:layout_editor_absoluteY="637dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

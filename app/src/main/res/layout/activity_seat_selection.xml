@@ -1,16 +1,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@drawable/flat_font"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/passenger_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Koltuk Bilgileri"
-        android:textSize="18sp"
-        android:layout_marginBottom="16dp"/>
+        android:id="@+id/adminGirisTittle"
+        android:layout_width="313dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:autoSizeMinTextSize="50sp"
+        android:background="#fffdfe"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="@string/koltuk_bilgileri"
+        android:textColor="#246395"
+        android:textColorHighlight="#FFFDFE"
+        android:textSize="40sp"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/selected_flight_text_view"
@@ -32,12 +40,15 @@
         android:orientation="vertical"
         android:layout_marginBottom="16dp"/>
 
+
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Seçimi Onayla"
-        android:backgroundTint="#0D1831"/>
+        android:layout_height="73dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#246395"
+        android:text="@string/secimiKaydet"
+        android:textSize="20sp" />
 
 </LinearLayout>
 

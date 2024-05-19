@@ -5,27 +5,52 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@drawable/ana_menu"
+    android:background="@drawable/flat_font"
     tools:context=".OdemeYap">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/comulogoyeni"
+    <LinearLayout
+        android:id="@+id/TopBackgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="294dp"
+        android:background="@drawable/plane_design_outofapp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/comulogoyeni"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-132dp"
+            tools:layout_editor_absoluteY="-67dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/odeme_tittle"
+        android:layout_width="313dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:autoLink="web"
+        android:background="@drawable/edit_text_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/odemeTittle"
+        android:textColor="#246395"
+        android:textSize="45dp"
+        android:textStyle="bold"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-132dp"
-        tools:layout_editor_absoluteY="-67dp" />
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <EditText
         android:id="@+id/Uyeliktipi"
         android:layout_width="365dp"
         android:layout_gravity="center_horizontal"
         android:layout_height="73dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="@string/uyelık_tipi"
@@ -70,7 +95,7 @@
         android:id="@+id/completePaymentButton"
         android:layout_width="339dp"
         android:layout_height="74dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#246395"
         android:layout_gravity="center_horizontal"
         android:text="Ödemeyi Tamamla"

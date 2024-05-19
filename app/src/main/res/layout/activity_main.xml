@@ -5,16 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/ana_menu"
+    android:background="@drawable/flat_font"
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/mainTopLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="bottom"
-        android:paddingBottom="16dp">
+        android:layout_height="294dp"
+        android:background="@drawable/plane_design_outofapp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/comulogoyeni"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-132dp"
+            tools:layout_editor_absoluteY="-67dp" />
+
+    </LinearLayout>
+
 
         <Button
             android:id="@+id/biletAraButton"
@@ -23,6 +36,7 @@
             android:layout_gravity="center_horizontal"
             android:backgroundTint="#246395"
             android:text="@string/bilet_ara"
+            android:layout_marginTop="100dp"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             tools:ignore="VisualLintButtonSize" />
@@ -39,6 +53,5 @@
             android:textColor="#FFFFFF"
             tools:ignore="VisualLintButtonSize" />
 
-    </LinearLayout>
 
 </LinearLayout>

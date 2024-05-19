@@ -40,5 +40,10 @@
     <string name="odemeyap">Ödeme Yap</string>
     <string name="bilet_ara">Bilet Ara</string>
     <string name="bilet_listele">Bilet Listele</string>
+    <string name="odemeTittle">Ödeme</string>
+    <string name="kaydolTittle">Kaydol</string>
+    <string name="secimiKaydet">Seçimi Onayla</string>
+    <string name="koltuk_bilgileri">Koltuk Bilgileri</string>
+    <string name="ucus_ara">Uçuş Ara</string>
 
 </resources>

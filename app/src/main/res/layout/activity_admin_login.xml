@@ -3,36 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/ana_menu"
+    android:background="@drawable/flat_font"
     android:layout_height="match_parent"
     tools:context=".AdminLoginActivity"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/comulogoyeni"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-132dp"
-        tools:layout_editor_absoluteY="-67dp" />
+    <LinearLayout
+        android:id="@+id/TopBackgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="294dp"
+        android:background="@drawable/plane_design_outofapp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/comulogoyeni"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-132dp"
+            tools:layout_editor_absoluteY="-67dp" />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/adminGirisTittle"
         android:layout_width="313dp"
         android:layout_height="57dp"
         android:layout_gravity="center"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="20dp"
         android:autoSizeMinTextSize="50sp"
-        android:background="#ffff"
+        android:background="#fffdfe"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text=" Admin Giriş"
         android:textColor="#246395"
-        android:textColorHighlight="#FAF7F7"
+        android:textColorHighlight="#FFFDFE"
         android:textSize="40sp"
         android:visibility="visible"
         tools:layout_editor_absoluteX="89dp"
@@ -48,7 +56,7 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="#00FFFFFF"
+        android:backgroundTint="#E3F6FF"
         android:backgroundTintMode="src_atop"
         android:contextClickable="true"
         android:cursorVisible="false"
@@ -78,6 +86,7 @@
         android:layout_gravity="center_horizontal"
         android:autofillHints="true"
         android:background="@drawable/edit_text_background"
+        android:backgroundTint="#E3F6FF"
         android:ems="10"
         android:hint="@string/parola"
         android:inputType="textPassword"
@@ -97,6 +106,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:buttonTint="#121212"
+        android:backgroundTint="#fffdfe"
         android:text="Beni Hatırla "
         android:textColor="#070707"
         tools:layout_editor_absoluteX="16dp"

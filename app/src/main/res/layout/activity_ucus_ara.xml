@@ -6,11 +6,33 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bilet_alma"
+    android:background="@drawable/flat_font"
     tools:context=".UcusAra">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:background="@drawable/plane_design_inapp"/>
 
 
+        <TextView
+            android:id="@+id/odeme_tittle"
+            android:layout_width="313dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:autoLink="web"
+            android:background="@drawable/edit_text_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/ucus_ara"
+            android:textColor="#246395"
+            android:textSize="45dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="33dp"
+            tools:layout_editor_absoluteY="16dp" />
 
         <!-- Şehir Seçimi Spinner'ları -->
         <Spinner
@@ -18,9 +40,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="110dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
             android:backgroundTint="#72C6FD"
             android:padding="16dp" />
 
@@ -29,22 +51,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#72C6FD"
             android:padding="16dp" />
 
         <!-- Tek Yön ve Gidiş-Dönüş Seçeneği -->
         <RadioGroup
             android:id="@+id/radioGroupTripType"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-
-            >
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioOneWay"
@@ -64,19 +85,20 @@
         <!-- Tarih Seçimi -->
         <TextView
             android:id="@+id/textViewDepartureDate"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="Gidiş Tarihi" />
 
         <Button
             android:id="@+id/buttonDepartureDate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:backgroundTint="#246395"
             android:text="Gidiş Tarihi Seç" />
 
@@ -103,8 +125,8 @@
             android:id="@+id/textViewPassengerCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:text="Yolcu Sayısı" />
 
         <Spinner
@@ -112,19 +134,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="10dp"
             android:padding="16dp" />
 
         <!-- Uçuş Ara Butonu -->
         <Button
             android:id="@+id/btnSearch"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="#246395"
             android:text="Uçuş Ara" />
 
@@ -132,9 +155,8 @@
                     android:id="@+id/listViewFlights"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-
                     android:layout_below="@id/btnSearch"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="10dp" />
 
 
         <!-- Uçuş Listesi ListView -->

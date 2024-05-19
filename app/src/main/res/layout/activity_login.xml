@@ -3,17 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/ana_menu"
+    android:background="@drawable/flat_font"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+
+    <LinearLayout
+        android:id="@+id/TopBackgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="294dp"
+        android:background="@drawable/plane_design_outofapp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/comulogoyeni"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-132dp"
+            tools:layout_editor_absoluteY="-67dp" />
+    </LinearLayout>
     <TextView
         android:id="@+id/GirisTittle"
         android:layout_width="209dp"
         android:layout_height="81dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="20dp"
         android:autoSizeMinTextSize="50sp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
