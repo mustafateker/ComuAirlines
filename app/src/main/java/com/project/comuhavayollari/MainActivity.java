@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,13 +16,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton biletarabuton = findViewById(R.id.bilet_ara_button);
+        Button biletarabuton = findViewById(R.id.biletAraButton);
         biletarabuton.setOnClickListener(v -> {
             Intent adminLoginIntent = new Intent(MainActivity.this, UcusAra.class);
             startActivity(adminLoginIntent);
         });
 
-        ImageButton biletlistelebuton = findViewById(R.id.bilet_listele_button);
+        Button biletlistelebuton = findViewById(R.id.biletListesiButton);
         biletlistelebuton.setOnClickListener(v -> {
             Intent biletlisteleIntent = new Intent(MainActivity.this, BiletListele.class);
             startActivity(biletlisteleIntent);

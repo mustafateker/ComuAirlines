@@ -2,57 +2,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/plane_background_light"
+    android:background="@drawable/ana_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AdminMain">
 
-    <ImageView
-        android:id="@+id/login_screen_plane_icon"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/plane_icon"
-        app:layout_constraintStart_toStartOf="parent"
+    <Button
+        android:id="@+id/buttonFlightAdd"
+        android:layout_width="300dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="436dp"
+        android:backgroundTint="#246395"
+        android:text="Uçuş Ekle"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonFlightAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Uçuş Ekle"
-        android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_screen_plane_icon"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#0D1831"/>
-
-    <Button
         android:id="@+id/buttonFlightDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="72dp"
+        android:backgroundTint="#246395"
         android:text="Uçuş Sil"
+        android:textSize="30dp"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonFlightList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFlightAdd"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#0D1831"/>
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFlightAdd" />
 
     <Button
         android:id="@+id/buttonFlightList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="6dp"
+        android:backgroundTint="#246395"
         android:text="Uçuşları Listele"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFlightDelete"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#0D1831"/>
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFlightDelete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

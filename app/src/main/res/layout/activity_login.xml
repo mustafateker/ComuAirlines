@@ -3,30 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/plane_background_light"
+    android:background="@drawable/ana_menu"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
-
-    <ImageView
-        android:id="@+id/login_screen_plane_icon"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        app:srcCompat = "@drawable/plane_icon"
-        android:layout_width="100dp"
-        android:layout_height="60dp"/>
 
     <TextView
         android:id="@+id/GirisTittle"
         android:layout_width="209dp"
         android:layout_height="81dp"
-        android:layout_marginTop="0dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="260dp"
         android:autoSizeMinTextSize="50sp"
         android:fontFamily="sans-serif-black"
         android:gravity="center"
         android:text="Giriş"
-        android:textColor="#F6F3F3"
         android:textColorHighlight="#FAF7F7"
         android:textSize="50sp"
         android:visibility="visible"
@@ -34,15 +25,16 @@
         app:chainUseRtl="false"
         tools:ignore="MissingConstraints" />
 
+
     <EditText
         android:id="@+id/UsernameText1"
         android:layout_width="365dp"
         android:layout_height="73dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+
         android:autofillHints="true"
         android:background="@drawable/edit_text_background"
-        android:backgroundTint="#00FFFFFF"
+        android:backgroundTint="#E3F6FF"
         android:backgroundTintMode="src_atop"
         android:contextClickable="true"
         android:cursorVisible="false"
@@ -61,12 +53,6 @@
         app:chainUseRtl="false"
         tools:visibility="visible" />
 
-
-
-
-
-
-
     <EditText
         android:id="@+id/Parola2"
         android:layout_width="365dp"
@@ -75,6 +61,7 @@
         android:layout_marginTop="10dp"
         android:autofillHints=""
         android:background="@drawable/edit_text_background"
+        android:backgroundTint="#E3F6FF"
         android:ems="10"
         android:hint="@string/parola"
         android:inputType="textPassword"
@@ -89,10 +76,10 @@
         android:id="@+id/BeniHatirla1"
         android:layout_width="134dp"
         android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:buttonTint="#FFFFFF"
+        android:layout_marginStart="20dp"
+        android:buttonTint="#171515"
         android:text="Beni Hatırla "
-        android:textColor="#F3F3F3" />
+        android:textColor="#090909" />
 
     <Button
         android:id="@+id/LoginButton1"
@@ -101,54 +88,36 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/giris"
         android:textSize="20sp"
-        android:backgroundTint="#0D1831"
+        android:backgroundTint="#246395"
         tools:ignore="VisualLintButtonSize" />
 
     <TextView
         android:id="@+id/hemenKaydolLink"
         android:layout_width="308dp"
         android:layout_height="48dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:autoLink="web"
         android:clickable="true"
         android:focusable="true"
         android:onClick="hemenKaydolClicked"
         android:text="@string/hesab_n_z_yok_mu_hemen_kaydolun"
-        android:textColor="#FFFEFC"
+        android:textColor="#090909"
         android:textColorHighlight="#FAF6F6"
-        android:textColorHint="#FFFFFF"
+        android:textColorHint="#050505"
         android:textColorLink="@color/white"
         android:textSize="16sp"
         tools:ignore="TextSizeCheck" />
 
-    <TextView
-        android:id="@+id/parolami_unuttum"
-        android:layout_width="308dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:autoLink="web"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="hemenKaydolClicked"
-        android:text="@string/parolami_unuttum"
-        android:textColor="#FFFEFC"
-        android:textColorHighlight="#FAF6F6"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="@color/white"
-        android:textSize="16sp"
-        tools:ignore="TextSizeCheck" />
 
     <Button
         android:id="@+id/adminLoginButton"
         android:layout_width="308dp"
         android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
         android:background="@android:color/transparent"
         android:text="@string/admin_giris"
-        android:textColor="#F3F3F3"
+        android:textColor="#090909"
         android:textSize="16sp"
         android:textStyle="bold"
         tools:ignore="VisualLintButtonSize" />

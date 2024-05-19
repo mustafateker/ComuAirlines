@@ -120,7 +120,9 @@ public class RegistrationActivity extends AppCompatActivity {
             String firstName = ad.getText().toString().trim();
             String lastName = soyad.getText().toString().trim();
             String user_age = yas.getText().toString().trim();
-            String yasadigiSehir = ikametgah.getText().toString().trim();
+            String aldigiBiletSayisi = "1";
+            String uyeTipi = "Normal Üye";
+
 
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
@@ -130,19 +132,12 @@ public class RegistrationActivity extends AppCompatActivity {
                                 Toast.makeText(this, "Kaydolma Başarılı.", Toast.LENGTH_SHORT).show();
 
                                 String userId = firebaseUser.getUid();
-                                Map<String, String> newUser = new HashMap<>();
-                                newUser.put("user_id", userId);
-                                newUser.put("user_city", yasadigiSehir);
-                                newUser.put("user_lastname", lastName);
-                                newUser.put("user_age", user_age);
-                                newUser.put("user_gender", user_cinsiyet);
-                                newUser.put("user_email", email);
-                                newUser.put("user_name", firstName);
-                                newUser.put("user_registration_date",registrationDate );
-                                newUser.put("user_purchased_ticket_count",purchasedTicketCount);
+                                String yasadigiSehir = ikametgah.getText().toString().trim();
+                                User user = new User(firstName,lastName,email,userId ,user_age , user_cinsiyet,
+                                        yasadigiSehir, aldigiBiletSayisi, registrationDate, uyeTipi);
 
                                 String userInfo = "user_info";
-                                mReference.child(userId).child(userInfo).setValue(newUser);
+                                mReference.child(userId).child(userInfo).setValue(user);
 
                                 ValueEventListener getData = new ValueEventListener() {
                                     @Override
@@ -154,11 +149,13 @@ public class RegistrationActivity extends AppCompatActivity {
                                             String userId = child.child("user_id").getValue(String.class);
                                             String userEmail = child.child("user_email").getValue(String.class);
                                             String yas = child.child("user_age").getValue(String.class);
-                                            String ikametgah = child.child("user_city").getValue(String.class);
                                             String cinsiyet = child.child("user_gender").getValue(String.class);
+                                            String ikametgah = child.child("user_city").getValue(String.class);
+                                            String aldigiBiletSayisi = child.child("user_purchased_ticket").getValue(String.class);
                                             String kayitTarihi = child.child("user_registration_date").getValue(String.class);
+                                            String userMemberType = child.child("user_member_type").getValue(String.class);
                                             sb.append(child.getKey()).append(" - ").append(ad).append(" - ").append(soyad).append(" - ").append(userId).append(" - ").append(userEmail).append(" - ").append(yas).append(" - ")
-                                                    .append(ikametgah).append(" - ").append(cinsiyet).append(" - ").append(kayitTarihi).append("\n");
+                                                    .append(ikametgah).append(" - ").append(cinsiyet).append(" - ").append(kayitTarihi).append(" - ").append(aldigiBiletSayisi).append(" - ").append(userMemberType).append("\n");
                                         }
                                     }
 

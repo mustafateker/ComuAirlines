@@ -1,77 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@drawable/airlines_main_background"
+    android:background="@drawable/ana_menu"
     tools:context=".OdemeYap">
 
     <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="231dp"
-        android:layout_height="181dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/uni_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/Uyeliktipi"
-        app:layout_constraintVertical_bias="0.5" />
+        android:id="@+id/imageView3"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/comulogoyeni"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-132dp"
+        tools:layout_editor_absoluteY="-67dp" />
 
     <EditText
         android:id="@+id/Uyeliktipi"
         android:layout_width="365dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="73dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="240dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="@string/uyelık_tipi"
         android:inputType="text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/ındırım"
         android:layout_width="365dp"
         android:layout_height="73dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="İndirim Tutarı"
         android:inputType="textPassword"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Uyeliktipi" />
+        tools:layout_editor_absoluteY="423dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/tutar"
         android:layout_width="365dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="73dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
+        android:layout_marginTop="10dp"
         android:hint="Toplam Tutar"
         android:inputType="textPassword"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ındırım" />
+        tools:layout_editor_absoluteY="534dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/completePaymentButton"
         android:layout_width="339dp"
         android:layout_height="74dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#0D1831"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#246395"
+        android:layout_gravity="center_horizontal"
         android:text="Ödemeyi Tamamla"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.344"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tutar" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

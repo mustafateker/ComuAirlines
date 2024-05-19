@@ -14,8 +14,9 @@
     <string name="hesab_n_z_yok_mu_hemen_kaydolun">Hesabınız yok mu? Hemen Kaydolun</string>
     <string name="parolami_unuttum">Parolamı unuttum</string>
     <string name="hos_geldin_user_id">Hos geldin /USER</string>
-    <string name="admin_giris">Admin giriş için tıklayınız</string>
+    <string name="admin_giris">Admin Girişi İçin Tıklayınız</string>
     <string name="uyelık_tipi">Üyelik Tipi</string>
+    <string name="rezerve">Rezerve Et</string>
     <string name="cinsiyet">Cinsiyet</string>
     <string-array name="cinsiyet_array">
 
@@ -37,5 +38,7 @@
 
     <string name="bilet_detaylari">Bilet Detayları</string>
     <string name="odemeyap">Ödeme Yap</string>
+    <string name="bilet_ara">Bilet Ara</string>
+    <string name="bilet_listele">Bilet Listele</string>
 
 </resources>
