@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class UcusAra extends AppCompatActivity {
-    private Spinner spinnerFrom, spinnerTo, spinnerPassengerCount;
+    private Spinner spinnerFrom,spinnerToCity, spinnerPassengerCount;
     private RadioButton radioRoundTrip;
     private TextView textViewReturnDate;
     private Button buttonDepartureDate, buttonReturnDate;
@@ -55,7 +55,8 @@ public class UcusAra extends AppCompatActivity {
             return insets;
         });
         spinnerFrom = findViewById(R.id.spinnerFrom);
-        spinnerTo = findViewById(R.id.spinnerTo);
+        spinnerToCity = findViewById(R.id.ucuseklespinnerTo);
+
         RadioGroup radioGroupTripType = findViewById(R.id.radioGroupTripType);
         RadioButton radioOneWay = findViewById(R.id.radioOneWay);
         radioRoundTrip = findViewById(R.id.radioRoundTrip);
@@ -85,11 +86,11 @@ public class UcusAra extends AppCompatActivity {
             }
         });
         // Spinner veri kaynakları
-        String[] cities = {"Istanbul", "Ankara", "Izmir", "Antalya", "Bursa"};
+        String[] cities = {"İstanbul", "Ankara", "Izmir", "Antalya", "Bursa","Van","Trabzon","Çanakkale","Gaziantep"};
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFrom.setAdapter(cityAdapter);
-        spinnerTo.setAdapter(cityAdapter);
+        spinnerToCity.setAdapter(cityAdapter);
 
         // Yolcu sayısı
         String[] passengerCounts = {"1", "2", "3", "4", "5", "6"};
@@ -130,7 +131,7 @@ public class UcusAra extends AppCompatActivity {
 
     private void searchFlights() {
         String fromCity = spinnerFrom.getSelectedItem().toString();
-        String toCity = spinnerTo.getSelectedItem().toString();
+        String toCity = spinnerToCity.getSelectedItem().toString();
         String departureDate = buttonDepartureDate.getText().toString();
 
         String returnDate = null;
@@ -154,11 +155,24 @@ public class UcusAra extends AppCompatActivity {
                     String flightDate = flightInfoSnapshot.child("flightDate").getValue(String.class);
                     String flightNumber = flightInfoSnapshot.child("flightNumber").getValue(String.class);
                     String flightTime = flightInfoSnapshot.child("flightTime").getValue(String.class);
+                    String flihtId = flightInfoSnapshot.child("id").getValue(String.class);
 
                     // Uçuşları programatik olarak filtrele
+                        if(fetchedFromCity != null && fetchedToCity != null && flightDate != null){
 
-                        String flightInfo = flightNumber + " - " + flightTime + " - " + fetchedFromCity + " -> " + fetchedToCity;
-                        flightList.add(flightInfo);
+                            if(fetchedFromCity.equals(fromCity)){
+
+                                if(flightDate.equals(departureDate)){
+
+                                    if(fetchedToCity.equals(toCity)){
+                                        String flightInfo = flightNumber + " - " + flightTime + " - " + fetchedFromCity + " -> " + fetchedToCity;
+                                        flightList.add(flightInfo);
+                                    }
+                                }
+
+                            }
+                        }
+
 
 
                 }

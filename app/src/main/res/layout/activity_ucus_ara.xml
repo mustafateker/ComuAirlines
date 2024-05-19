@@ -26,7 +26,7 @@
             android:layout_centerHorizontal="true" />
 
         <Spinner
-            android:id="@+id/spinnerTo"
+            android:id="@+id/ucuseklespinnerTo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/spinnerFrom"
@@ -41,7 +41,7 @@
             android:id="@+id/radioGroupTripType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/spinnerTo"
+            android:layout_below="@id/ucuseklespinnerTo"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal">

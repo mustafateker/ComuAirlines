@@ -62,7 +62,6 @@ public class SeferEkle extends AppCompatActivity {
         flightDateCalendar = Calendar.getInstance();
 
         cities = Arrays.asList(getResources().getStringArray(R.array.cities_array)); // cities_array kullanılıyor
-
         fromAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
         fromAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFrom.setAdapter(fromAdapter);
