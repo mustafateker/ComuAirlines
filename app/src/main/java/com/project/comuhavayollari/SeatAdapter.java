@@ -4,8 +4,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class SeatAdapter extends RecyclerView.Adapter<SeatAdapter.SeatViewHolder> {
@@ -68,17 +71,31 @@ public class SeatAdapter extends RecyclerView.Adapter<SeatAdapter.SeatViewHolder
             }
 
             seatImage.setOnClickListener(v -> {
-                if (seat.getStatus() == SeatStatus.AVAILABLE) {
-                    if (selectedPosition != -1) {
-                        seatList.get(selectedPosition).setStatus(SeatStatus.AVAILABLE);
-                        notifyItemChanged(selectedPosition);
-                    }
-                    seat.setStatus(SeatStatus.SELECTED);
-                    selectedPosition = position;
-                    notifyItemChanged(position);
+                switch (seat.getStatus()) {
+                    case RESERVED:
+                        Toast.makeText(itemView.getContext(), "Rezerve Koltuk, Seçilemez", Toast.LENGTH_SHORT).show();
+                        break;
+                    case OCCUPIED:
+                        Toast.makeText(itemView.getContext(), "Dolu Koltuk, Seçilemez", Toast.LENGTH_SHORT).show();
+                        break;
+                    case VIP:
+                        Toast.makeText(itemView.getContext(), "VIP Koltuk, Sadece VIP üyeler", Toast.LENGTH_SHORT).show();
+                        break;
+                    case AVAILABLE:
+                        if (selectedPosition != -1) {
+                            seatList.get(selectedPosition).setStatus(SeatStatus.AVAILABLE);
+                            notifyItemChanged(selectedPosition);
+                        }
+                        seat.setStatus(SeatStatus.SELECTED);
+                        selectedPosition = position;
+                        notifyItemChanged(position);
+                        break;
+                    default:
+                        break;
                 }
             });
         }
     }
 }
+
 

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -29,6 +30,7 @@ public class OdemeYap extends AppCompatActivity {
         completePaymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Bildirim ve Toast mesajı gösterme
                 sendPaymentCompleteNotification();
             }
         });
@@ -48,8 +50,9 @@ public class OdemeYap extends AppCompatActivity {
     }
 
     private void sendPaymentCompleteNotification() {
+        // Bildirim oluşturma ve gösterme
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-
+                .setSmallIcon(R.drawable.bildirim) // Bildirim simgesi, drawable klasöründe ic_payment adlı bir simge bulunmalıdır.
                 .setContentTitle("Ödeme Tamamlandı")
                 .setContentText("Ödeme başarıyla tamamlandı.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
@@ -60,6 +63,8 @@ public class OdemeYap extends AppCompatActivity {
             return;
         }
         notificationManager.notify(1, builder.build());
+
+        // Toast mesajı gösterme
+        Toast.makeText(OdemeYap.this, "Ödeme başarıyla tamamlandı", Toast.LENGTH_SHORT).show();
     }
 }
-
