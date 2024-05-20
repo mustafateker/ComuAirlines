@@ -45,5 +45,7 @@
     <string name="secimiKaydet">Seçimi Onayla</string>
     <string name="koltuk_bilgileri">Koltuk Bilgileri</string>
     <string name="ucus_ara">Uçuş Ara</string>
+    <string name="fiyat_giriniz">Fiyat Giriniz</string>
+    <string name="ucus_no">Uçuş No</string>
 
 </resources>

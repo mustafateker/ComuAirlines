@@ -9,14 +9,19 @@ public class Bilet {
     private String varisNoktasi;
     private String ucusTarihi;
     private String ucusSaati;
+    private String biletFiyati;
+    public Bilet(){
 
-    public Bilet(String biletNo, String ucusNo, String kalkisNoktasi,String varisNoktasi, String ucusTarihi) {
+    }
+
+    public Bilet(String biletNo, String ucusNo, String kalkisNoktasi,String varisNoktasi, String ucusTarihi, String biletFiyati) {
         this.biletNo = biletNo;
         this.ucusNo = ucusNo;
         this.kalkisNoktasi = kalkisNoktasi;
         this.ucusTarihi = ucusTarihi;
         this.varisNoktasi=varisNoktasi;
         this.ucusSaati=ucusSaati;
+        this.biletFiyati=biletFiyati;
     }
 
     public String getBiletNo() {
@@ -40,6 +45,12 @@ public class Bilet {
     public String getUcusSaati() {
             return ucusSaati;
         }
+
+    public String getBiletFiyati() {
+        return biletFiyati;
     }
+}
+
+
 
 

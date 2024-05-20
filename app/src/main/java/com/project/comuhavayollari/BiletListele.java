@@ -22,9 +22,9 @@ public class BiletListele extends AppCompatActivity {
 
         // Örnek bilet verileri
         biletList = new ArrayList<>();
-        biletList.add(new Bilet("1", "TK123", "İstanbul", "Ankara", "01-01-2024"));
-        biletList.add(new Bilet("2", "TK456", "Ankara", "İzmir", "02-01-2024"));
-        biletList.add(new Bilet("3", "TK789", "İzmir", "Antalya", "03-01-2024"));
+        biletList.add(new Bilet("1", "TK123", "İstanbul", "Ankara", "01-01-2024","1000 TL"));
+        biletList.add(new Bilet("2", "TK456", "Ankara", "İzmir", "02-01-2024","1000 TL"));
+        biletList.add(new Bilet("3", "TK789", "İzmir", "Antalya", "03-01-2024","1000 TL"));
 
         biletAdapter = new BiletAdapter(this, biletList);
         recyclerView.setAdapter(biletAdapter);

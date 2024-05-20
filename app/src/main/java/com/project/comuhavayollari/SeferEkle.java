@@ -34,7 +34,7 @@ public class SeferEkle extends AppCompatActivity {
         private DatabaseReference mReferance;
     private Spinner spinnerFrom, spinnerTo;
     private Button buttonDate, buttonTime, buttonSave, buttonClear;
-    private EditText editTextPNR;
+    private EditText editTextPNR, fiyatGirisEditText;
     private Calendar flightDateCalendar;
 
     private List<String> cities;
@@ -58,6 +58,7 @@ public class SeferEkle extends AppCompatActivity {
         buttonSave = findViewById(R.id.buttonSave);
         buttonClear = findViewById(R.id.buttonClear);
         editTextPNR = findViewById(R.id.editTextPNR);
+        fiyatGirisEditText = findViewById(R.id.fiyatSeferEkle);
 
         flightDateCalendar = Calendar.getInstance();
 
@@ -169,6 +170,7 @@ public class SeferEkle extends AppCompatActivity {
         String flightNumber = editTextPNR.getText().toString();
         String flightDate = buttonDate.getText().toString();
         String flightTime = buttonTime.getText().toString();
+        String fiyat = fiyatGirisEditText.getText().toString();
 
         if (fromCity.isEmpty() || toCity.isEmpty() || flightNumber.isEmpty() || flightDate.equals("Tarih Seç") || flightTime.equals("Saat Seç")) {
             Toast.makeText(this, "Lütfen tüm bilgileri doldurun", Toast.LENGTH_SHORT).show();
@@ -179,7 +181,7 @@ public class SeferEkle extends AppCompatActivity {
 
 
             // Uçuş detaylarını içeren bir Flight objesi oluştur
-            Flight flight = new Flight(flightId, fromCity, toCity, flightNumber, flightDate, flightTime);
+            Flight flight = new Flight(flightId, fromCity, toCity, flightNumber, flightDate, flightTime,fiyat);
 
             // Veritabanına verileri ekle
             mReferance.setValue(flight).addOnCompleteListener(task -> {
@@ -197,5 +199,6 @@ public class SeferEkle extends AppCompatActivity {
         buttonDate.setText("Tarih Seç");
         buttonTime.setText("Saat Seç");
         editTextPNR.setText("");
+        fiyatGirisEditText.setText("");
     }
 }

@@ -86,7 +86,7 @@ public class UcusAra extends AppCompatActivity {
             }
         });
         // Spinner veri kaynakları
-        String[] cities = {"İstanbul", "Ankara", "Izmir", "Antalya", "Bursa","Van","Trabzon","Çanakkale","Gaziantep"};
+        String[] cities = {"İstanbul", "Ankara", "İzmir", "Antalya", "Bursa","Van","Trabzon","Çanakkale","Gaziantep"};
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerFrom.setAdapter(cityAdapter);
@@ -156,6 +156,7 @@ public class UcusAra extends AppCompatActivity {
                     String flightNumber = flightInfoSnapshot.child("flightNumber").getValue(String.class);
                     String flightTime = flightInfoSnapshot.child("flightTime").getValue(String.class);
                     String flihtId = flightInfoSnapshot.child("id").getValue(String.class);
+                    String ticketPrice = flightInfoSnapshot.child("ticketPrice").getValue(String.class);
 
                     // Uçuşları programatik olarak filtrele
                         if(fetchedFromCity != null && fetchedToCity != null && flightDate != null){
@@ -165,7 +166,7 @@ public class UcusAra extends AppCompatActivity {
                                 if(flightDate.equals(departureDate)){
 
                                     if(fetchedToCity.equals(toCity)){
-                                        String flightInfo = flightNumber + " - " + flightTime + " - " + fetchedFromCity + " -> " + fetchedToCity;
+                                        String flightInfo = flightNumber + " - " + flightTime + " - " + fetchedFromCity + " -> " + fetchedToCity + " - " + ticketPrice + " TL";
                                         flightList.add(flightInfo);
                                     }
                                 }
