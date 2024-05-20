@@ -1,11 +1,13 @@
 package com.project.comuhavayollari;
 
 import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BiletListele extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -20,11 +22,12 @@ public class BiletListele extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewListe); // RecyclerView'ın ID'sini kontrol edin
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
         // Örnek bilet verileri
         biletList = new ArrayList<>();
-        biletList.add(new Bilet("1", "TK123", "İstanbul", "Ankara", "01-01-2024","1000 TL"));
-        biletList.add(new Bilet("2", "TK456", "Ankara", "İzmir", "02-01-2024","1000 TL"));
-        biletList.add(new Bilet("3", "TK789", "İzmir", "Antalya", "03-01-2024","1000 TL"));
+        biletList.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
+        biletList.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
+        biletList.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
 
         biletAdapter = new BiletAdapter(this, biletList);
         recyclerView.setAdapter(biletAdapter);

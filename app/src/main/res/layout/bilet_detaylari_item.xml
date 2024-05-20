@@ -23,7 +23,7 @@
             android:layout_marginBottom="8dp"/>
 
         <TextView
-            android:id="@+id/biletNoTextView"
+            android:id="@+id/biletNodetayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bilet No"
@@ -31,7 +31,7 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/ucusNoTextView"
+            android:id="@+id/ucusNodetayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Uçuş No"
@@ -39,14 +39,14 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/kalkisNoktasiTextView"
+            android:id="@+id/kalkisNoktasidetayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kalkış Noktası"
             android:padding="8dp"
             android:textSize="16sp"/>
         <TextView
-            android:id="@+id/varisNoktasiTextView"
+            android:id="@+id/varisNoktasidetayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Varış Noktası"
@@ -54,7 +54,7 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/ucusTarihiTextView"
+            android:id="@+id/ucusTarihidetayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Uçuş Tarihi"
@@ -62,21 +62,21 @@
             android:textSize="16sp"/>
 
         <TextView
-            android:id="@+id/ucusSaatiTextView"
+            android:id="@+id/ucusSaatidetayTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Uçuş Saati"
             android:padding="8dp"
             android:textSize="16sp"/>
         <TextView
-            android:id="@+id/ucakKoltukNotextView"
+            android:id="@+id/ucakKoltukNodetayTextview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Koltuk No :"
             android:padding="8dp"
             android:textSize="16sp"/>
         <TextView
-            android:id="@+id/BiletFiyatitextView"
+            android:id="@+id/BiletFiyatidetayTextview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bilet Fiyatı"

@@ -7,19 +7,17 @@
     android:orientation="vertical"
     tools:context=".SecilenBiletDetaylariActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:background="@drawable/plane_design_inapp"/>
-
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="137dp"
+        android:background="@drawable/plane_design_inapp" />
 
     <TextView
         android:id="@+id/ucus_tittle"
-        android:layout_width="313dp"
-        android:layout_marginTop="50dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="50dp"
         android:autoLink="web"
         android:background="@drawable/edit_text_background"
         android:clickable="true"
@@ -28,109 +26,32 @@
         android:text="@string/bilet_detaylari"
         android:textColor="#246395"
         android:textSize="45dp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="16dp" />
-    <TextView
-        android:id="@+id/ucus_no"
-        android:layout_width="324dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:autoLink="web"
-        android:background="@drawable/edit_text_background"
-        android:clickable="true"
-        android:contentDescription="uçuş no"
-        android:focusable="true"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="323dp" />
-
-    <TextView
-        android:id="@+id/bilet_no"
-        android:layout_width="324dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:autoLink="web"
-        android:background="@drawable/edit_text_background"
-        android:clickable="true"
-        android:contentDescription="bilet no"
-        android:focusable="true"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="249dp" />
-
-    <TextView
-        android:id="@+id/ucus_tarihi"
-        android:layout_width="324dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:autoLink="web"
-        android:background="@drawable/edit_text_background"
-        android:clickable="true"
-        android:contentDescription="uçuş tarihi"
-        android:focusable="true"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="384dp" />
+        android:textStyle="bold" />
 
 
-    <TextView
-        android:id="@+id/kalkıs_noktası"
-        android:layout_width="324dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:autoLink="web"
-        android:background="@drawable/edit_text_background"
-        android:clickable="true"
-        android:contentDescription="kalkış tarihi"
-        android:focusable="true"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="454dp" />
+    <!-- RecyclerView here -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_viewdetay"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:layout_marginTop="10dp" />
 
-    <TextView
-        android:id="@+id/varıs_noktası"
-        android:layout_width="324dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center"
-        android:autoLink="web"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edit_text_background"
-        android:clickable="true"
-        android:contentDescription="varış noktası"
-        android:focusable="true"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="515dp" />
+
 
     <Button
         android:id="@+id/rezerve_et"
         android:layout_width="339dp"
         android:layout_height="59dp"
         android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#246395"
         android:text="@string/rezerve"
         android:textSize="20sp"
-        android:layout_marginTop="10dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="28dp"
         tools:layout_editor_absoluteY="576dp" />
 
+    <!-- Odeme Yap Button -->
     <Button
         android:id="@+id/odeme_yap"
         android:layout_width="339dp"

@@ -29,6 +29,8 @@ public class BiletAdapter extends RecyclerView.Adapter<BiletAdapter.BiletViewHol
         return new BiletViewHolder(view);
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull BiletViewHolder holder, int position) {
         Bilet bilet = biletList.get(position);
@@ -39,7 +41,11 @@ public class BiletAdapter extends RecyclerView.Adapter<BiletAdapter.BiletViewHol
         holder.kalkisNoktasiTextView.setText("Kalkış Noktası: " + bilet.getKalkisNoktasi());
         holder.varisNoktasiTextView.setText("Varış Noktası: "   + bilet.getVarisNoktasi());
         holder.ucusTarihiTextView.setText("Uçuş Tarihi: " + bilet.getUcusTarihi());
-        holder.ucusSaatiTextView.setText("Uçuş Saati:" + bilet.getUcusSaati());
+        holder.ucusSaatiTextView.setText("Uçuş Saati:" + bilet.getUcus_saati());
+        holder.koltukNoTextView.setText("koltuk No:" + bilet.getKoltuk_no());
+        holder.biletFiyatiTextView.setText("bilet Fiyati:" + bilet.getBilet_fiyati());
+
+
     }
 
     @Override
@@ -55,6 +61,8 @@ public class BiletAdapter extends RecyclerView.Adapter<BiletAdapter.BiletViewHol
         TextView varisNoktasiTextView;
         TextView ucusTarihiTextView;
         TextView ucusSaatiTextView;
+        TextView koltukNoTextView;
+        TextView biletFiyatiTextView;
 
         public BiletViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +73,9 @@ public class BiletAdapter extends RecyclerView.Adapter<BiletAdapter.BiletViewHol
             varisNoktasiTextView= itemView.findViewById(R.id.varisNoktasiTextView);
             ucusTarihiTextView = itemView.findViewById(R.id.ucusTarihiTextView);
             ucusSaatiTextView=itemView.findViewById(R.id.ucusSaatiTextView);
+            koltukNoTextView=itemView.findViewById(R.id.ucakKoltukNotextView);
+            biletFiyatiTextView=itemView.findViewById(R.id.BiletFiyatitextView);
         }
+
     }
 }
