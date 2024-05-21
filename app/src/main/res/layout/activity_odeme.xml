@@ -5,106 +5,51 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@drawable/flat_font"
-    tools:context=".OdemeYap">
+    android:background="@drawable/bilet_alma"
+    tools:context=".BiletListele">
 
-    <LinearLayout
-        android:id="@+id/TopBackgroundLayout"
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="294dp"
-        android:background="@drawable/plane_design_outofapp">
+        android:layout_height="273dp"
+        android:layout_marginTop="105dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/comu_card"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"/>
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/comulogoyeni"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="-132dp"
-            tools:layout_editor_absoluteY="-67dp" />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/odeme_tittle"
-        android:layout_width="313dp"
-        android:layout_marginTop="10dp"
-        android:layout_height="57dp"
-        android:layout_gravity="center"
-        android:autoLink="web"
-        android:background="@drawable/edit_text_background"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
-        android:text="@string/odemeTittle"
-        android:textColor="#246395"
-        android:textSize="45dp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="16dp" />
 
-    <EditText
-        android:id="@+id/Uyeliktipi"
-        android:layout_width="365dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="73dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_background"
-        android:ems="10"
-        android:hint="@string/uyelık_tipi"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/ındırım"
-        android:layout_width="365dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/edit_text_background"
-        android:ems="10"
-        android:hint="İndirim Tutarı"
-        android:inputType="textPassword"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="423dp"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/tutar"
-        android:layout_width="365dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="73dp"
-        android:background="@drawable/edit_text_background"
-        android:ems="10"
-        android:layout_marginTop="10dp"
-        android:hint="Toplam Tutar"
-        android:inputType="textPassword"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="534dp"
-        tools:ignore="MissingConstraints" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewodeme"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="18dp"
+        android:paddingTop="20dp" />
 
     <Button
-        android:id="@+id/completePaymentButton"
+        android:id="@+id/rezerve_et"
         android:layout_width="339dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#246395"
+        android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
-        android:text="Ödemeyi Tamamla"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.344"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tutar" />
+        android:layout_marginTop="19dp"
 
+        android:backgroundTint="#246395"
+        android:text="Rezerve Et"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/odemeyiTamamlaButton"
+        android:layout_width="339dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+
+        android:backgroundTint="#246395"
+        android:text="Ödemeyi Tamamla"
+        android:textSize="20sp" />
 
 
 </LinearLayout>

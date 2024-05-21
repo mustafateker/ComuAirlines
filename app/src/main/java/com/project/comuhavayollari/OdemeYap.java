@@ -1,70 +1,72 @@
 package com.project.comuhavayollari;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 public class OdemeYap extends AppCompatActivity {
 
-    private static final String CHANNEL_ID = "payment_channel";
+    private TextView biletFiyatiTextView;
+    private TextView uyelikIndirimiTextView;
+    private TextView gidisDonusIndirimiTextView;
+    private TextView odenecekTutarTextView;
+    private Button rezerveButton;
+    private Button odemeyiTamamlaButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_odeme);
 
-        // Bildirim kanalı oluşturma
-        createNotificationChannel();
+        // Koşula göre layout'u belirle
+        boolean someCondition = true; // Bu koşulu ihtiyacınıza göre ayarlayın
 
-        Button completePaymentButton = findViewById(R.id.completePaymentButton);
-        completePaymentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Bildirim ve Toast mesajı gösterme
-                sendPaymentCompleteNotification();
-            }
-        });
+        if (someCondition) {
+            setContentView(R.layout.odeme_item);
+            biletFiyatiTextView = findViewById(R.id.biletFiyatiTextView);
+            uyelikIndirimiTextView = findViewById(R.id.uyelikIndirimiTextView);
+            gidisDonusIndirimiTextView = findViewById(R.id.gidisDonusIndirimiTextView);
+            odenecekTutarTextView = findViewById(R.id.odenecekTutarTextView);
+
+        } else {
+            setContentView(R.layout.activity_odeme);
+            rezerveButton = findViewById(R.id.rezerve_et); // ID doğru olmalı
+            odemeyiTamamlaButton = findViewById(R.id.odemeyiTamamlaButton);
+        }
+
+        // Buton tıklama olaylarını ayarla
+        if (rezerveButton != null) {
+            rezerveButton.setOnClickListener(v -> {
+                // Rezerve etme işlemi kodu buraya gelecek
+                Toast.makeText(OdemeYap.this, "Rezerve Başarıyla Gerçekleşti", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        if (odemeyiTamamlaButton != null) {
+            odemeyiTamamlaButton.setOnClickListener(v -> {
+                // Ödeme yapma işlemi kodu buraya gelecek
+                Toast.makeText(OdemeYap.this, "Ödeme Başarıyla Yapıldı", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        // Veritabanından bilgileri çek ve TextView'leri güncelle
+        loadTicketDetails();
     }
 
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Payment Channel";
-            String description = "Channel for payment notifications";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
+    private void loadTicketDetails() {
+        // Veritabanından bilgileri yükle ve TextView'leri güncelle
+        // Bu kısmı kendi veritabanı erişim kodunuza göre ayarlayın
+        // Örnek olarak sabit değerler kullanıldı
+        String biletFiyati = "100 TL";
+        String uyelikIndirimi = "10 TL";
+        String gidisDonusIndirimi = "20 TL";
+        String odenecekTutar = "70 TL";
 
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
-
-    private void sendPaymentCompleteNotification() {
-        // Bildirim oluşturma ve gösterme
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.bildirim) // Bildirim simgesi, drawable klasöründe ic_payment adlı bir simge bulunmalıdır.
-                .setContentTitle("Ödeme Tamamlandı")
-                .setContentText("Ödeme başarıyla tamamlandı.")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // İzin kontrolü
-            return;
-        }
-        notificationManager.notify(1, builder.build());
-
-        // Toast mesajı gösterme
-        Toast.makeText(OdemeYap.this, "Ödeme başarıyla tamamlandı", Toast.LENGTH_SHORT).show();
+        // TextView'leri güncelle
+        if (biletFiyatiTextView != null) biletFiyatiTextView.setText(biletFiyati);
+        if (uyelikIndirimiTextView != null) uyelikIndirimiTextView.setText(uyelikIndirimi);
+        if (gidisDonusIndirimiTextView != null) gidisDonusIndirimiTextView.setText(gidisDonusIndirimi);
+        if (odenecekTutarTextView != null) odenecekTutarTextView.setText(odenecekTutar);
     }
 }

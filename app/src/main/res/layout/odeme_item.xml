@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:text="Bilet Detayları"
+    android:textSize="20dp"
+    android:textColor="@color/black"></TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Bilet Fiyatı -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bilet Fiyatı :"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/biletFiyatiTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100 TL"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Üyelik İndirimi -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Üyelik İndirimi :"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/uyelikIndirimiTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 TL"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Gidiş-Dönüş İndirimi -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Gidiş-Dönüş İndirimi :"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/gidisDonusIndirimiTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 TL"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Ödenecek Tutar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ödenecek Tutar :"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/odenecekTutarTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="70 TL"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
