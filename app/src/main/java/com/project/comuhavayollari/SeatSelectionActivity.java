@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,8 @@ public class SeatSelectionActivity extends AppCompatActivity {
     private SeatAdapter seatAdapter;
     private Button confirmButton;
     private List<Seat> seatList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +37,8 @@ public class SeatSelectionActivity extends AppCompatActivity {
         if (intent != null && intent.hasExtra("selectedFlight")) {
             selectedFlight = intent.getStringExtra("selectedFlight");
         }
-
-        TextView selectedFlightTextView = findViewById(R.id.selected_flight_text_view);
-        selectedFlightTextView.setText(selectedFlight);
+        //TextView selectedFlightTextView = findViewById(R.id.selected_flight_text_view);
+        //öselectedFlightTextView.setText(selectedFlight);
 
         seatList = generateSeatList();
         seatAdapter = new SeatAdapter(seatList);
@@ -48,7 +51,30 @@ public class SeatSelectionActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(v -> {
             for (Seat seat : seatList) {
                 if (seat.getStatus() == SeatStatus.SELECTED) {
-                    Toast.makeText(this, "Koltuk Seçildi: " + (seatList.indexOf(seat) + 1), Toast.LENGTH_SHORT).show();
+                    String  currentSeat = null;
+                    int selectedSeatIndex = seatList.indexOf(seat)+1;
+                    int kalan = selectedSeatIndex%4;
+                    int tamKisim = selectedSeatIndex/4;
+                    if(kalan == 0){
+                       String tamKisimString = Integer.toString(tamKisim);
+                       currentSeat = tamKisimString + "D";
+                    }
+                    if(kalan == 1){
+                        tamKisim++;
+                        String tamKisimString = Integer.toString(tamKisim);
+                        currentSeat = tamKisimString + "A";
+                    }
+                    if(kalan == 2){
+                        tamKisim++;
+                        String tamKisimString = Integer.toString(tamKisim);
+                        currentSeat = tamKisimString + "B";
+                    }
+                    if(kalan == 3){
+                        tamKisim++;
+                        String tamKisimString = Integer.toString(tamKisim);
+                        currentSeat = tamKisimString + "C";
+                    }
+                    Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
                     Intent intent1 = new Intent(SeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
                     startActivity(intent1);
                     break;
@@ -60,14 +86,9 @@ public class SeatSelectionActivity extends AppCompatActivity {
     private List<Seat> generateSeatList() {
         List<Seat> seats = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
-            if (i < 4) {
-                seats.add(new Seat(SeatStatus.VIP));
-            } else {
-                seats.add(new Seat(SeatStatus.AVAILABLE));
-            }
+          seats.add(new Seat(SeatStatus.AVAILABLE));
         }
-        seats.get(6).setStatus(SeatStatus.OCCUPIED);
-        seats.get(9).setStatus(SeatStatus.RESERVED);
+
         return seats;
     }
 }

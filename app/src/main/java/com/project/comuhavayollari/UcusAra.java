@@ -41,6 +41,7 @@ public class UcusAra extends AppCompatActivity {
     private ArrayList<String> flightList;
 
     private Calendar departureDateCalendar, returnDateCalendar;
+    private DatabaseReference mReferance;
 
 
     @Override
