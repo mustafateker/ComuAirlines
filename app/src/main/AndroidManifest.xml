@@ -15,9 +15,11 @@
         android:theme="@style/Theme.COMUHavaYollari"
         tools:targetApi="31">
         <activity
+            android:name=".OdemeSayfasi"
+            android:exported="false" />
+        <activity
             android:name=".SecilenBiletDetaylariActivity"
             android:exported="false" />
-
         <activity
             android:name=".SeatSelectionActivity"
             android:exported="false" />
@@ -27,7 +29,6 @@
         <activity
             android:name=".SeferEkle"
             android:exported="false" />
-
         <activity
             android:name=".BiletListele"
             android:exported="false" />
@@ -52,10 +53,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity android:name=".OdemeYap" />
-
-
     </application>
 
 </manifest>

@@ -57,7 +57,7 @@ public class SecilenBiletDetaylariActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Ödeme yap butonuna tıklandığında yeni aktiviteyi başlat
-                Intent intent = new Intent(SecilenBiletDetaylariActivity.this, OdemeYap.class);
+                Intent intent = new Intent(SecilenBiletDetaylariActivity.this, OdemeSayfasi.class);
                 startActivity(intent);
             }
         });

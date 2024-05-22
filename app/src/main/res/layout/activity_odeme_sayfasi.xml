@@ -6,36 +6,34 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@drawable/bilet_alma"
-    tools:context=".BiletListele">
+    tools:context=".OdemeSayfasi">
 
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="273dp"
-        android:layout_marginTop="105dp"
-        android:layout_marginBottom="20dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/comu_card"
+        android:layout_width="wrap_content"
+        android:layout_height="187dp"
         android:layout_marginStart="18dp"
-        android:layout_marginEnd="18dp"/>
-
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/comu_card" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewodeme"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="18dp"
-        android:paddingTop="20dp" />
+        android:layout_height="228dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="22dp" />
 
     <Button
         android:id="@+id/rezerve_et"
         android:layout_width="339dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="19dp"
-
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#246395"
         android:text="Rezerve Et"
         android:textSize="20sp" />
@@ -45,11 +43,9 @@
         android:layout_width="339dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-
+        android:layout_marginBottom="5dp"
         android:backgroundTint="#246395"
         android:text="Ödemeyi Tamamla"
         android:textSize="20sp" />
-
 
 </LinearLayout>

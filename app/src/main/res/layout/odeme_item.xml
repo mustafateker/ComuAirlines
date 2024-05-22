@@ -1,112 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:text="Bilet Detayları"
-    android:textSize="20dp"
-    android:textColor="@color/black"></TextView>
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itemCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp">
 
-        <!-- Bilet Fiyatı -->
+        <TextView
+            android:id="@+id/BiletUcretiGenelId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="20dp"
+            android:text="Ödenecek Tutar : "
+            android:textSize="20dp"
+            android:textColor="@color/black" />
+
         <LinearLayout
+            android:id="@+id/UcretBilgisiGenelLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <TextView
-                android:layout_width="0dp"
+            <!-- Bilet Fiyatı -->
+            <LinearLayout
+                android:id="@+id/BiletFiyatiLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Bilet Fiyatı :"
-                android:textSize="16sp" />
+                android:orientation="horizontal"
+                android:padding="8dp">
 
-            <TextView
-                android:id="@+id/biletFiyatiTextView"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/biletFiyatiTittleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Bilet Fiyatı :"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/biletFiyatiTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100 TL"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Üyelik İndirimi -->
+            <LinearLayout
+                android:id="@+id/UyelikIndirimiLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="100 TL"
-                android:textSize="16sp" />
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/UyelikIndirimiTittleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Üyelik İndirimi :"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/uyelikIndirimiTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 TL"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Gidiş-Dönüş İndirimi -->
+            <LinearLayout
+                android:id="@+id/GidisDonusIndirimiLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/GidisDonusTittleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Gidiş-Dönüş İndirimi :"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/gidisDonusIndirimiTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20 TL"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/black"/>
+
+            <!-- Ödenecek Tutar -->
+            <LinearLayout
+                android:id="@+id/OdenecekTutarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/OdenecekTutarTittleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Toplam :"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/odenecekTutarTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="70 TL"
+                    android:textSize="16sp" />
+            </LinearLayout>
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
 
-        <!-- Üyelik İndirimi -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Üyelik İndirimi :"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/uyelikIndirimiTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10 TL"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Gidiş-Dönüş İndirimi -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Gidiş-Dönüş İndirimi :"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/gidisDonusIndirimiTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20 TL"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Ödenecek Tutar -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Ödenecek Tutar :"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/odenecekTutarTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="70 TL"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
