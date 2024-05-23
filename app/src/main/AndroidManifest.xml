@@ -15,8 +15,9 @@
         android:theme="@style/Theme.COMUHavaYollari"
         tools:targetApi="31">
         <activity
-            android:name=".AdminUcusSil"
+            android:name=".AdminDeleteList"
             android:exported="false" />
+
         <activity
             android:name=".OdemeSayfasi"
             android:exported="false" />

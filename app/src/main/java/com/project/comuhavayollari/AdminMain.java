@@ -33,5 +33,15 @@ public class AdminMain extends AppCompatActivity {
                 startActivity(flightListIntent);
             }
         });
+
+        // Uçuş silme butonunu ayarla
+        Button buttonFlightDelete = findViewById(R.id.buttonFlightDelete);
+        buttonFlightDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent flightDeleteIntent = new Intent(AdminMain.this, AdminDeleteList.class);
+                startActivity(flightDeleteIntent);
+            }
+        });
     }
 }
