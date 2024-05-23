@@ -7,13 +7,12 @@ public class Flight {
     private String flightNumber;
     private String flightDate;
     private String flightTime;
-
     private String ticketPrice;
-
 
     public Flight() {
         // Default constructor required for calls to DataSnapshot.getValue(Flight.class)
     }
+
     public Flight(String id, String fromCity, String toCity, String flightNumber, String flightDate, String flightTime, String ticketPrice) {
         this.id = id;
         this.fromCity = fromCity;
@@ -73,8 +72,11 @@ public class Flight {
         this.flightTime = flightTime;
     }
 
-    public String getTicketPrice(){return ticketPrice;}
-    public void setTicketPrice(String ticketPrice){this.ticketPrice = ticketPrice;}
+    public String getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(String ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
 }
-
-

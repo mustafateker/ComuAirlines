@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/fromCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From City"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/toCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To City"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/flightNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flight Number"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/flightDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flight Date"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/flightTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flight Time"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/ticketPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ticket Price"
+        android:textSize="18sp" />
+</LinearLayout>

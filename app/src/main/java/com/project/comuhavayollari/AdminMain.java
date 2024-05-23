@@ -14,6 +14,7 @@ public class AdminMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
+        // Sefer ekleme butonunu ayarla
         Button sefereklebuton = findViewById(R.id.buttonFlightAdd);
         sefereklebuton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,6 +23,15 @@ public class AdminMain extends AppCompatActivity {
                 startActivity(adminLoginIntent);
             }
         });
+
+        // Uçuş listeleme butonunu ayarla
+        Button buttonFlightList = findViewById(R.id.buttonFlightList);
+        buttonFlightList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent flightListIntent = new Intent(AdminMain.this, AdminUcusListele.class);
+                startActivity(flightListIntent);
+            }
+        });
     }
 }
-
