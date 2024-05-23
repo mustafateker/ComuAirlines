@@ -2,7 +2,6 @@ package com.project.comuhavayollari;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -31,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class UcusAra extends AppCompatActivity {
     private Spinner spinnerFrom,spinnerToCity, spinnerPassengerCount;
@@ -40,8 +40,14 @@ public class UcusAra extends AppCompatActivity {
     private ArrayAdapter<String> flightsAdapter;
     private ArrayList<String> flightList;
 
+    private ListView listViewFlights;
+    private List<UcusAraItem> ucusAraItemList;
+    private UcusAraAdaptorItem ucusAraAdaptorItem;
+
     private Calendar departureDateCalendar, returnDateCalendar;
     private DatabaseReference mReferance;
+
+
 
 
     @Override
@@ -55,6 +61,8 @@ public class UcusAra extends AppCompatActivity {
 
             return insets;
         });
+
+
         spinnerFrom = findViewById(R.id.spinnerFrom);
         spinnerToCity = findViewById(R.id.ucuseklespinnerTo);
 
@@ -74,16 +82,16 @@ public class UcusAra extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Tıklanan öğenin hangisi olduğunu belirle
-                String selectedFlight = flightList.get(position);
+                //String selectedFlight = flightList.get(position);
 
                 // Yeni Activity'e geçiş için Intent oluştur
-                Intent intent = new Intent(UcusAra.this, SeatSelectionActivity.class);
+                //Intent intent = new Intent(UcusAra.this, SeatSelectionActivity.class);
 
                 // İlgili veriyi Intent'e ekle (Opsiyonel)
-                intent.putExtra("selectedFlight", selectedFlight);
+                //intent.putExtra("selectedFlight", selectedFlight);
 
                 // Yeni Activity'i başlat
-                startActivity(intent);
+               // startActivity(intent);
             }
         });
         // Spinner veri kaynakları
@@ -99,9 +107,16 @@ public class UcusAra extends AppCompatActivity {
         passengerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPassengerCount.setAdapter(passengerAdapter);
 
-        flightList = new ArrayList<>();
-        flightsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, flightList);
-        listViewFlights.setAdapter(flightsAdapter);
+        //ListVİewAdaptor
+
+        ucusAraItemList = new ArrayList<>();
+        ucusAraItemList.add(new UcusAraItem(R.drawable.plane_icon_degrade, "TK123", "12:30", "Ankara", R.drawable.plane_icon_blue, "Istanbul", "450 TL"));
+        ucusAraItemList.add(new UcusAraItem(R.drawable.plane_icon_degrade, "TK124", "14:30", "Izmir", R.drawable.plane_icon_blue, "Istanbul", "550 TL"));
+
+        // Set up the adapter
+        ucusAraAdaptorItem = new UcusAraAdaptorItem(this, ucusAraItemList);
+        listViewFlights.setAdapter(ucusAraAdaptorItem);
+
 
         radioGroupTripType.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radioOneWay) {
@@ -117,7 +132,11 @@ public class UcusAra extends AppCompatActivity {
 
         buttonReturnDate.setOnClickListener(v -> showDatePickerDialog(returnDateCalendar, buttonReturnDate));
 
-        btnSearch.setOnClickListener(v -> searchFlights());
+        //btnSearch.setOnClickListener(v -> searchFlights());
+
+
+
+
     }
 
     private void showDatePickerDialog(final Calendar calendar, final Button button) {
@@ -143,7 +162,8 @@ public class UcusAra extends AppCompatActivity {
 
         DatabaseReference flightsRef = FirebaseDatabase.getInstance().getReference("flights");
 
-        flightList.clear();
+        ucusAraItemList.clear();
+       // flightList.clear();
 
         flightsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -167,8 +187,8 @@ public class UcusAra extends AppCompatActivity {
                                 if(flightDate.equals(departureDate)){
 
                                     if(fetchedToCity.equals(toCity)){
-                                        String flightInfo = flightNumber + " - " + flightTime + " - " + fetchedFromCity + " -> " + fetchedToCity + " - " + ticketPrice + " TL";
-                                        flightList.add(flightInfo);
+                                        ucusAraItemList.add(new UcusAraItem(R.drawable.plane_icon_degrade, flightNumber, flightTime, fetchedFromCity, R.drawable.plane_icon_blue, fetchedToCity, ticketPrice));
+
                                     }
                                 }
 

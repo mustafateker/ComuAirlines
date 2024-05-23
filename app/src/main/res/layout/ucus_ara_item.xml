@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="50dp">
+
+    <ImageView
+        android:id="@+id/ucuslogoitem"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/plane_icon_degrade"
+         />
+
+    <TextView
+        android:id="@+id/ucusnoitem"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:text="56"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+         />
+
+    <TextView
+        android:id="@+id/ucussaatiitem"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="20:20"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/kalkisyeriitem"
+        android:layout_width="75dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Ankara"
+        android:textSize="15sp"
+         />
+
+    <ImageView
+        android:id="@+id/yönitem"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/plane_icon_blue"
+        />
+
+    <TextView
+        android:id="@+id/varisyeriitem"
+        android:layout_width="75dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="İstanbul"
+        android:textSize="15sp"
+         />
+
+    <TextView
+        android:id="@+id/fiyatitem"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="1250 TL"
+        android:textSize="15sp"
+         />
+</LinearLayout>
