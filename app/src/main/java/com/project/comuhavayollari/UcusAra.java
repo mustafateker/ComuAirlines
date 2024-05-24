@@ -182,19 +182,19 @@ public class UcusAra extends AppCompatActivity {
                                 if(flightDate.equals(departureDate)){
 
                                     if(fetchedToCity.equals(toCity)){
-                                        String SearcWithFlightId = flihtId;
-                                        mReferance = FirebaseDatabase.getInstance().getReference("flights");
+                                        //String SearcWithFlightId = flihtId;
+                                        //mReferance = FirebaseDatabase.getInstance().getReference("flights");
 
                                         ucusAraItemList.add(new UcusAraItem(R.drawable.plane_icon_degrade, flightNumber, flightTime, fetchedFromCity, R.drawable.plane_icon_blue, fetchedToCity, ticketPrice + " TL"));
                                         FlightDetailTransport flightDetail = new FlightDetailTransport();
-                                        flightDetail.setFlightNumber(flightInfoSnapshot.child("flightNumber").getValue(String.class));
-                                        flightDetail.setFlightTime(flightInfoSnapshot.child("flightTime").getValue(String.class));
-                                        flightDetail.setFromCity(flightInfoSnapshot.child("fromCity").getValue(String.class));
-                                        flightDetail.setToCity(flightInfoSnapshot.child("toCity").getValue(String.class));
-                                        flightDetail.setTicketPrice(flightInfoSnapshot.child("ticketPrice").getValue(String.class));
-                                        flightDetail.setId(flightInfoSnapshot.child("id").getValue(String.class));
-                                        flightDetail.setSeatNumber(flightInfoSnapshot.child("seatNumber").getValue(String.class));
-                                        flightDetail.setFlightDate(flightInfoSnapshot.child("flightDate").getValue(String.class));
+                                        flightDetail.setFlightNumber(flightNumber);
+                                        flightDetail.setFlightTime(flightTime);
+                                        flightDetail.setFromCity(fetchedFromCity);
+                                        flightDetail.setToCity(fetchedToCity);
+                                        flightDetail.setTicketPrice(ticketPrice);
+                                        flightDetail.setId(flihtId);
+                                        flightDetail.setSeatNumber("");
+                                        flightDetail.setFlightDate(flightDate);
                                         flightDetailList.add(flightDetail);
                                     }
                                 }
