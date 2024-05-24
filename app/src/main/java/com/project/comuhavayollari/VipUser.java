@@ -5,4 +5,6 @@ public class VipUser extends User{
     public void Yuzde25IndirimYap(){
 
     }
+
+
 }
