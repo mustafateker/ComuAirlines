@@ -121,23 +121,7 @@
             android:visibility="gone" />
 
         <!-- Yolcu Sayısı -->
-        <TextView
-            android:id="@+id/textViewPassengerCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="Yolcu Sayısı" />
 
-        <Spinner
-            android:id="@+id/spinnerPassengerCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:padding="16dp" />
 
         <!-- Uçuş Ara Butonu -->
         <Button
@@ -151,12 +135,111 @@
             android:backgroundTint="#246395"
             android:text="Uçuş Ara" />
 
+        <LinearLayout
+            android:layout_width="380dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/ucuslogoitemTittle"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
+
+                    />
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="30dp"
+                    android:background="@color/white"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
+
+                <TextView
+                    android:id="@+id/ucusnoTittle"
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:text="PNR No"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    />
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="40dp"
+                    android:background="#9C9C9C"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
+
+                <TextView
+                    android:id="@+id/ucussaatiitemTittle"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Saat"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    />
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="40dp"
+                    android:background="#9C9C9C"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
+
+                <TextView
+                    android:id="@+id/kalkisyeriitemTittle"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Kalkış"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="40dp"
+                    android:background="#9C9C9C"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="15dp"/>
+
+                <TextView
+                    android:id="@+id/varisyeriitemTittle"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Varış"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    />
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="40dp"
+                    android:background="#9C9C9C"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
+
+                <TextView
+                    android:id="@+id/fiyatitemTittle"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Fiyat"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+        </LinearLayout>
+
         <ListView
                     android:id="@+id/listViewFlights"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_below="@id/btnSearch"
-                    android:layout_marginTop="10dp" />
+                    android:layout_below="@id/btnSearch" />
 
 
         <!-- Uçuş Listesi ListView -->

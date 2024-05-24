@@ -3,14 +3,11 @@ package com.project.comuhavayollari;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +29,20 @@ public class SeatSelectionActivity extends AppCompatActivity {
         seatRecyclerView = findViewById(R.id.seat_recycler_view);
         confirmButton = findViewById(R.id.confirm_button);
 
+
         Intent intent = getIntent();
-        String selectedFlight = "";
-        if (intent != null && intent.hasExtra("selectedFlight")) {
-            selectedFlight = intent.getStringExtra("selectedFlight");
+        FlightDetailTransport selectedFlight = (FlightDetailTransport) intent.getSerializableExtra("selectedFlight");
+
+        if (selectedFlight != null) {
+            String flightNumber = selectedFlight.getFlightNumber();
+            Toast.makeText(SeatSelectionActivity.this, "Selected Flight: " + flightNumber, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(SeatSelectionActivity.this, "No flight selected!", Toast.LENGTH_SHORT).show();
         }
-        //TextView selectedFlightTextView = findViewById(R.id.selected_flight_text_view);
-        //öselectedFlightTextView.setText(selectedFlight);
+
+
+
+
 
         seatList = generateSeatList();
         seatAdapter = new SeatAdapter(seatList);

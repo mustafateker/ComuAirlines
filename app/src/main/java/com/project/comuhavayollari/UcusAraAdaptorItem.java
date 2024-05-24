@@ -15,7 +15,7 @@ public class UcusAraAdaptorItem extends BaseAdapter {
     private List<UcusAraItem> ucusList;
     private LayoutInflater inflater;
 
-    public UcusAraAdaptorItem(Context context, List<UcusAraItem> ucusList) {
+    public UcusAraAdaptorItem(Context context, int ucus_ara_item, List<UcusAraItem> ucusList) {
         this.context = context;
         this.ucusList = ucusList;
         this.inflater = LayoutInflater.from(context);
