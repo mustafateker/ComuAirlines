@@ -19,6 +19,7 @@ public class SeatSelectionActivity extends AppCompatActivity {
     private Button confirmButton;
     private List<Seat> seatList;
 
+    //private ArrayList<FlightDetailTransport> flightDetailList = new ArrayList<>();
 
 
     @Override
@@ -29,20 +30,16 @@ public class SeatSelectionActivity extends AppCompatActivity {
         seatRecyclerView = findViewById(R.id.seat_recycler_view);
         confirmButton = findViewById(R.id.confirm_button);
 
-
         Intent intent = getIntent();
         FlightDetailTransport selectedFlight = (FlightDetailTransport) intent.getSerializableExtra("selectedFlight");
 
         if (selectedFlight != null) {
             String flightNumber = selectedFlight.getFlightNumber();
-            Toast.makeText(SeatSelectionActivity.this, "Selected Flight: " + flightNumber, Toast.LENGTH_SHORT).show();
+            String ucusTipi = String.valueOf(selectedFlight.getTicketType());
+            Toast.makeText(SeatSelectionActivity.this, "Seçilen Uçuş: " + flightNumber, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(SeatSelectionActivity.this, "No flight selected!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SeatSelectionActivity.this, "Uçuş Seçilmedi!", Toast.LENGTH_SHORT).show();
         }
-
-
-
-
 
         seatList = generateSeatList();
         seatAdapter = new SeatAdapter(seatList);
@@ -55,31 +52,27 @@ public class SeatSelectionActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(v -> {
             for (Seat seat : seatList) {
                 if (seat.getStatus() == SeatStatus.SELECTED) {
-                    String  currentSeat = null;
-                    int selectedSeatIndex = seatList.indexOf(seat)+1;
-                    int kalan = selectedSeatIndex%4;
-                    int tamKisim = selectedSeatIndex/4;
-                    if(kalan == 0){
-                       String tamKisimString = Integer.toString(tamKisim);
-                       currentSeat = tamKisimString + "D";
-                    }
-                    if(kalan == 1){
+                    String currentSeat = null;
+                    int selectedSeatIndex = seatList.indexOf(seat) + 1;
+                    int kalan = selectedSeatIndex % 4;
+                    int tamKisim = selectedSeatIndex / 4;
+                    if (kalan == 0) {
+                        currentSeat = tamKisim + "D";
+                    } else if (kalan == 1) {
                         tamKisim++;
-                        String tamKisimString = Integer.toString(tamKisim);
-                        currentSeat = tamKisimString + "A";
-                    }
-                    if(kalan == 2){
+                        currentSeat = tamKisim + "A";
+                    } else if (kalan == 2) {
                         tamKisim++;
-                        String tamKisimString = Integer.toString(tamKisim);
-                        currentSeat = tamKisimString + "B";
-                    }
-                    if(kalan == 3){
+                        currentSeat = tamKisim + "B";
+                    } else if (kalan == 3) {
                         tamKisim++;
-                        String tamKisimString = Integer.toString(tamKisim);
-                        currentSeat = tamKisimString + "C";
+                        currentSeat = tamKisim + "C";
                     }
                     Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
+
+                    selectedFlight.setSeatNumber(currentSeat);
                     Intent intent1 = new Intent(SeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
+                    intent1.putExtra("selectedFlight", selectedFlight);
                     startActivity(intent1);
                     break;
                 }
@@ -90,11 +83,9 @@ public class SeatSelectionActivity extends AppCompatActivity {
     private List<Seat> generateSeatList() {
         List<Seat> seats = new ArrayList<>();
         for (int i = 0; i < 40; i++) {
-          seats.add(new Seat(SeatStatus.AVAILABLE));
+            seats.add(new Seat(SeatStatus.AVAILABLE));
         }
 
         return seats;
     }
 }
-
-

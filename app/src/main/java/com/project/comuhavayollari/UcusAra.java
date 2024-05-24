@@ -48,6 +48,9 @@ public class UcusAra extends AppCompatActivity {
     private Calendar departureDateCalendar, returnDateCalendar;
     private DatabaseReference mReferance;
 
+    private boolean ticketType = false;
+
+    private String memberType;
 
 
 
@@ -78,6 +81,9 @@ public class UcusAra extends AppCompatActivity {
 
         departureDateCalendar = Calendar.getInstance();
         returnDateCalendar = Calendar.getInstance();
+        //bilet tipi tek yön
+        //üye tipi default !!!!!simdilik
+        memberType = "NormalUye";
         listViewFlights.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -88,13 +94,9 @@ public class UcusAra extends AppCompatActivity {
                 // Yeni Activity'e geçiş için Intent oluştur
                 Intent intent = new Intent(UcusAra.this, SeatSelectionActivity.class);
 
-
                 // İlgili veriyi Intent'e ekle (Opsiyonel)
-                intent.putExtra("selectedFlight", selectedFlight);
-
-
-                // Yeni Activity'i başlat
-                startActivity(intent);
+                 intent.putExtra("selectedFlight", selectedFlight);
+                 startActivity(intent);
             }
         });
         // Spinner veri kaynakları
@@ -118,9 +120,12 @@ public class UcusAra extends AppCompatActivity {
             if (checkedId == R.id.radioOneWay) {
                 textViewReturnDate.setVisibility(View.GONE);
                 buttonReturnDate.setVisibility(View.GONE);
+                ticketType = false;
             } else if (checkedId == R.id.radioRoundTrip) {
                 textViewReturnDate.setVisibility(View.VISIBLE);
                 buttonReturnDate.setVisibility(View.VISIBLE);
+                //bilet tipi gidis donus
+                ticketType = true;
             }
         });
 
@@ -150,9 +155,12 @@ public class UcusAra extends AppCompatActivity {
         String toCity = spinnerToCity.getSelectedItem().toString();
         String departureDate = buttonDepartureDate.getText().toString();
 
+
+
         String returnDate = null;
         if (radioRoundTrip.isChecked()) {
             returnDate = buttonReturnDate.getText().toString();
+            ticketType = true;
         }
 
         DatabaseReference flightsRef = FirebaseDatabase.getInstance().getReference("flights");
@@ -195,6 +203,9 @@ public class UcusAra extends AppCompatActivity {
                                         flightDetail.setId(flihtId);
                                         flightDetail.setSeatNumber("");
                                         flightDetail.setFlightDate(flightDate);
+                                        flightDetail.setMemberType(memberType);
+                                        flightDetail.setTicketType(ticketType);
+                                        flightDetail.setTicketNumber("");
                                         flightDetailList.add(flightDetail);
                                     }
                                 }

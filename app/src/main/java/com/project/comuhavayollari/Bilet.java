@@ -26,6 +26,17 @@ public class Bilet extends AppCompatActivity {
 
     }
 
+    public Bilet(String ucus_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati) {
+        this.ucus_no = ucus_no;
+        this.ucus_tarihi = ucus_tarihi;
+        this.ucus_saati = ucus_saati;
+        this.kalkis_noktasi = kalkis_noktasi;
+        this.varis_noktasi = varis_noktasi;
+        this.koltuk_no=koltuk_no;
+        this.bilet_fiyati=bilet_fiyati;
+
+    }
+
     public void setUcusNo(String ucus_no) {
         this.ucus_no = ucus_no;
     }

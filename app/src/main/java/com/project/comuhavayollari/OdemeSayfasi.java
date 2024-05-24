@@ -1,5 +1,6 @@
 package com.project.comuhavayollari;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class OdemeSayfasi extends AppCompatActivity {
 
@@ -30,13 +32,40 @@ public class OdemeSayfasi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_odeme_sayfasi);
 
+        Intent intent = getIntent();
+
+        FlightDetailTransport selectedFlightTransport = (FlightDetailTransport) intent.getSerializableExtra("selectedFlight");
+
         recyclerView = findViewById(R.id.recyclerViewodeme); // RecyclerView'ın ID'sini kontrol edin
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        String ticketPrice = selectedFlightTransport.getTicketPrice();
+        boolean ticketType = selectedFlightTransport.getTicketType();
+        int roundTripDiscountInt = 0;
+        int ticketPriceInt = Integer.parseInt(String.valueOf(ticketPrice));
 
+        //bilet tipine göre gidis dönüs indirimini belirliyoruz
+        if(ticketType){
+            roundTripDiscountInt = (ticketPriceInt - ((ticketPriceInt*2)/100));
+        }
+        int totalPriceInt = ticketPriceInt - roundTripDiscountInt;
+        String totalPrice = String.valueOf(totalPriceInt);
+        String roundTripDiscount = String.valueOf(roundTripDiscountInt);
 
+        //üyelik tipine göre üyelik indirimini belirliyoruz NormalUye VipUye DaimiUye
+        int vipUyeIndirimiInt = 0;
+        int daimiUyeIndirimiInt = 0;
+        String uyelikIndirimi = "0" ;
+        String uyelikTipi = selectedFlightTransport.getMemberType();
+        if(Objects.equals(uyelikTipi, "VipUye")){
+            vipUyeIndirimiInt = totalPriceInt - ((totalPriceInt*25)/100);
+            uyelikIndirimi = String.valueOf(vipUyeIndirimiInt);
+        } else if (Objects.equals(uyelikTipi,"DaimiUye")) {
+            daimiUyeIndirimiInt = totalPriceInt - ((totalPriceInt*10)/100);
+            uyelikIndirimi = String.valueOf(daimiUyeIndirimiInt);
+        }
         // Örnek bilet verileri
         odemeList = new ArrayList<>();
-        odemeList.add(new OdemeList("1250 TL", "-150 TL", "-100 TL", "1000 TL"));
+        odemeList.add(new OdemeList(ticketPrice, "-" + uyelikIndirimi +" TL", "-"  + totalPrice + " TL", roundTripDiscount + " TL"));
 
 
         odemeAdapter = new OdemeAdapter(this, odemeList);

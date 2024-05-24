@@ -1,6 +1,7 @@
 package com.project.comuhavayollari;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class FlightDetailTransport implements Serializable {
 
@@ -12,6 +13,11 @@ public class FlightDetailTransport implements Serializable {
     private String id;
     private String ticketPrice;
     private String seatNumber;
+    private String memberType;
+    private Boolean ticketType;
+    private String ticketNumber;
+
+
 
     public FlightDetailTransport() {
     }
@@ -78,5 +84,31 @@ public class FlightDetailTransport implements Serializable {
 
     public void setSeatNumber(String seatNumber) {
         this.seatNumber = seatNumber;
+    }
+
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
+    }
+
+
+    public Boolean getTicketType() {
+        return ticketType;
+    }
+
+    public void setTicketType(Boolean ticketType) {
+        this.ticketType = ticketType;
+    }
+
+
+    public String getTicketNumber() {
+        return ticketNumber;
+    }
+
+    public void setTicketNumber(String ticketNumber) {
+        this.ticketNumber = ticketNumber;
     }
 }

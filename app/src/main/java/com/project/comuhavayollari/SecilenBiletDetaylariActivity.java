@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SecilenBiletDetaylariActivity extends AppCompatActivity {
 
@@ -39,25 +41,50 @@ public class SecilenBiletDetaylariActivity extends AppCompatActivity {
             });
         }
 
-        recyclerView1 = findViewById(R.id.recycler_viewdetay); // RecyclerView'ın ID'sini kontrol edin
+        Intent intent = getIntent();
+
+        FlightDetailTransport selectedFlightTransport = (FlightDetailTransport) intent.getSerializableExtra("selectedFlight");
+
+        recyclerView1 = findViewById(R.id.recycler_viewdetay);
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
-        // Örnek bilet verileri
+
+
+        String flightNumber = selectedFlightTransport.getFlightNumber();
+        String flightTime = selectedFlightTransport.getFlightTime();
+        String fetchedFromCity = selectedFlightTransport.getFromCity();
+        String fetchedToCity = selectedFlightTransport.getToCity();
+        String ticketPrice = selectedFlightTransport.getTicketPrice();
+        String flightId = selectedFlightTransport.getId();
+        String flightDate = selectedFlightTransport.getFlightDate();
+        String memberType = selectedFlightTransport.getMemberType();
+        boolean ticketType = selectedFlightTransport.getTicketType();
+        String selectedSeat = selectedFlightTransport.getSeatNumber();
+        Random random = new Random();
+
+// 6 basamaklı rastgele sayı oluştur
+        int ticketNo = random.nextInt(900000) + 100000;
+        String biletNumarasi = String.valueOf(ticketNo);
+        String ticketNumber = Integer.toString(ticketNo);
+
+        selectedFlightTransport.setTicketNumber(ticketNumber);
+
         biletListele = new ArrayList<>();
         //String ucus_no, String bilet_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati
-        biletListele.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
-        biletListele.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
-        biletListele.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
+        biletListele.add(new Bilet(flightNumber, biletNumarasi, flightDate, flightTime, fetchedFromCity, fetchedToCity, selectedSeat, ticketPrice + " TL"));
+
 
         biletDetayiAdapter= new biletDetayiAdapter(this, biletListele);
         recyclerView1.setAdapter(biletDetayiAdapter);
 
-        // Ödeme yap butonuna tıklama olayını ekleyin
+
         Button odemeYapButton = findViewById(R.id.odeme_yap);
         odemeYapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Ödeme yap butonuna tıklandığında yeni aktiviteyi başlat
                 Intent intent = new Intent(SecilenBiletDetaylariActivity.this, OdemeSayfasi.class);
+                intent.putExtra("selectedFlight", selectedFlightTransport);
+
                 startActivity(intent);
             }
         });
