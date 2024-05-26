@@ -44,10 +44,10 @@ public class AdminUcusListele extends AppCompatActivity {
                 for (DataSnapshot flightSnapshot : dataSnapshot.getChildren()) {
                     Flight flight = flightSnapshot.child("flight_info").getValue(Flight.class);
                     if (flight != null) {
-                        String flightInfo = "Flight Number: " + flight.getFlightNumber() + "\n"
-                                + "From: " + flight.getFromCity() + " To: " + flight.getToCity() + "\n"
-                                + "Date: " + flight.getFlightDate() + " Time: " + flight.getFlightTime() + "\n"
-                                + "Price: " + flight.getTicketPrice();
+                        String flightInfo = "Uçuş No: " + flight.getFlightNumber() + "\n"
+                                + "Kalkış: " + flight.getFromCity() + " Varış: " + flight.getToCity() + "\n"
+                                + "Tarih: " + flight.getFlightDate() + " Saat: " + flight.getFlightTime() + "\n"
+                                + "Fiyat: " + flight.getTicketPrice()+ " TL: ";
                         flightsList.add(flightInfo);
                     }
                 }
