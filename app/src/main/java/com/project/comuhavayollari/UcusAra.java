@@ -111,7 +111,7 @@ public class UcusAra extends AppCompatActivity {
         //ListVİewAdaptor
 
         ucusAraItemList = new ArrayList<>();
-        // Set up the adapter
+
         ucusAraAdaptorItem = new UcusAraAdaptorItem(this, R.layout.ucus_ara_item, ucusAraItemList);
         listViewFlights.setAdapter(ucusAraAdaptorItem);
 
@@ -206,7 +206,9 @@ public class UcusAra extends AppCompatActivity {
                                         flightDetail.setMemberType(memberType);
                                         flightDetail.setTicketType(ticketType);
                                         flightDetail.setTicketNumber("");
+                                        flightDetail.setPurschaedDate("");
                                         flightDetailList.add(flightDetail);
+
                                     }
                                 }
 

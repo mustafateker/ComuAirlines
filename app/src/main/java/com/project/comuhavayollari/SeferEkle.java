@@ -179,19 +179,19 @@ public class SeferEkle extends AppCompatActivity {
             String flightId = UUID.randomUUID().toString();
             // Uçuş detaylarını kaydetmek için gereken kod
             mReferance = FirebaseDatabase.getInstance().getReference("flights").child(flightId).child("flight_info");
-            String  A1= "AVAILABLE", A2= "AVAILABLE", A3= "AVAILABLE", A4= "AVAILABLE", A5= "AVAILABLE",
-                    A6= "AVAILABLE", A7= "AVAILABLE", A8= "AVAILABLE", A9= "AVAILABLE", A10= "AVAILABLE",
-                    B1= "AVAILABLE", B2= "AVAILABLE", B3= "AVAILABLE", B4= "AVAILABLE", B5= "AVAILABLE",
-                    B6= "AVAILABLE", B7= "AVAILABLE", B8= "AVAILABLE", B9= "AVAILABLE", B10= "AVAILABLE",
-                    C1= "AVAILABLE", C2= "AVAILABLE", C3= "AVAILABLE", C4= "AVAILABLE", C5= "AVAILABLE",
-                    C6= "AVAILABLE", C7= "AVAILABLE", C8= "AVAILABLE", C9= "AVAILABLE", C10= "AVAILABLE",
-                    D1= "AVAILABLE", D2= "AVAILABLE", D3= "AVAILABLE", D4= "AVAILABLE", D5= "AVAILABLE",
-                    D6= "AVAILABLE", D7= "AVAILABLE", D8= "AVAILABLE", D9= "AVAILABLE", D10= "AVAILABLE";
+            String  a1= "AVAILABLE", a2= "AVAILABLE", a3= "AVAILABLE", a4= "AVAILABLE", a5= "AVAILABLE",
+                    a6= "AVAILABLE", a7= "AVAILABLE", a8= "AVAILABLE", a9= "AVAILABLE", a10= "AVAILABLE",
+                    b1= "AVAILABLE", b2= "AVAILABLE", b3= "AVAILABLE", b4= "AVAILABLE", b5= "AVAILABLE",
+                    b6= "AVAILABLE", b7= "AVAILABLE", b8= "AVAILABLE", b9= "AVAILABLE", b10= "AVAILABLE",
+                    c1= "AVAILABLE", c2= "AVAILABLE", c3= "AVAILABLE", c4= "AVAILABLE", c5= "AVAILABLE",
+                    c6= "AVAILABLE", c7= "AVAILABLE", c8= "AVAILABLE", c9= "AVAILABLE", c10= "AVAILABLE",
+                    d1= "AVAILABLE", d2= "AVAILABLE", d3= "AVAILABLE", d4= "AVAILABLE", d5= "AVAILABLE",
+                    d6= "AVAILABLE", d7= "AVAILABLE", d8= "AVAILABLE", d9= "AVAILABLE", d10= "AVAILABLE";
             mSeatReferance = FirebaseDatabase.getInstance().getReference("flights").child(flightId).child("flight_seats");
-            SeatNo seatNo = new SeatNo( A1, A2, A3, A4, A5, A6, A7, A8, A9, A10,
-                     B1, B2, B3, B4, B5, B6, B7, B8, B9, B10,
-                     C1, C2, C3, C4, C5, C6, C7, C8, C9, C10,
-                     D1, D2, D3, D4, D5, D6, D7, D8, D9, D10);
+            SeatNo seatNo = new SeatNo( a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
+                    b1, b2, b3, b4, b5, b6, b7, b8, b9, b10,
+                    c1, c2, c3, c4, c5, c6, c7, c8, c9, c10,
+                    d1, d2, d3, d4, d5, d6, d7, d8, d9, d10);
             //mSeatReferance.setValue(seatNo);
             // Uçuş detaylarını içeren bir Flight objesi oluştur
             Flight flight = new Flight(flightId, fromCity, toCity, flightNumber, flightDate, flightTime,fiyat);
