@@ -1,6 +1,8 @@
 package com.project.comuhavayollari;
 
-public class SeatNo {
+import java.io.Serializable;
+
+public class SeatNo implements Serializable {
     private String a1;
     private String a2;
     private String a3;

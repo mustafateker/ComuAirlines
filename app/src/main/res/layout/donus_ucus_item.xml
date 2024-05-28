@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="380dp"
+    android:layout_gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:layout_height="50dp">
+    <ImageView
+        android:id="@+id/donusucuslogoitem"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:src="@drawable/plane_icon_degrade"
+        />
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="30dp"
+        android:background="#03A9F4"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/donusucusnoitem"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:text="56"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        />
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="30dp"
+        android:background="#03A9F4"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/donusucussaatiitem"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="20:20"
+        android:textSize="15sp"
+        />
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="30dp"
+        android:background="#03A9F4"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/donuskalkisyeriitem"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Ankara"
+        android:textSize="15sp"
+        />
+
+
+    <ImageView
+        android:id="@+id/donusyonitem"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/plane_icon_blue"
+        />
+
+    <TextView
+        android:id="@+id/donusvarisyeriitem"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="İstanbul"
+        android:textSize="15sp"
+        />
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="30dp"
+        android:background="#03A9F4"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <TextView
+        android:id="@+id/donusfiyatitem"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="1250 TL"
+        android:textSize="15sp"
+        />
+
+
+
+</LinearLayout>

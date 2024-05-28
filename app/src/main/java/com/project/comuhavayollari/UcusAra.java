@@ -34,7 +34,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class UcusAra extends AppCompatActivity {
-    private Spinner spinnerFrom,spinnerToCity, spinnerPassengerCount;
+    private Spinner spinnerFrom,spinnerToCity;
     private RadioButton radioRoundTrip;
     private TextView textViewReturnDate;
     private Button buttonDepartureDate, buttonReturnDate;
@@ -43,12 +43,13 @@ public class UcusAra extends AppCompatActivity {
     private ListView listViewFlights;
 
     private ArrayList<FlightDetailTransport> flightDetailList = new ArrayList<>();
+    private ArrayList<FlightDetailTransport> roundTripflightDetailList = new ArrayList<>();
     private List<UcusAraItem> ucusAraItemList;
     private UcusAraAdaptorItem ucusAraAdaptorItem;
     private Calendar departureDateCalendar, returnDateCalendar;
     private DatabaseReference mReferance;
 
-    private boolean ticketType = false;
+    private boolean ticketType;
 
     private String memberType;
 
@@ -84,21 +85,10 @@ public class UcusAra extends AppCompatActivity {
         //bilet tipi tek yön
         //üye tipi default !!!!!simdilik
         memberType = "NormalUye";
-        listViewFlights.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Tıklanan öğenin hangisi olduğunu belirle
-                FlightDetailTransport selectedFlight = flightDetailList.get(position);
-                //String selectedFlight = flightList.get(position);
 
-                // Yeni Activity'e geçiş için Intent oluştur
-                Intent intent = new Intent(UcusAra.this, SeatSelectionActivity.class);
 
-                // İlgili veriyi Intent'e ekle (Opsiyonel)
-                 intent.putExtra("selectedFlight", selectedFlight);
-                 startActivity(intent);
-            }
-        });
+
+
         // Spinner veri kaynakları
         String[] cities = {"İstanbul", "Ankara", "İzmir", "Antalya", "Bursa","Van","Trabzon","Çanakkale","Gaziantep"};
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
@@ -136,6 +126,21 @@ public class UcusAra extends AppCompatActivity {
         btnSearch.setOnClickListener(v -> searchFlights());
 
 
+        listViewFlights.setOnItemClickListener((parent, view, position, id) -> {
+            if (ticketType) {
+                FlightDetailTransport roundTripSelectedFlight = roundTripflightDetailList.get(position);
+                Intent roundTripIntent = new Intent(UcusAra.this, RoundTripFlightList.class);
+                roundTripIntent.putExtra("roundTripSelectedFlight", roundTripSelectedFlight);
+                startActivity(roundTripIntent);
+            } else {
+                String ticketTypeString = String.valueOf(ticketType);
+                Toast.makeText(UcusAra.this, "Bilet Tipi: " + ticketTypeString, Toast.LENGTH_SHORT).show();
+                FlightDetailTransport selectedFlight = flightDetailList.get(position);
+                Intent intent = new Intent(UcusAra.this, SeatSelectionActivity.class);
+                intent.putExtra("selectedFlight", selectedFlight);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -154,10 +159,11 @@ public class UcusAra extends AppCompatActivity {
         String fromCity = spinnerFrom.getSelectedItem().toString();
         String toCity = spinnerToCity.getSelectedItem().toString();
         String departureDate = buttonDepartureDate.getText().toString();
+        String roundTripDate = buttonReturnDate.getText().toString();
 
 
 
-        String returnDate = null;
+        String returnDate = "";
         if (radioRoundTrip.isChecked()) {
             returnDate = buttonReturnDate.getText().toString();
             ticketType = true;
@@ -168,6 +174,7 @@ public class UcusAra extends AppCompatActivity {
         ucusAraItemList.clear();
        // flightList.clear();
 
+        String finalReturnDate = returnDate;
         flightsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -195,19 +202,43 @@ public class UcusAra extends AppCompatActivity {
 
                                         ucusAraItemList.add(new UcusAraItem(R.drawable.plane_icon_degrade, flightNumber, flightTime, fetchedFromCity, R.drawable.plane_icon_blue, fetchedToCity, ticketPrice + " TL"));
                                         FlightDetailTransport flightDetail = new FlightDetailTransport();
+                                        FlightDetailTransport roundTripFlightDetail = new FlightDetailTransport();
                                         flightDetail.setFlightNumber(flightNumber);
+                                        roundTripFlightDetail.setFlightNumber(flightNumber);
                                         flightDetail.setFlightTime(flightTime);
+                                        roundTripFlightDetail.setFlightTime(flightTime);
                                         flightDetail.setFromCity(fetchedFromCity);
+                                        roundTripFlightDetail.setFromCity(fetchedFromCity);
                                         flightDetail.setToCity(fetchedToCity);
+                                        roundTripFlightDetail.setToCity(fetchedToCity);
                                         flightDetail.setTicketPrice(ticketPrice);
+                                        roundTripFlightDetail.setTicketPrice(ticketPrice);
                                         flightDetail.setId(flihtId);
+                                        roundTripFlightDetail.setId(flihtId);
                                         flightDetail.setSeatNumber("");
+                                        roundTripFlightDetail.setSeatNumber("");
                                         flightDetail.setFlightDate(flightDate);
+                                        roundTripFlightDetail.setFlightDate(flightDate);
                                         flightDetail.setMemberType(memberType);
+                                        roundTripFlightDetail.setMemberType(memberType);
                                         flightDetail.setTicketType(ticketType);
+                                        roundTripFlightDetail.setTicketType(ticketType);
                                         flightDetail.setTicketNumber("");
+                                        roundTripFlightDetail.setTicketNumber("");
                                         flightDetail.setPurschaedDate("");
+                                        roundTripFlightDetail.setPurschaedDate("");
+                                        roundTripFlightDetail.setRoundTripDate(finalReturnDate);
+                                        roundTripFlightDetail.setRoundTripFlightid("");
+                                        roundTripFlightDetail.setRoundTripKalkis("");
+                                        roundTripFlightDetail.setRoundTripSeatNo("");
+                                        roundTripFlightDetail.setRoundTripVaris("");
+                                        roundTripFlightDetail.setRoundTripflightNumber("");
+                                        roundTripFlightDetail.setRoundTripflightTime("");
+                                        roundTripFlightDetail.setRoundTripticketNumber("");
+                                        roundTripFlightDetail.setRoundTripTicketPrice("");
+
                                         flightDetailList.add(flightDetail);
+                                        roundTripflightDetailList.add(roundTripFlightDetail);
 
                                     }
                                 }

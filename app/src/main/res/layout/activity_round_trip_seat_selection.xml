@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/flat_font"
+    android:orientation="vertical"
+    tools:context=".RoundTripSeatSelectionActivity">
+
+    <TextView
+        android:id="@+id/adminGirisTittle"
+        android:layout_width="313dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:autoSizeMinTextSize="50sp"
+        android:background="#fffdfe"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="@string/koltuk_bilgileri"
+        android:textColor="#246395"
+        android:textColorHighlight="#FFFDFE"
+        android:textSize="40sp"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/RoundTripRowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp">
+
+        <TextView
+            android:id="@+id/RoundTripSatırA"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="A"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/RoundTripSatırB"
+            android:layout_width="56dp"
+            android:layout_marginStart="39dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="B"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/RoundTripSatırC"
+            android:layout_width="56dp"
+            android:layout_marginStart="39dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="C"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/RoundTripSatırD"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="39dp"
+            android:gravity="center"
+            android:text="D"
+            android:layout_marginEnd="39dp"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/RoundTripkoltukSecimiLayout"
+        android:layout_width="match_parent"
+        android:layout_height="575dp"
+        android:orientation="horizontal">
+
+
+
+        <LinearLayout
+            android:id="@+id/RoundTripkoltukKolon"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/RoundTripColon1"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="1"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/RoundTripColon2"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="2"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/RoundTripColon3"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="3"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/RoundTripColon4"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="4"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/RoundTripColon5"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="5"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/RoundTripColon6"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="6"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/RoundTripColon7"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="7"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/RoundTripColon8"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="8"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/RoundTripColon9"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="9"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/RoundTripColon10"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="10"
+                android:gravity="center"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/RoundTripkoltuklarLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RoundTripseat_recycler_view"
+                android:layout_width="381dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/RoundTripconfirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#246395"
+        android:text="@string/secimiKaydet"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

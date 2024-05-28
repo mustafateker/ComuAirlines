@@ -17,6 +17,17 @@ public class FlightDetailTransport implements Serializable {
     private String ticketNumber;
     private String purschaedDate;
 
+    private String roundTripKalkis;
+    private String roundTripVaris;
+    private String roundTripSeatNo;
+    private String roundTripDate;
+    private String roundTripTicketPrice;
+    private String roundTripflightNumber;
+    private String roundTripflightTime;
+    private String roundTripFlightid;
+    private String roundTripticketNumber;
+
+
     public FlightDetailTransport(String fromCity, String toCity , String flightDate , String flightNumber , String flightTime,
                                  String id , String ticketPrice , String seatNumber , String memberType , boolean ticketType , String ticketNumber , String purschaedDate){
         this.fromCity = fromCity;
@@ -32,6 +43,36 @@ public class FlightDetailTransport implements Serializable {
         this.ticketNumber = ticketNumber;
         this.purschaedDate = purschaedDate;
     }
+    public FlightDetailTransport(String fromCity, String toCity , String flightDate , String flightNumber , String flightTime,
+                                 String id , String ticketPrice , String seatNumber , String memberType , boolean ticketType ,
+                                 String ticketNumber , String purschaedDate , String roundTripKalkis , String roundTripVaris,
+                                 String roundTripSeatNo , String roundTripDate , String roundTripTicketPrice, String roundTripflightNumber,
+                                 String roundTripflightTime , String roundTripFlightid , String roundTripticketNumber ){
+        this.fromCity = fromCity;
+        this.toCity = toCity;
+        this.flightDate = flightDate;
+        this.flightNumber = flightNumber;
+        this.flightTime = flightTime;
+        this.id = id;
+        this.ticketPrice = ticketPrice;
+        this.seatNumber = seatNumber;
+        this.memberType = memberType;
+        this.ticketType = ticketType;
+        this.ticketNumber = ticketNumber;
+        this.purschaedDate = purschaedDate;
+        this.roundTripKalkis = roundTripKalkis;
+        this.roundTripVaris = roundTripVaris;
+        this.roundTripSeatNo = roundTripSeatNo;
+        this.roundTripDate = roundTripDate;
+        this.roundTripTicketPrice = roundTripTicketPrice;
+        this.roundTripflightNumber = roundTripflightNumber;
+        this.roundTripflightTime = roundTripflightTime;
+        this.roundTripFlightid = roundTripFlightid;
+        this.roundTripticketNumber = roundTripticketNumber;
+
+    }
+
+
 
 
     public FlightDetailTransport() {
@@ -133,5 +174,77 @@ public class FlightDetailTransport implements Serializable {
 
     public void setPurschaedDate(String purschaedDate) {
         this.purschaedDate = purschaedDate;
+    }
+
+    public String getRoundTripKalkis() {
+        return roundTripKalkis;
+    }
+
+    public void setRoundTripKalkis(String roundTripKalkis) {
+        this.roundTripKalkis = roundTripKalkis;
+    }
+
+    public String getRoundTripVaris() {
+        return roundTripVaris;
+    }
+
+    public void setRoundTripVaris(String roundTripVaris) {
+        this.roundTripVaris = roundTripVaris;
+    }
+
+    public String getRoundTripSeatNo() {
+        return roundTripSeatNo;
+    }
+
+    public void setRoundTripSeatNo(String roundTripSeatNo) {
+        this.roundTripSeatNo = roundTripSeatNo;
+    }
+
+    public String getRoundTripDate() {
+        return roundTripDate;
+    }
+
+    public void setRoundTripDate(String roundTripDate) {
+        this.roundTripDate = roundTripDate;
+    }
+
+    public String getRoundTripTicketPrice() {
+        return roundTripTicketPrice;
+    }
+
+    public void setRoundTripTicketPrice(String roundTripTicketPrice) {
+        this.roundTripTicketPrice = roundTripTicketPrice;
+    }
+
+    public String getRoundTripflightNumber() {
+        return roundTripflightNumber;
+    }
+
+    public void setRoundTripflightNumber(String roundTripflightNumber) {
+        this.roundTripflightNumber = roundTripflightNumber;
+    }
+
+    public String getRoundTripflightTime() {
+        return roundTripflightTime;
+    }
+
+    public void setRoundTripflightTime(String roundTripflightTime) {
+        this.roundTripflightTime = roundTripflightTime;
+    }
+
+    public String getRoundTripFlightid() {
+        return roundTripFlightid;
+    }
+
+    public void setRoundTripFlightid(String roundTripFlightid) {
+        this.roundTripFlightid = roundTripFlightid;
+    }
+
+    public String getRoundTripticketNumber() {
+        return roundTripticketNumber;
+    }
+
+    public void setRoundTripticketNumber(String roundTripticketNumber) {
+        this.roundTripticketNumber = roundTripticketNumber;
     }
 }

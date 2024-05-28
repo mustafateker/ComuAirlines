@@ -1,13 +1,14 @@
 package com.project.comuhavayollari;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,46 +19,37 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeatSelectionActivity extends AppCompatActivity {
-
+public class RoundTripSeatSelectionActivity extends AppCompatActivity {
     private RecyclerView seatRecyclerView;
-    private SeatAdapter seatAdapter;
+    private RoundTripSeatAdapter RoundTripseatAdapter;
     private Button confirmButton;
     private List<Seat> seatList;
 
     private Intent intent , intentRoundTrip ;
-    private FlightDetailTransport selectedFlight ;
     private FlightDetailTransport roundTripSelectedFlight ;
 
     private DatabaseReference mFlightReference ;
     private List<Seat> seats = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seat_selection);
+        setContentView(R.layout.activity_round_trip_seat_selection);
 
-        seatRecyclerView = findViewById(R.id.seat_recycler_view);
-        confirmButton = findViewById(R.id.confirm_button);
-
-        intent =  getIntent();
-        selectedFlight = (FlightDetailTransport) intent.getSerializableExtra("selectedFlight");
+        seatRecyclerView = findViewById(R.id.RoundTripseat_recycler_view);
+        confirmButton = findViewById(R.id.RoundTripconfirm_button);
 
         intentRoundTrip = getIntent();
         roundTripSelectedFlight = (FlightDetailTransport) intentRoundTrip.getSerializableExtra("roundTripSelectedFlight");
-        if (selectedFlight != null) {
-            String flightNumber = selectedFlight.getFlightNumber();
-            String ucusTipi = String.valueOf(selectedFlight.getTicketType());
-            Toast.makeText(SeatSelectionActivity.this, "Seçilen Uçuş: " + flightNumber, Toast.LENGTH_SHORT).show();
+        if (roundTripSelectedFlight != null) {
+            String flightNumber = roundTripSelectedFlight.getRoundTripflightNumber();
+            Toast.makeText(RoundTripSeatSelectionActivity.this, "Seçilen Uçuş: " + flightNumber, Toast.LENGTH_SHORT).show();
         } else {
-            String flightNumberRoundTrip = roundTripSelectedFlight.getFlightNumber();
-
-            Toast.makeText(SeatSelectionActivity.this, "Seçilen Uçuş : " + flightNumberRoundTrip, Toast.LENGTH_SHORT).show();
+            Toast.makeText(RoundTripSeatSelectionActivity.this, "Uçuş Seçilmedi!", Toast.LENGTH_SHORT).show();
         }
 
         seatList = generateSeatList();
-        seatAdapter = new SeatAdapter(seatList);
-        seatRecyclerView.setAdapter(seatAdapter);
+        RoundTripseatAdapter = new RoundTripSeatAdapter(seatList);
+        seatRecyclerView.setAdapter(RoundTripseatAdapter);
 
         // GridLayoutManager ile RecyclerView'in düzenini özelleştir
         GridLayoutManager layoutManager = new GridLayoutManager(this, 4);
@@ -83,18 +75,13 @@ public class SeatSelectionActivity extends AppCompatActivity {
                         currentSeat = "c" + tamKisim ;
                     }
                     Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
+                    boolean ticketType = roundTripSelectedFlight.getTicketType();
 
-                    if(selectedFlight!= null){
-                        selectedFlight.setSeatNumber(currentSeat);
-                        Intent intent1 = new Intent(SeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
-                        intent1.putExtra("selectedFlight", selectedFlight);
+                    roundTripSelectedFlight.setRoundTripSeatNo(currentSeat);
+                        Intent intent1 = new Intent(RoundTripSeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
+                        intent1.putExtra("roundTripSelectedFlight", roundTripSelectedFlight);
                         startActivity(intent1);
-                    }else{
-                        roundTripSelectedFlight.setSeatNumber(currentSeat);
-                        Intent intent2 = new Intent(SeatSelectionActivity.this , RoundTripSeatSelectionActivity.class);
-                        intent2.putExtra("roundTripSelectedFlight" , roundTripSelectedFlight);
-                        startActivity(intent2);
-                    }
+
 
                     break;
                 }
@@ -106,14 +93,8 @@ public class SeatSelectionActivity extends AppCompatActivity {
         for (int i = 0; i < 40; i++) {
             seats.add(new Seat(SeatStatus.AVAILABLE));
         }
-        String flightId = "";
-        if(selectedFlight != null){
-            flightId = selectedFlight.getId();
-        }else{
-            flightId = roundTripSelectedFlight.getId();
-        }
-
-        mFlightReference = FirebaseDatabase.getInstance().getReference("flights").child(flightId).child("flight_seats");
+        String roundTripFlightid = roundTripSelectedFlight.getRoundTripFlightid();
+        mFlightReference = FirebaseDatabase.getInstance().getReference("flights").child(roundTripFlightid).child("flight_seats");
 
 
 
@@ -165,6 +146,7 @@ public class SeatSelectionActivity extends AppCompatActivity {
                 }
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             private void processSeat(String seatStatus, String seatKey) {
 
                 if (seatStatus != null && !"AVAILABLE".equals(seatStatus)) {
@@ -172,6 +154,10 @@ public class SeatSelectionActivity extends AppCompatActivity {
                     int secondChar = Integer.parseInt(seatKey.substring(1));
                     int thirdChar = 0;
                     //return (row - 1) * 4 + colIndex;
+                    if (seatKey.length() > 1 && !seatKey.substring(1).isEmpty()) {
+
+                    }
+
                     if (seatKey.length() > 2 && !seatKey.substring(2).isEmpty()) {
                         thirdChar = Integer.parseInt(seatKey.substring(2));
                     }
@@ -220,16 +206,15 @@ public class SeatSelectionActivity extends AppCompatActivity {
                         seats.get(seatIndex).setStatus(SeatStatus.RESERVED);
                     }
                 }
-                seatAdapter.notifyDataSetChanged();
+                RoundTripseatAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(SeatSelectionActivity.this, "Data retrieval error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RoundTripSeatSelectionActivity.this, "Başarısız Oldu, Hata : " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
         return seats;
     }
-
 }

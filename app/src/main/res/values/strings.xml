@@ -47,5 +47,6 @@
     <string name="ucus_ara">Uçuş Ara</string>
     <string name="fiyat_giriniz">Fiyat Giriniz</string>
     <string name="ucus_no">Uçuş No</string>
+    <string name="donusBileti">Dönüş Bileti</string>
 
 </resources>
