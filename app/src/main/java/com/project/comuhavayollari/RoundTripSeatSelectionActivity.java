@@ -95,7 +95,7 @@ public class RoundTripSeatSelectionActivity extends AppCompatActivity {
         }
         String roundTripFlightid = roundTripSelectedFlight.getRoundTripFlightid();
         mFlightReference = FirebaseDatabase.getInstance().getReference("flights").child(roundTripFlightid).child("flight_seats");
-
+        Toast.makeText(RoundTripSeatSelectionActivity.this , "Uçus Id  : " + roundTripFlightid ,Toast.LENGTH_SHORT).show();
 
 
         mFlightReference.addValueEventListener(new ValueEventListener() {
@@ -154,15 +154,12 @@ public class RoundTripSeatSelectionActivity extends AppCompatActivity {
                     int secondChar = Integer.parseInt(seatKey.substring(1));
                     int thirdChar = 0;
                     //return (row - 1) * 4 + colIndex;
-                    if (seatKey.length() > 1 && !seatKey.substring(1).isEmpty()) {
-
-                    }
-
                     if (seatKey.length() > 2 && !seatKey.substring(2).isEmpty()) {
                         thirdChar = Integer.parseInt(seatKey.substring(2));
                     }
 
                     String thirdCharString = String.valueOf(thirdChar);
+
                     int seatIndex = 0;
 
                     switch (firstChar) {

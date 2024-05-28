@@ -273,7 +273,7 @@ public class OdemeSayfasi extends AppCompatActivity {
                         roundTripTicketRef.child("purschaedDate").setValue(purschaedDate);
 
 
-                        DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(seatNumber);
+                        DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(roundTripSeatNo);
                         roundTripflightSeatRef.setValue("OCCUPIED");
 
                         Toast.makeText(OdemeSayfasi.this, "Ödeme Başarıyla Yapıldı", Toast.LENGTH_SHORT).show();
@@ -306,6 +306,7 @@ public class OdemeSayfasi extends AppCompatActivity {
 
 
                         DatabaseReference roundTripTicketRef = mReferance.child(mUserId).child("bookedTicket").child(roundTripTicketNumber);
+
                         roundTripTicketRef.child("fromCity").setValue(roundTripFromCity);
                         roundTripTicketRef.child("toCity").setValue(roundTripToCity);
                         roundTripTicketRef.child("flightDate").setValue(roundTripDate);
@@ -322,7 +323,7 @@ public class OdemeSayfasi extends AppCompatActivity {
 
                         DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
                         flightSeatRef.setValue("RESERVED");
-                        DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(seatNumber);
+                        DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(roundTripSeatNo);
                         roundTripflightSeatRef.setValue("RESERVED");
                         Toast.makeText(OdemeSayfasi.this, "Rezerve bilet oluşturuldu", Toast.LENGTH_SHORT).show();
                     }
