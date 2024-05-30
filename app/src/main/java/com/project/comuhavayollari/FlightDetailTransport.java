@@ -27,6 +27,10 @@ public class FlightDetailTransport implements Serializable {
     private String roundTripFlightid;
     private String roundTripticketNumber;
 
+    public FlightDetailTransport(String flightNumber){
+        this.flightNumber = flightNumber;
+    }
+
 
     public FlightDetailTransport(String fromCity, String toCity , String flightDate , String flightNumber , String flightTime,
                                  String id , String ticketPrice , String seatNumber , String memberType , boolean ticketType , String ticketNumber , String purschaedDate){

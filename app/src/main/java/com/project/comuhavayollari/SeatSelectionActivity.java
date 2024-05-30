@@ -112,7 +112,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
         }else{
             flightId = roundTripSelectedFlight.getId();
         }
-        Toast.makeText(SeatSelectionActivity.this , "Uçus Id  : " + flightId ,Toast.LENGTH_SHORT).show();
 
         mFlightReference = FirebaseDatabase.getInstance().getReference("flights").child(flightId).child("flight_seats");
 

@@ -8,13 +8,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +66,6 @@ public class OdemeSayfasi extends AppCompatActivity {
         if(selectedFlightTransport != null){
             String ticketPrice = selectedFlightTransport.getTicketPrice();
             boolean ticketType = selectedFlightTransport.getTicketType();
-            Toast.makeText(OdemeSayfasi.this , "ticketType : " + ticketType , Toast.LENGTH_SHORT).show();
             int roundTripDiscountInt = 0;
             int ticketPriceInt = Integer.parseInt(String.valueOf(ticketPrice));
 
@@ -104,7 +109,8 @@ public class OdemeSayfasi extends AppCompatActivity {
 
             selectedFlightTransport.setPurschaedDate(currentTimeMillis);
             //String fromCity,String toCity , String flightDate , String flightNumber , String flightTime,
-            //    String id , String ticketPrice , String seatNumber , String memberType , boolean ticketType , String ticketNumber ,String purschaedDate
+            //String id , String ticketPrice , String seatNumber , String memberType , boolean ticketType,
+            //String ticketNumber ,String purschaedDate
 
             String fromCity = selectedFlightTransport.getFromCity();
             String toCity = selectedFlightTransport.getToCity();
@@ -121,13 +127,109 @@ public class OdemeSayfasi extends AppCompatActivity {
                 odemeyiTamamlaButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FlightDetailTransport savePurschaedTicket = new FlightDetailTransport(fromCity,toCity,flightDate,flightNumber,
-                                flightTime,id,ticketPrice,seatNumber,memberType,
-                                ticketType,ticketNumber,purschaedDate );
 
-                        mReferance.child(mUserId).child("purschaedTicket").child(ticketNumber).setValue(savePurschaedTicket);
-                        DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
-                        flightSeatRef.setValue("OCCUPIED");
+                        //bookedticket kontrolünü burda yapcam
+                        DatabaseReference mBookedTicketCheck = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("bookedTicket");
+
+                        mBookedTicketCheck.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    FlightDetailTransport mDetailList = new FlightDetailTransport();
+                                    mDetailList = snapshot.getValue(FlightDetailTransport.class);
+                                    String myFlightid = mDetailList.getId();
+                                    if(myFlightid.equals(selectedFlightTransport.getId())){
+                                        FlightDetailTransport savePurschaedTicket = new FlightDetailTransport(fromCity,toCity,flightDate,flightNumber,
+                                                flightTime,id,ticketPrice,seatNumber,memberType,
+                                                ticketType,ticketNumber,purschaedDate );
+
+                                        mReferance.child(mUserId).child("purschaedTicket").child(ticketNumber).setValue(savePurschaedTicket);
+                                        DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
+                                        flightSeatRef.setValue("OCCUPIED");
+
+                                        DatabaseReference mPurschaedTicketRef = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("aldigiBiletSayisi");
+                                        mPurschaedTicketRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(snapshot.exists()){
+                                                    String aldigiBiletSayisi = snapshot.getValue(String.class);
+
+                                                    int aldigiBiletSayisiInt = Integer.parseInt(aldigiBiletSayisi);
+                                                    aldigiBiletSayisiInt = aldigiBiletSayisiInt + 1;
+                                                    String updatedAldigiBiletSayisi = String.valueOf(aldigiBiletSayisiInt);
+                                                    mPurschaedTicketRef.setValue(updatedAldigiBiletSayisi);
+
+
+                                                }else{
+                                                    Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                            }
+                                        });
+                                        //booked referansını burda silcez
+                                        //booked silinecek
+                                        mBookedTicketCheck.removeValue()
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.d("Firebase" , "bookedTicketRef Deleted!");
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.d("Firebase" , "BookedTicketRef Delete Process Unsuccessful!");
+                                                    }
+                                                });
+                                    }else{
+                                        FlightDetailTransport savePurschaedTicket = new FlightDetailTransport(fromCity,toCity,flightDate,flightNumber,
+                                                flightTime,id,ticketPrice,seatNumber,memberType,
+                                                ticketType,ticketNumber,purschaedDate );
+
+                                        mReferance.child(mUserId).child("purschaedTicket").child(ticketNumber).setValue(savePurschaedTicket);
+                                        DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
+                                        flightSeatRef.setValue("OCCUPIED");
+
+                                        DatabaseReference mPurschaedTicketRef = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("aldigiBiletSayisi");
+                                        mPurschaedTicketRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(snapshot.exists()){
+                                                    String aldigiBiletSayisi = snapshot.getValue(String.class);
+
+                                                    int aldigiBiletSayisiInt = Integer.parseInt(aldigiBiletSayisi);
+                                                    aldigiBiletSayisiInt = aldigiBiletSayisiInt + 1;
+                                                    String updatedAldigiBiletSayisi = String.valueOf(aldigiBiletSayisiInt);
+                                                    mPurschaedTicketRef.setValue(updatedAldigiBiletSayisi);
+
+
+                                                }else{
+                                                    Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                            }
+                                        });
+
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+
 
                         Toast.makeText(OdemeSayfasi.this, "Ödeme Başarıyla Yapıldı", Toast.LENGTH_SHORT).show();
                     }
@@ -145,11 +247,27 @@ public class OdemeSayfasi extends AppCompatActivity {
                                 flightTime,id,ticketPrice,seatNumber,memberType,
                                 ticketType,ticketNumber,purschaedDate );
 
-                        mReferance.child(mUserId).child("bookedTicket").child(ticketNumber).setValue(savePurschaedTicket);
+                        DatabaseReference mBookedTicket = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("bookedTicket");
+                        mBookedTicket.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    Toast.makeText(OdemeSayfasi.this , "Rezervasyon Yapılamadı!\n Hali hazırda rezerve edilmiş biletiniz mevcuttur.",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    mReferance.child(mUserId).child("bookedTicket").setValue(savePurschaedTicket);
 
-                        DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
-                        flightSeatRef.setValue("RESERVED");
-                        Toast.makeText(OdemeSayfasi.this, "Rezerve bilet oluşturuldu", Toast.LENGTH_SHORT).show();
+                                    DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
+                                    flightSeatRef.setValue("RESERVED");
+                                    Toast.makeText(OdemeSayfasi.this, "Rezerve bilet oluşturuldu", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                            }
+                        });
+
                     }
                 });
             } else {
@@ -160,6 +278,7 @@ public class OdemeSayfasi extends AppCompatActivity {
 
             // Veritabanından bilgileri çek ve TextView'leri güncelle
         }else{
+            Toast.makeText(OdemeSayfasi.this, "Burda", Toast.LENGTH_SHORT).show();
             assert roundTripSelectedFlight != null;
             boolean ticketType = roundTripSelectedFlight.getTicketType();
             String ticketPrice = roundTripSelectedFlight.getTicketPrice();
@@ -236,45 +355,163 @@ public class OdemeSayfasi extends AppCompatActivity {
                 odemeyiTamamlaButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                         public void onClick (View v){
+                        DatabaseReference mBookedTicketCheck = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("bookedTicket");
+
+                        mBookedTicketCheck.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    FlightDetailTransport mDetailList = new FlightDetailTransport();
+                                    mDetailList = snapshot.getValue(FlightDetailTransport.class);
+                                    String myFlightid = mDetailList.getId();
+                                    if(myFlightid.equals(roundTripSelectedFlight.getId())){
+                                        DatabaseReference ticketRef = mReferance.child(mUserId).child("purschaedTicket").child(ticketNumber);
+
+                                        ticketRef.child("fromCity").setValue(fromCity);
+                                        ticketRef.child("toCity").setValue(toCity);
+                                        ticketRef.child("flightDate").setValue(flightDate);
+                                        ticketRef.child("flightNumber").setValue(flightNumber);
+                                        ticketRef.child("flightTime").setValue(flightTime);
+                                        ticketRef.child("id").setValue(id);
+                                        ticketRef.child("ticketPrice").setValue(ticketPrice);
+                                        ticketRef.child("seatNumber").setValue(seatNumber);
+                                        ticketRef.child("memberType").setValue(memberType);
+                                        ticketRef.child("ticketType").setValue(ticketType);
+                                        ticketRef.child("ticketNumber").setValue(ticketNumber);
+                                        ticketRef.child("purschaedDate").setValue(purschaedDate);
 
 
-                        DatabaseReference ticketRef = mReferance.child(mUserId).child("purschaedTicket").child(ticketNumber);
+                                        DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
+                                        flightSeatRef.setValue("OCCUPIED");
 
-                        ticketRef.child("fromCity").setValue(fromCity);
-                        ticketRef.child("toCity").setValue(toCity);
-                        ticketRef.child("flightDate").setValue(flightDate);
-                        ticketRef.child("flightNumber").setValue(flightNumber);
-                        ticketRef.child("flightTime").setValue(flightTime);
-                        ticketRef.child("id").setValue(id);
-                        ticketRef.child("ticketPrice").setValue(ticketPrice);
-                        ticketRef.child("seatNumber").setValue(seatNumber);
-                        ticketRef.child("memberType").setValue(memberType);
-                        ticketRef.child("ticketType").setValue(ticketType);
-                        ticketRef.child("ticketNumber").setValue(ticketNumber);
-                        ticketRef.child("purschaedDate").setValue(purschaedDate);
+                                        DatabaseReference roundTripTicketRef = mReferance.child(mUserId).child("purschaedTicket").child(roundTripTicketNumber);
 
-
-                        DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
-                        flightSeatRef.setValue("OCCUPIED");
-
-                        DatabaseReference roundTripTicketRef = mReferance.child(mUserId).child("purschaedTicket").child(roundTripTicketNumber);
-
-                        roundTripTicketRef.child("fromCity").setValue(roundTripFromCity);
-                        roundTripTicketRef.child("toCity").setValue(roundTripToCity);
-                        roundTripTicketRef.child("flightDate").setValue(roundTripDate);
-                        roundTripTicketRef.child("flightNumber").setValue(roundTripFlightNumber);
-                        roundTripTicketRef.child("flightTime").setValue(roundTripFlightTime);
-                        roundTripTicketRef.child("id").setValue(roundTripFlightId);
-                        roundTripTicketRef.child("ticketPrice").setValue(roundTripTicketPrice);
-                        roundTripTicketRef.child("seatNumber").setValue(roundTripSeatNo);
-                        roundTripTicketRef.child("memberType").setValue(memberType);
-                        roundTripTicketRef.child("ticketType").setValue(ticketType);
-                        roundTripTicketRef.child("ticketNumber").setValue(roundTripTicketNumber);
-                        roundTripTicketRef.child("purschaedDate").setValue(purschaedDate);
+                                        roundTripTicketRef.child("fromCity").setValue(roundTripFromCity);
+                                        roundTripTicketRef.child("toCity").setValue(roundTripToCity);
+                                        roundTripTicketRef.child("flightDate").setValue(roundTripDate);
+                                        roundTripTicketRef.child("flightNumber").setValue(roundTripFlightNumber);
+                                        roundTripTicketRef.child("flightTime").setValue(roundTripFlightTime);
+                                        roundTripTicketRef.child("id").setValue(roundTripFlightId);
+                                        roundTripTicketRef.child("ticketPrice").setValue(roundTripTicketPrice);
+                                        roundTripTicketRef.child("seatNumber").setValue(roundTripSeatNo);
+                                        roundTripTicketRef.child("memberType").setValue(memberType);
+                                        roundTripTicketRef.child("ticketType").setValue(ticketType);
+                                        roundTripTicketRef.child("ticketNumber").setValue(roundTripTicketNumber);
+                                        roundTripTicketRef.child("purschaedDate").setValue(purschaedDate);
 
 
-                        DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(roundTripSeatNo);
-                        roundTripflightSeatRef.setValue("OCCUPIED");
+                                        DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(roundTripSeatNo);
+                                        roundTripflightSeatRef.setValue("OCCUPIED");
+
+
+                                        //kullanıcının aldiği bilet sayısını burda güncelliyoruz.
+                                        DatabaseReference mPurschaedTicketRef = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("aldigiBiletSayisi");
+                                        mPurschaedTicketRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(snapshot.exists()){
+                                                    String aldigiBiletSayisi = snapshot.getValue(String.class);
+                                                    int aldigiBiletSayisiInt = Integer.parseInt(aldigiBiletSayisi);
+                                                    aldigiBiletSayisiInt = aldigiBiletSayisiInt + 1;
+                                                    String updatedAldigiBiletSayisi = String.valueOf(aldigiBiletSayisiInt);
+                                                    mPurschaedTicketRef.setValue(updatedAldigiBiletSayisi);
+                                                }else{
+                                                    Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                            }
+                                        });
+
+                                        //booked silinecek
+                                        mBookedTicketCheck.removeValue()
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Log.d("Firebase" , "bookedTicketRef Deleted!");
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.d("Firebase" , "BookedTicketRef Delete Process Unsuccessful!");
+                                                    }
+                                                });
+                                    }else{
+                                        DatabaseReference ticketRef = mReferance.child(mUserId).child("purschaedTicket").child(ticketNumber);
+
+                                        ticketRef.child("fromCity").setValue(fromCity);
+                                        ticketRef.child("toCity").setValue(toCity);
+                                        ticketRef.child("flightDate").setValue(flightDate);
+                                        ticketRef.child("flightNumber").setValue(flightNumber);
+                                        ticketRef.child("flightTime").setValue(flightTime);
+                                        ticketRef.child("id").setValue(id);
+                                        ticketRef.child("ticketPrice").setValue(ticketPrice);
+                                        ticketRef.child("seatNumber").setValue(seatNumber);
+                                        ticketRef.child("memberType").setValue(memberType);
+                                        ticketRef.child("ticketType").setValue(ticketType);
+                                        ticketRef.child("ticketNumber").setValue(ticketNumber);
+                                        ticketRef.child("purschaedDate").setValue(purschaedDate);
+
+
+                                        DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
+                                        flightSeatRef.setValue("OCCUPIED");
+
+                                        DatabaseReference roundTripTicketRef = mReferance.child(mUserId).child("purschaedTicket").child(roundTripTicketNumber);
+
+                                        roundTripTicketRef.child("fromCity").setValue(roundTripFromCity);
+                                        roundTripTicketRef.child("toCity").setValue(roundTripToCity);
+                                        roundTripTicketRef.child("flightDate").setValue(roundTripDate);
+                                        roundTripTicketRef.child("flightNumber").setValue(roundTripFlightNumber);
+                                        roundTripTicketRef.child("flightTime").setValue(roundTripFlightTime);
+                                        roundTripTicketRef.child("id").setValue(roundTripFlightId);
+                                        roundTripTicketRef.child("ticketPrice").setValue(roundTripTicketPrice);
+                                        roundTripTicketRef.child("seatNumber").setValue(roundTripSeatNo);
+                                        roundTripTicketRef.child("memberType").setValue(memberType);
+                                        roundTripTicketRef.child("ticketType").setValue(ticketType);
+                                        roundTripTicketRef.child("ticketNumber").setValue(roundTripTicketNumber);
+                                        roundTripTicketRef.child("purschaedDate").setValue(purschaedDate);
+
+
+                                        DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(roundTripSeatNo);
+                                        roundTripflightSeatRef.setValue("OCCUPIED");
+
+
+                                        //kullanıcının aldiği bilet sayısını burda güncelliyoruz.
+                                        DatabaseReference mPurschaedTicketRef = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("aldigiBiletSayisi");
+                                        mPurschaedTicketRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(snapshot.exists()){
+                                                    String aldigiBiletSayisi = snapshot.getValue(String.class);
+                                                    int aldigiBiletSayisiInt = Integer.parseInt(aldigiBiletSayisi);
+                                                    aldigiBiletSayisiInt = aldigiBiletSayisiInt + 1;
+                                                    String updatedAldigiBiletSayisi = String.valueOf(aldigiBiletSayisiInt);
+                                                    mPurschaedTicketRef.setValue(updatedAldigiBiletSayisi);
+                                                }else{
+                                                    Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
 
                         Toast.makeText(OdemeSayfasi.this, "Ödeme Başarıyla Yapıldı", Toast.LENGTH_SHORT).show();
                     }
@@ -289,43 +526,53 @@ public class OdemeSayfasi extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        DatabaseReference ticketRef = mReferance.child(mUserId).child("bookedTicket").child(ticketNumber);
 
-                        ticketRef.child("fromCity").setValue(fromCity);
-                        ticketRef.child("toCity").setValue(toCity);
-                        ticketRef.child("flightDate").setValue(flightDate);
-                        ticketRef.child("flightNumber").setValue(flightNumber);
-                        ticketRef.child("flightTime").setValue(flightTime);
-                        ticketRef.child("id").setValue(id);
-                        ticketRef.child("ticketPrice").setValue(ticketPrice);
-                        ticketRef.child("seatNumber").setValue(seatNumber);
-                        ticketRef.child("memberType").setValue(memberType);
-                        ticketRef.child("ticketType").setValue(ticketType);
-                        ticketRef.child("ticketNumber").setValue(ticketNumber);
-                        ticketRef.child("purschaedDate").setValue(purschaedDate);
+                        DatabaseReference ticketRef = mReferance.child(mUserId).child("bookedTicket");
+
+                        ticketRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    Toast.makeText(OdemeSayfasi.this , "Rezervasyon Yapılamadı!\n Hali hazırda rezerve edilmiş biletiniz mevcuttur.",Toast.LENGTH_SHORT).show();
+                                } else {
+                                    ticketRef.child("fromCity").setValue(fromCity);
+                                    ticketRef.child("toCity").setValue(toCity);
+                                    ticketRef.child("flightDate").setValue(flightDate);
+                                    ticketRef.child("flightNumber").setValue(flightNumber);
+                                    ticketRef.child("flightTime").setValue(flightTime);
+                                    ticketRef.child("id").setValue(id);
+                                    ticketRef.child("ticketPrice").setValue(ticketPrice);
+                                    ticketRef.child("seatNumber").setValue(seatNumber);
+                                    ticketRef.child("ticketType").setValue(ticketType);
+                                    ticketRef.child("ticketNumber").setValue(ticketNumber);
+                                    ticketRef.child("purschaedDate").setValue(purschaedDate);
+                                    ticketRef.child("roundTripKalkis").setValue(roundTripFromCity);
+                                    ticketRef.child("roundTripVaris").setValue(roundTripToCity);
+                                    ticketRef.child("roundTripDate").setValue(roundTripDate);
+                                    ticketRef.child("roundTripflightNumber").setValue(roundTripFlightNumber);
+                                    ticketRef.child("roundTripflightTime").setValue(roundTripFlightTime);
+                                    ticketRef.child("roundTripFlightid").setValue(roundTripFlightId);
+                                    ticketRef.child("roundTripTicketPrice").setValue(roundTripTicketPrice);
+                                    ticketRef.child("roundTripSeatNo").setValue(roundTripSeatNo);
+                                    ticketRef.child("memberType").setValue(memberType);
+                                    ticketRef.child("roundTripticketNumber").setValue(roundTripTicketNumber);
 
 
-                        DatabaseReference roundTripTicketRef = mReferance.child(mUserId).child("bookedTicket").child(roundTripTicketNumber);
+                                    DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
+                                    flightSeatRef.setValue("RESERVED");
+                                    DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(roundTripSeatNo);
+                                    roundTripflightSeatRef.setValue("RESERVED");
+                                    Toast.makeText(OdemeSayfasi.this, "Rezerve bilet oluşturuldu", Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
-                        roundTripTicketRef.child("fromCity").setValue(roundTripFromCity);
-                        roundTripTicketRef.child("toCity").setValue(roundTripToCity);
-                        roundTripTicketRef.child("flightDate").setValue(roundTripDate);
-                        roundTripTicketRef.child("flightNumber").setValue(roundTripFlightNumber);
-                        roundTripTicketRef.child("flightTime").setValue(roundTripFlightTime);
-                        roundTripTicketRef.child("id").setValue(roundTripFlightId);
-                        roundTripTicketRef.child("ticketPrice").setValue(roundTripTicketPrice);
-                        roundTripTicketRef.child("seatNumber").setValue(roundTripSeatNo);
-                        roundTripTicketRef.child("memberType").setValue(memberType);
-                        roundTripTicketRef.child("ticketType").setValue(ticketType);
-                        roundTripTicketRef.child("ticketNumber").setValue(roundTripTicketNumber);
-                        roundTripTicketRef.child("purschaedDate").setValue(purschaedDate);
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.d("Firebase" , "Veri çekme işlemi başarısız." , databaseError.toException());
+                            }
+                        });
 
 
-                        DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
-                        flightSeatRef.setValue("RESERVED");
-                        DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(roundTripSeatNo);
-                        roundTripflightSeatRef.setValue("RESERVED");
-                        Toast.makeText(OdemeSayfasi.this, "Rezerve bilet oluşturuldu", Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {

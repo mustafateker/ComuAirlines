@@ -39,7 +39,8 @@
     <string name="bilet_detaylari">Bilet Detayları</string>
     <string name="odemeyap">Ödeme Yap</string>
     <string name="bilet_ara">Bilet Ara</string>
-    <string name="bilet_listele">Bilet Listele</string>
+    <string name="bilet_listele">Biletlerim</string>
+    <string name="rezerve_biletlerim">Rezerve Biletlerim</string>
     <string name="odemeTittle">Ödeme</string>
     <string name="kaydolTittle">Kaydol</string>
     <string name="secimiKaydet">Seçimi Onayla</string>
@@ -48,5 +49,6 @@
     <string name="fiyat_giriniz">Fiyat Giriniz</string>
     <string name="ucus_no">Uçuş No</string>
     <string name="donusBileti">Dönüş Bileti</string>
+    <string name="rezerveBiletKalanSure">Kalan Süre:</string>
 
 </resources>

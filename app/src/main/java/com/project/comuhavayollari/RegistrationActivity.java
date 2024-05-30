@@ -120,7 +120,7 @@ public class RegistrationActivity extends AppCompatActivity {
             String firstName = ad.getText().toString().trim();
             String lastName = soyad.getText().toString().trim();
             String user_age = yas.getText().toString().trim();
-            String aldigiBiletSayisi = "1";
+            String aldigiBiletSayisi = "0";
             String uyeTipi = "Normal Üye";
 
 

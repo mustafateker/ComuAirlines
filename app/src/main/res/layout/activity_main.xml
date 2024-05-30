@@ -28,30 +28,109 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ReservedTicketLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/reservation_notification_background"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:clickable="false"
+        android:visibility="invisible">
 
-        <Button
-            android:id="@+id/biletAraButton"
-            android:layout_width="362dp"
-            android:layout_height="73dp"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#246395"
-            android:text="@string/bilet_ara"
-            android:layout_marginTop="100dp"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            tools:ignore="VisualLintButtonSize" />
 
-        <Button
-            android:id="@+id/biletListesiButton"
-            android:layout_width="365dp"
-            android:layout_height="73dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#246395"
-            android:text="@string/bilet_listele"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"
-            tools:ignore="VisualLintButtonSize" />
+        <TextView
+            android:id="@+id/reservationNotificationUyarı"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="67dp"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="Reserve Biletiniz Mevcut!"
+            android:textColor="@color/white"
+            android:textSize="40px"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="202dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="60dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/reserveBiletKalanSureTittle"
+                android:layout_width="80dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="7dp"
+                android:gravity="center"
+                android:text="@string/rezerveBiletKalanSure"
+                android:textColor="@color/white"
+                android:textSize="40px"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/reserveBiletKalanSure"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="1 saat 15dk"
+                android:textColor="@color/white"
+                android:textSize="40px"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/biletAraButton"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        android:backgroundTint="#246395"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/bilet_ara"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        tools:ignore="VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/biletListesiButton"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#246395"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/bilet_listele"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        tools:ignore="VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/rezerveBiletlerim"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#246395"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/rezerve_biletlerim"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        tools:ignore="VisualLintButtonSize" />
 
 
 </LinearLayout>

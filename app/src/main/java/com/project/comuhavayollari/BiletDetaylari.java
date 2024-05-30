@@ -22,6 +22,9 @@ public class BiletDetaylari extends AppCompatActivity {
 
         recyclerView1 = findViewById(R.id.recycler_viewdetay); // RecyclerView'ın ID'sini kontrol edin
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
+
+
+
         biletListele.clear();
         // Örnek bilet verileri
         biletListele = new ArrayList<>();
