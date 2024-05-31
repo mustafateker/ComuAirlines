@@ -35,17 +35,22 @@ public class BiletAdapter extends RecyclerView.Adapter<BiletAdapter.BiletViewHol
     public void onBindViewHolder(@NonNull BiletViewHolder holder, int position) {
         Bilet bilet = biletList.get(position);
 
-        holder.ucakLogoImageView.setImageResource(R.drawable.plane_icon); // Uçak logosu
+        holder.ucakLogoImageView.setImageResource(R.drawable.plane_icon_degrade); // Uçak logosu
         holder.biletNoTextView.setText("Bilet No: " + bilet.getBiletNo());
         holder.ucusNoTextView.setText("Uçuş No: " + bilet.getUcusNo());
         holder.kalkisNoktasiTextView.setText("Kalkış Noktası: " + bilet.getKalkisNoktasi());
         holder.varisNoktasiTextView.setText("Varış Noktası: "   + bilet.getVarisNoktasi());
         holder.ucusTarihiTextView.setText("Uçuş Tarihi: " + bilet.getUcusTarihi());
-        holder.ucusSaatiTextView.setText("Uçuş Saati:" + bilet.getUcus_saati());
-        holder.koltukNoTextView.setText("koltuk No:" + bilet.getKoltuk_no());
-        holder.biletFiyatiTextView.setText("bilet Fiyati:" + bilet.getBilet_fiyati());
+        holder.ucusSaatiTextView.setText("Uçuş Saati: " + bilet.getUcus_saati());
+        holder.koltukNoTextView.setText("Koltuk No: " + bilet.getKoltuk_no());
+        holder.biletFiyatiTextView.setText("Bilet Fiyatı: " + bilet.getBilet_fiyati());
+        //holder.biletFlightId.setText("Uçuş Id: " + bilet.getBilet_ucus_id());
 
 
+    }
+    public void removeItem(int position) {
+        biletList.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
@@ -63,6 +68,7 @@ public class BiletAdapter extends RecyclerView.Adapter<BiletAdapter.BiletViewHol
         TextView ucusSaatiTextView;
         TextView koltukNoTextView;
         TextView biletFiyatiTextView;
+        //TextView biletFlightId;
 
         public BiletViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +81,7 @@ public class BiletAdapter extends RecyclerView.Adapter<BiletAdapter.BiletViewHol
             ucusSaatiTextView=itemView.findViewById(R.id.ucusSaatiTextView);
             koltukNoTextView=itemView.findViewById(R.id.ucakKoltukNotextView);
             biletFiyatiTextView=itemView.findViewById(R.id.BiletFiyatitextView);
+           // biletFlightId = itemView.findViewById(R.id.BiletFlightId);
         }
 
     }

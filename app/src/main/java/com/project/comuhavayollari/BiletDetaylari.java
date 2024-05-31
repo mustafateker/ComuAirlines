@@ -29,9 +29,9 @@ public class BiletDetaylari extends AppCompatActivity {
         // Örnek bilet verileri
         biletListele = new ArrayList<>();
         //String ucus_no, String bilet_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati
+       /* biletListele.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
         biletListele.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
-        biletListele.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
-        biletListele.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));
+        biletListele.add(new Bilet("1", "TK123", "20/05/2024", "16:05", "İstanbul ", "Ankara", "5", "1250 TL"));*/
 
         biletDetayiAdapter= new biletDetayiAdapter(this, biletListele);
         recyclerView1.setAdapter(biletDetayiAdapter);

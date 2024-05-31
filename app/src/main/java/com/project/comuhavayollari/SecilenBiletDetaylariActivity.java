@@ -71,7 +71,7 @@ public class SecilenBiletDetaylariActivity extends AppCompatActivity {
 
             biletListele = new ArrayList<>();
             //String ucus_no, String bilet_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati
-            biletListele.add(new Bilet(flightNumber, biletNumarasi, flightDate, flightTime, fetchedFromCity, fetchedToCity, selectedSeat, ticketPrice + " TL"));
+            biletListele.add(new Bilet(flightNumber, biletNumarasi, flightDate, flightTime, fetchedFromCity, fetchedToCity, selectedSeat, ticketPrice + " TL" , selectedFlightTransport.getId()));
 
 
             biletDetayiAdapter= new biletDetayiAdapter(this, biletListele);
@@ -124,8 +124,8 @@ public class SecilenBiletDetaylariActivity extends AppCompatActivity {
 
             biletListele = new ArrayList<>();
             //String ucus_no, String bilet_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati
-            biletListele.add(new Bilet(oneWayflightNumber, biletNumarasi, oneWayflightDate, oneWayflightTime, oneWayfromCity, oneWaytoCity, oneWayseatNumber, oneWayticketPrice + " TL"));
-            biletListele.add(new Bilet(roundTripFlightNumber, ticketNumber, roundTripDate, roundTripFlightTime, roundTripFromCity, roundTripToCity, roundTripSeatNo, roundTripTicketPrice + " TL"));
+            biletListele.add(new Bilet(oneWayflightNumber, biletNumarasi, oneWayflightDate, oneWayflightTime, oneWayfromCity, oneWaytoCity, oneWayseatNumber, oneWayticketPrice + " TL" ,roundTripSelectedFlight.getId()));
+            biletListele.add(new Bilet(roundTripFlightNumber, ticketNumber, roundTripDate, roundTripFlightTime, roundTripFromCity, roundTripToCity, roundTripSeatNo, roundTripTicketPrice + " TL",roundTripSelectedFlight.getRoundTripFlightid()));
 
 
             biletDetayiAdapter= new biletDetayiAdapter(this, biletListele);

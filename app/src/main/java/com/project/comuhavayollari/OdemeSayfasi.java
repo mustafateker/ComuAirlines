@@ -220,6 +220,39 @@ public class OdemeSayfasi extends AppCompatActivity {
 
                                     }
                                 }
+                                //BOOKEDTİCKET YOKSA YİNE BU İŞLEMİ YAPACAK
+                                FlightDetailTransport savePurschaedTicket = new FlightDetailTransport(fromCity,toCity,flightDate,flightNumber,
+                                        flightTime,id,ticketPrice,seatNumber,memberType,
+                                        ticketType,ticketNumber,purschaedDate );
+
+                                mReferance.child(mUserId).child("purschaedTicket").child(ticketNumber).setValue(savePurschaedTicket);
+                                DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
+                                flightSeatRef.setValue("OCCUPIED");
+
+                                DatabaseReference mPurschaedTicketRef = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("aldigiBiletSayisi");
+                                mPurschaedTicketRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if(snapshot.exists()){
+                                            String aldigiBiletSayisi = snapshot.getValue(String.class);
+
+                                            int aldigiBiletSayisiInt = Integer.parseInt(aldigiBiletSayisi);
+                                            aldigiBiletSayisiInt = aldigiBiletSayisiInt + 1;
+                                            String updatedAldigiBiletSayisi = String.valueOf(aldigiBiletSayisiInt);
+                                            mPurschaedTicketRef.setValue(updatedAldigiBiletSayisi);
+
+
+                                        }else{
+                                            Log.d("FirebaseData" , "Veri bulunamadı.");
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                    }
+                                });
+
                             }
 
                             @Override
@@ -412,7 +445,7 @@ public class OdemeSayfasi extends AppCompatActivity {
                                                 if(snapshot.exists()){
                                                     String aldigiBiletSayisi = snapshot.getValue(String.class);
                                                     int aldigiBiletSayisiInt = Integer.parseInt(aldigiBiletSayisi);
-                                                    aldigiBiletSayisiInt = aldigiBiletSayisiInt + 1;
+                                                    aldigiBiletSayisiInt = aldigiBiletSayisiInt + 2;
                                                     String updatedAldigiBiletSayisi = String.valueOf(aldigiBiletSayisiInt);
                                                     mPurschaedTicketRef.setValue(updatedAldigiBiletSayisi);
                                                 }else{
@@ -488,7 +521,7 @@ public class OdemeSayfasi extends AppCompatActivity {
                                                 if(snapshot.exists()){
                                                     String aldigiBiletSayisi = snapshot.getValue(String.class);
                                                     int aldigiBiletSayisiInt = Integer.parseInt(aldigiBiletSayisi);
-                                                    aldigiBiletSayisiInt = aldigiBiletSayisiInt + 1;
+                                                    aldigiBiletSayisiInt = aldigiBiletSayisiInt + 2;
                                                     String updatedAldigiBiletSayisi = String.valueOf(aldigiBiletSayisiInt);
                                                     mPurschaedTicketRef.setValue(updatedAldigiBiletSayisi);
                                                 }else{
@@ -503,6 +536,66 @@ public class OdemeSayfasi extends AppCompatActivity {
                                         });
                                     }
                                 }
+                                DatabaseReference ticketRef = mReferance.child(mUserId).child("purschaedTicket").child(ticketNumber);
+
+                                ticketRef.child("fromCity").setValue(fromCity);
+                                ticketRef.child("toCity").setValue(toCity);
+                                ticketRef.child("flightDate").setValue(flightDate);
+                                ticketRef.child("flightNumber").setValue(flightNumber);
+                                ticketRef.child("flightTime").setValue(flightTime);
+                                ticketRef.child("id").setValue(id);
+                                ticketRef.child("ticketPrice").setValue(ticketPrice);
+                                ticketRef.child("seatNumber").setValue(seatNumber);
+                                ticketRef.child("memberType").setValue(memberType);
+                                ticketRef.child("ticketType").setValue(ticketType);
+                                ticketRef.child("ticketNumber").setValue(ticketNumber);
+                                ticketRef.child("purschaedDate").setValue(purschaedDate);
+
+
+                                DatabaseReference flightSeatRef = mFlightReferance.child(id).child("flight_seats").child(seatNumber);
+                                flightSeatRef.setValue("OCCUPIED");
+
+                                DatabaseReference roundTripTicketRef = mReferance.child(mUserId).child("purschaedTicket").child(roundTripTicketNumber);
+
+                                roundTripTicketRef.child("fromCity").setValue(roundTripFromCity);
+                                roundTripTicketRef.child("toCity").setValue(roundTripToCity);
+                                roundTripTicketRef.child("flightDate").setValue(roundTripDate);
+                                roundTripTicketRef.child("flightNumber").setValue(roundTripFlightNumber);
+                                roundTripTicketRef.child("flightTime").setValue(roundTripFlightTime);
+                                roundTripTicketRef.child("id").setValue(roundTripFlightId);
+                                roundTripTicketRef.child("ticketPrice").setValue(roundTripTicketPrice);
+                                roundTripTicketRef.child("seatNumber").setValue(roundTripSeatNo);
+                                roundTripTicketRef.child("memberType").setValue(memberType);
+                                roundTripTicketRef.child("ticketType").setValue(ticketType);
+                                roundTripTicketRef.child("ticketNumber").setValue(roundTripTicketNumber);
+                                roundTripTicketRef.child("purschaedDate").setValue(purschaedDate);
+
+
+                                DatabaseReference roundTripflightSeatRef = mFlightReferance.child(roundTripFlightId).child("flight_seats").child(roundTripSeatNo);
+                                roundTripflightSeatRef.setValue("OCCUPIED");
+
+
+                                //kullanıcının aldiği bilet sayısını burda güncelliyoruz.
+                                DatabaseReference mPurschaedTicketRef = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("aldigiBiletSayisi");
+                                mPurschaedTicketRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if(snapshot.exists()){
+                                            String aldigiBiletSayisi = snapshot.getValue(String.class);
+                                            int aldigiBiletSayisiInt = Integer.parseInt(aldigiBiletSayisi);
+                                            aldigiBiletSayisiInt = aldigiBiletSayisiInt + 2;
+                                            String updatedAldigiBiletSayisi = String.valueOf(aldigiBiletSayisiInt);
+                                            mPurschaedTicketRef.setValue(updatedAldigiBiletSayisi);
+                                        }else{
+                                            Log.d("FirebaseData" , "Veri bulunamadı.");
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                    }
+                                });
                             }
 
                             @Override
@@ -588,4 +681,5 @@ public class OdemeSayfasi extends AppCompatActivity {
 
     }
 
-    }
+}
+

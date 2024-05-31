@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private FlightDetailTransport roundTripFlightDetail = new FlightDetailTransport();
     private FlightDetailTransport flightDetail = new FlightDetailTransport();
     private Intent intent = getIntent();
+    private String mUserId = FirebaseAuth.getInstance().getUid();
 
 
     @Override
@@ -134,6 +137,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(biletListeleIntent);
         });
 
+        Button biletRezerveBiletlerim = findViewById(R.id.rezerveBiletlerim);
+        biletRezerveBiletlerim.setOnClickListener(v -> {
+            Intent rezerveBiletlerimIntent = new Intent(MainActivity.this, RezerveBiletlerim.class);
+            startActivity(rezerveBiletlerimIntent);
+        });
+
 
     }
 
@@ -143,7 +152,8 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 long currentTimeMillis = System.currentTimeMillis();
                 long timeElapsedMillis = currentTimeMillis - bookedTicketPurchasedDateMillis;
-                long oneDayInMillis = 24 * 60 * 60 * 1000; // Bir günün milisaniye cinsinden değeri
+                //long oneDayInMillis = 24 * 60 * 60 * 1000;
+                long oneDayInMillis = 120000; // Bir günün milisaniye cinsinden değeri
 
                 if (timeElapsedMillis < oneDayInMillis) {
                     long remainingTimeMillis = oneDayInMillis - timeElapsedMillis;
@@ -154,6 +164,79 @@ public class MainActivity extends AppCompatActivity {
                     textViewRemainingTime.setText(remainingTimeText);
                     handler.postDelayed(this, 1000); // Her saniye güncelle
                 } else {
+                    DatabaseReference mBookedTicketCheck = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("bookedTicket");
+                    //booked silinecek
+                    mBookedTicketCheck.removeValue()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("Firebase" , "bookedTicketRef Deleted!");
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("Firebase" , "BookedTicketRef Delete Process Unsuccessful!");
+                                }
+                            });
+
+                    if(flightDetail!=null){
+                        String myFlightId = flightDetail.getId();
+                        String mySeatNoCheck  = flightDetail.getSeatNumber();
+                        DatabaseReference FlightSeatSet = FirebaseDatabase.getInstance().getReference("flights").child(myFlightId).child("flight_seats").child(mySeatNoCheck);
+                        FlightSeatSet.setValue("AVAILABLE")
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("Firebase", "Veri başarıyla değiştirildi!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("Firebase", "Veri değiştirme işlemi başarısız oldu!");
+                                    }
+                                });
+                    }else{
+                        String myFlightId = roundTripFlightDetail.getId();
+                        String myRoundTripFlightId = roundTripFlightDetail.getRoundTripFlightid();
+                        String mySeatNoCheck = roundTripFlightDetail.getSeatNumber();
+                        String myRoundTripSeatNo = roundTripFlightDetail.getRoundTripSeatNo();
+
+                        DatabaseReference FlightSeatSet = FirebaseDatabase.getInstance().getReference("flights").child(myFlightId).child("flight_seats").child(mySeatNoCheck);
+                        FlightSeatSet.setValue("AVAILABLE")
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("Firebase", "Veri başarıyla değiştirildi!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("Firebase", "Veri değiştirme işlemi başarısız oldu!");
+                                    }
+                                });
+
+                        DatabaseReference FlightSeatSetRT = FirebaseDatabase.getInstance().getReference("flights").child(myRoundTripFlightId).child("flight_seats").child(myRoundTripSeatNo);
+                        FlightSeatSet.setValue("AVAILABLE")
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Log.d("Firebase", "Veri başarıyla değiştirildi!");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("Firebase", "Veri değiştirme işlemi başarısız oldu!");
+                                    }
+                                });
+
+                    }
+
+
+
                     // Biletin süresi dolduğunda yapılacak işlemler
                     ReservedTicketLinearLayout.setVisibility(View.INVISIBLE);
                     // Örneğin, biletin silinmesi gibi işlemler yapılabilir

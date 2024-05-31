@@ -15,6 +15,9 @@
         android:theme="@style/Theme.COMUHavaYollari"
         tools:targetApi="31">
         <activity
+            android:name=".RezerveBiletlerim"
+            android:exported="false" />
+        <activity
             android:name=".RoundTripSeatSelectionActivity"
             android:exported="false" />
         <activity

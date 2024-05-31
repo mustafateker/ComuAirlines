@@ -11,10 +11,13 @@ public class Bilet extends AppCompatActivity {
     private String varis_noktasi;
     private String koltuk_no;
     private String bilet_fiyati;
+    private String bilet_ucus_id;
+    private String bilet_gidis_donus_id;
+    private String koltuk_no_gidis_donus;
 
     // Boş yapıcı kaldırıldı
 
-    public Bilet(String ucus_no, String bilet_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati) {
+    public Bilet(String ucus_no, String bilet_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati, String bilet_ucus_id ) {
         this.ucus_no = ucus_no;
         this.bilet_no = bilet_no;
         this.ucus_tarihi = ucus_tarihi;
@@ -23,10 +26,11 @@ public class Bilet extends AppCompatActivity {
         this.varis_noktasi = varis_noktasi;
         this.koltuk_no=koltuk_no;
         this.bilet_fiyati=bilet_fiyati;
+        this.bilet_ucus_id = bilet_ucus_id;
 
     }
 
-    public Bilet(String ucus_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati) {
+    public Bilet(String ucus_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati ,String bilet_ucus_id ) {
         this.ucus_no = ucus_no;
         this.ucus_tarihi = ucus_tarihi;
         this.ucus_saati = ucus_saati;
@@ -34,8 +38,22 @@ public class Bilet extends AppCompatActivity {
         this.varis_noktasi = varis_noktasi;
         this.koltuk_no=koltuk_no;
         this.bilet_fiyati=bilet_fiyati;
-
+        this.bilet_ucus_id=bilet_ucus_id;
     }
+    public Bilet(String ucus_no, String bilet_no, String ucus_tarihi, String ucus_saati, String kalkis_noktasi, String varis_noktasi, String koltuk_no, String bilet_fiyati, String bilet_ucus_id , String bilet_gidis_donus_id , String koltuk_no_gidis_donus) {
+        this.ucus_no = ucus_no;
+        this.bilet_no = bilet_no;
+        this.ucus_tarihi = ucus_tarihi;
+        this.ucus_saati = ucus_saati;
+        this.kalkis_noktasi = kalkis_noktasi;
+        this.varis_noktasi = varis_noktasi;
+        this.koltuk_no=koltuk_no;
+        this.bilet_fiyati=bilet_fiyati;
+        this.bilet_ucus_id = bilet_ucus_id;
+        this.bilet_gidis_donus_id = bilet_gidis_donus_id;
+        this.koltuk_no_gidis_donus = koltuk_no_gidis_donus;
+    }
+
 
     public void setUcusNo(String ucus_no) {
         this.ucus_no = ucus_no;
@@ -89,11 +107,17 @@ public class Bilet extends AppCompatActivity {
 
     public void setBilet_fiyati(String bilet_fiyati) {this.bilet_fiyati=bilet_fiyati ;}
     public String getBilet_fiyati() {return bilet_fiyati ; }
+    public String getBilet_ucus_id() {
+        return bilet_ucus_id;
+    }
 
+    public void setBilet_ucus_id(String bilet_ucus_id) {
+        this.bilet_ucus_id = bilet_ucus_id;
+    }
 
     @Override
-    public String toString() {
-        return "BiletDetaylari{" +
+     public String toString() {
+       return "BiletDetaylari{" +
                 "ucus_no='" + ucus_no + '\'' +
                 ", bilet_no='" + bilet_no + '\'' +
                 ", ucus_tarihi='" + ucus_tarihi + '\'' +
@@ -102,6 +126,24 @@ public class Bilet extends AppCompatActivity {
                 ", varis_noktasi='" + varis_noktasi + '\'' +
                 ", koltuk_no='"    +koltuk_no + '\'' +
                 ",bilet_fiyati='" +bilet_fiyati + '\'' +
+                ",ucus_id='" +bilet_ucus_id + '\'' +
                 '}';
+    }
+
+
+    public String getBilet_gidis_donus_id() {
+        return bilet_gidis_donus_id;
+    }
+
+    public void setBilet_gidis_donus_id(String bilet_gidis_donus_id) {
+        this.bilet_gidis_donus_id = bilet_gidis_donus_id;
+    }
+
+    public String getKoltuk_no_gidis_donus() {
+        return koltuk_no_gidis_donus;
+    }
+
+    public void setKoltuk_no_gidis_donus(String koltuk_no_gidis_donus) {
+        this.koltuk_no_gidis_donus = koltuk_no_gidis_donus;
     }
 }

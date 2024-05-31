@@ -6,8 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@drawable/flat_font"
-    tools:context=".BiletListele">
-
+    tools:context=".RezerveBiletlerim">
     <LinearLayout
         android:background="@drawable/plane_design_inapp"
         android:layout_width="wrap_content"
@@ -24,9 +23,9 @@
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:text="@string/bilet_listele"
+        android:text="@string/rezerve_biletlerim"
         android:textColor="#246395"
-        android:textSize="45dp"
+        android:textSize="35dp"
         android:textStyle="bold"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="33dp"
@@ -39,9 +38,9 @@
         android:layout_marginTop="16dp">
 
         <TextView
-            android:layout_width="205dp"
+            android:layout_width="215dp"
             android:layout_height="40dp"
-            android:text="Bilet İadesi için kaydırın"
+            android:text="Bileti silmek için kaydırın"
             android:textStyle="bold"
             android:textSize="50px"
             android:textColor="#246395"
@@ -55,10 +54,9 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewListe"
+        android:id="@+id/recyclerViewListeRezerve"
         android:layout_width="match_parent"
         android:layout_height="523dp"
         android:layout_marginTop="16dp" />
-
 
 </LinearLayout>
