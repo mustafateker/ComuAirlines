@@ -121,7 +121,7 @@ public class RegistrationActivity extends AppCompatActivity {
             String lastName = soyad.getText().toString().trim();
             String user_age = yas.getText().toString().trim();
             String aldigiBiletSayisi = "0";
-            String uyeTipi = "Normal Üye";
+            String uyeTipi = "NormalUye";
 
 
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)

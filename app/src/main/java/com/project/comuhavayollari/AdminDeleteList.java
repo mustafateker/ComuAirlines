@@ -63,6 +63,7 @@ public class AdminDeleteList extends AppCompatActivity {
                 flightIds.clear();
                 for (DataSnapshot flightSnapshot : dataSnapshot.getChildren()) {
                     String flightId = flightSnapshot.getKey(); // Uçuş ID'sini al
+
                     Flight flight = flightSnapshot.child("flight_info").getValue(Flight.class);
                     if (flight != null) {
                         String flightInfo = "Uçuş No: " + flight.getFlightNumber() + "\n"
@@ -96,7 +97,7 @@ public class AdminDeleteList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (selectedPosition != -1 && selectedFlightId != null) {
-                    myRef.child(selectedFlightId).removeValue(new DatabaseReference.CompletionListener() {
+                    myRef.child(flightIds.get(selectedPosition)).removeValue(new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError != null) {

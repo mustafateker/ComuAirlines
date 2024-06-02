@@ -82,20 +82,50 @@ public class SeatSelectionActivity extends AppCompatActivity {
                         tamKisim++;
                         currentSeat = "c" + tamKisim ;
                     }
-                    Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
 
+
+                    boolean b = currentSeat.equals("a1") || currentSeat.equals("b1") || currentSeat.equals("c1") || currentSeat.equals("d1");
                     if(selectedFlight!= null){
-                        selectedFlight.setSeatNumber(currentSeat);
-                        Intent intent1 = new Intent(SeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
-                        intent1.putExtra("selectedFlight", selectedFlight);
-                        startActivity(intent1);
-                    }else{
-                        roundTripSelectedFlight.setSeatNumber(currentSeat);
-                        Intent intent2 = new Intent(SeatSelectionActivity.this , RoundTripSeatSelectionActivity.class);
-                        intent2.putExtra("roundTripSelectedFlight" , roundTripSelectedFlight);
-                        startActivity(intent2);
-                    }
+                        String mMemberType = selectedFlight.getMemberType();
+                        if(mMemberType!="VipUye"){
+                            if(b){
+                                Toast.makeText(SeatSelectionActivity.this , "Seçilen koltuk VIP üyelere aittir!\n Lütfen başka bir koltuk seçiniz." , Toast.LENGTH_SHORT).show();
+                            }else{
+                                selectedFlight.setSeatNumber(currentSeat);
+                                Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
+                                Intent intent1 = new Intent(SeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
+                                intent1.putExtra("selectedFlight", selectedFlight);
+                                startActivity(intent1);
+                            }
 
+                        }else{
+                            selectedFlight.setSeatNumber(currentSeat);
+                            Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
+                            Intent intent1 = new Intent(SeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
+                            intent1.putExtra("selectedFlight", selectedFlight);
+                            startActivity(intent1);
+                        }
+
+                    }else{
+                        String mMemberType = roundTripSelectedFlight.getMemberType();
+                        if(mMemberType!="VipUye"){
+                            if(b){
+                                Toast.makeText(SeatSelectionActivity.this , "Seçilen koltuk VIP üyelere aittir!\n Lütfen başka bir koltuk seçiniz." , Toast.LENGTH_SHORT).show();
+                            }else{
+                                roundTripSelectedFlight.setSeatNumber(currentSeat);
+                                Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
+                                Intent intent2 = new Intent(SeatSelectionActivity.this , RoundTripSeatSelectionActivity.class);
+                                intent2.putExtra("roundTripSelectedFlight" , roundTripSelectedFlight);
+                                startActivity(intent2);
+                            }
+                        }else{
+                            roundTripSelectedFlight.setSeatNumber(currentSeat);
+                            Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
+                            Intent intent2 = new Intent(SeatSelectionActivity.this , RoundTripSeatSelectionActivity.class);
+                            intent2.putExtra("roundTripSelectedFlight" , roundTripSelectedFlight);
+                            startActivity(intent2);}
+
+                    }
                     break;
                 }
             }

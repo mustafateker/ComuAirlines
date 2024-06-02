@@ -23,6 +23,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +48,8 @@ public class UcusAra extends AppCompatActivity {
     private List<UcusAraItem> ucusAraItemList;
     private UcusAraAdaptorItem ucusAraAdaptorItem;
     private Calendar departureDateCalendar, returnDateCalendar;
-    private DatabaseReference mReferance;
+    private String mUserId = FirebaseAuth.getInstance().getUid();
+    private DatabaseReference mUserInfoReferance = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info");
 
     private boolean ticketType;
 
@@ -84,7 +86,19 @@ public class UcusAra extends AppCompatActivity {
         returnDateCalendar = Calendar.getInstance();
         //bilet tipi tek yön
         //üye tipi default !!!!!simdilik
-        memberType = "NormalUye";
+        mUserInfoReferance.child("uyeTipi").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@androidx.annotation.NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    memberType = snapshot.getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@androidx.annotation.NonNull DatabaseError error) {
+                Log.w("FirebaseData", "searchFlights:onCancelled", error.toException());
+            }
+        });
 
 
 

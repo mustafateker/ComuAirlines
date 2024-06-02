@@ -34,6 +34,7 @@ public class BiletListele extends AppCompatActivity {
 
     private String myFlightId, mySeatNoCheck;
     private String ticketNumber;
+    private DatabaseReference mDaimiUyeTicketCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +154,30 @@ public class BiletListele extends AppCompatActivity {
                                                 Log.d("Firebase", "Veri çekme işlemi başarısız.", error.toException());
                                             }
                                         });
+                                        //Daimi uye ticketCounter ı artır
+                                        mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
+                                        mDaimiUyeTicketCounter.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if(snapshot.exists()){
+                                                    String DaimiUyeTicketCounter = snapshot.getValue(String.class);
+
+                                                    int DaimiUyeTicketCounterInt = Integer.parseInt(DaimiUyeTicketCounter);
+                                                    DaimiUyeTicketCounterInt = DaimiUyeTicketCounterInt - 1;
+                                                    String updatedDaimiUyeTicketCounterInt = String.valueOf(DaimiUyeTicketCounterInt);
+                                                    mDaimiUyeTicketCounter.setValue(updatedDaimiUyeTicketCounterInt);
+
+
+                                                }else{
+                                                    Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                            }
+                                        });
 
                                         // Koltuk Güncellemesi
                                         DatabaseReference FlightSeatSet = FirebaseDatabase.getInstance().getReference("flights").child(myFlightId).child("flight_seats").child(mySeatNoCheck);
@@ -160,7 +185,7 @@ public class BiletListele extends AppCompatActivity {
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(BiletListele.this, "Ucus Id " + myFlightId, Toast.LENGTH_SHORT).show();
+                                                       // Toast.makeText(BiletListele.this, "Ucus Id " + myFlightId, Toast.LENGTH_SHORT).show();
                                                         Log.d("Firebase", "Veri başarıyla değiştirildi!");
                                                     }
                                                 })

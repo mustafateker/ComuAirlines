@@ -74,13 +74,27 @@ public class RoundTripSeatSelectionActivity extends AppCompatActivity {
                         tamKisim++;
                         currentSeat = "c" + tamKisim ;
                     }
-                    Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
-                    boolean ticketType = roundTripSelectedFlight.getTicketType();
 
-                    roundTripSelectedFlight.setRoundTripSeatNo(currentSeat);
-                        Intent intent1 = new Intent(RoundTripSeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
-                        intent1.putExtra("roundTripSelectedFlight", roundTripSelectedFlight);
-                        startActivity(intent1);
+
+                    boolean b = currentSeat.equals("a1") || currentSeat.equals("b1") || currentSeat.equals("c1") || currentSeat.equals("d1");
+                    String mMemberType = roundTripSelectedFlight.getMemberType();
+                    if(mMemberType!="VipUye"){
+                        if(b){
+                            Toast.makeText(RoundTripSeatSelectionActivity.this , "Seçilen koltuk VIP üyelere aittir!\n Lütfen başka bir koltuk seçiniz." , Toast.LENGTH_SHORT).show();
+                        }else{
+                            roundTripSelectedFlight.setRoundTripSeatNo(currentSeat);
+                            Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
+                            Intent intent2 = new Intent(RoundTripSeatSelectionActivity.this , SecilenBiletDetaylariActivity.class);
+                            intent2.putExtra("roundTripSelectedFlight" , roundTripSelectedFlight);
+                            startActivity(intent2);
+                        }
+                    }else{
+                        roundTripSelectedFlight.setRoundTripSeatNo(currentSeat);
+                        Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(RoundTripSeatSelectionActivity.this , SecilenBiletDetaylariActivity.class);
+                        intent2.putExtra("roundTripSelectedFlight" , roundTripSelectedFlight);
+                        startActivity(intent2);
+                    }
 
 
                     break;
