@@ -100,7 +100,7 @@ public class UcusAra extends AppCompatActivity {
             }
         });
 
-
+        Toast.makeText(UcusAra.this , "Uye Tipi : " + memberType , Toast.LENGTH_SHORT).show();
 
 
         // Spinner veri kaynakları
