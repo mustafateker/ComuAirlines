@@ -86,7 +86,7 @@ public class UcusAra extends AppCompatActivity {
         returnDateCalendar = Calendar.getInstance();
         //bilet tipi tek yön
         //üye tipi default !!!!!simdilik
-        mUserInfoReferance.child("uyeTipi").addListenerForSingleValueEvent(new ValueEventListener() {
+        /*mUserInfoReferance.child("uyeTipi").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@androidx.annotation.NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -98,7 +98,7 @@ public class UcusAra extends AppCompatActivity {
             public void onCancelled(@androidx.annotation.NonNull DatabaseError error) {
                 Log.w("FirebaseData", "searchFlights:onCancelled", error.toException());
             }
-        });
+        });*/
 
         Toast.makeText(UcusAra.this , "Uye Tipi : " + memberType , Toast.LENGTH_SHORT).show();
 
@@ -139,6 +139,20 @@ public class UcusAra extends AppCompatActivity {
 
         btnSearch.setOnClickListener(v -> searchFlights());
 
+
+        mUserInfoReferance.child("uyeTipi").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@androidx.annotation.NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    memberType = snapshot.getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@androidx.annotation.NonNull DatabaseError error) {
+                Log.w("FirebaseData", "searchFlights:onCancelled", error.toException());
+            }
+        });
 
         listViewFlights.setOnItemClickListener((parent, view, position, id) -> {
             if (ticketType) {

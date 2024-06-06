@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:autoLink="web"
         android:background="@drawable/edit_text_background"
         android:clickable="true"
@@ -33,23 +33,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_viewdetay"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="420dp"
         android:layout_marginTop="10dp" />
 
 
-
-    <Button
-        android:id="@+id/rezerve_et"
-        android:layout_width="339dp"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#246395"
-        android:text="@string/rezerve"
-        android:textSize="20sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="576dp" />
 
     <!-- Odeme Yap Button -->
     <Button
@@ -57,7 +44,7 @@
         android:layout_width="339dp"
         android:layout_height="59dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#246395"
         android:text="@string/odemeyap"
         android:textSize="20sp"

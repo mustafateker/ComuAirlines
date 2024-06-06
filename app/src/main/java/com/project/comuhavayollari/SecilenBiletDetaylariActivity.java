@@ -111,7 +111,6 @@ public class SecilenBiletDetaylariActivity extends AppCompatActivity {
             String roundTripFromCity = roundTripSelectedFlight.getRoundTripKalkis();
             String roundTripToCity = roundTripSelectedFlight.getRoundTripVaris();
             String roundTripTicketPrice = roundTripSelectedFlight.getRoundTripTicketPrice();
-
             Random random = new Random();
 
             int ticketNo = random.nextInt(900000) + 100000;
@@ -139,7 +138,6 @@ public class SecilenBiletDetaylariActivity extends AppCompatActivity {
                     // Ödeme yap butonuna tıklandığında yeni aktiviteyi başlat
                     Intent intent = new Intent(SecilenBiletDetaylariActivity.this, OdemeSayfasi.class);
                     intent.putExtra("roundTripSelectedFlight", roundTripSelectedFlight);
-
                     startActivity(intent);
                 }
             });

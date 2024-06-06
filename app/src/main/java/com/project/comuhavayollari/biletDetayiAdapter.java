@@ -33,7 +33,7 @@ public class biletDetayiAdapter extends RecyclerView.Adapter<biletDetayiAdapter.
     public void onBindViewHolder(@NonNull BiletDetayViewHolder holder, int position) {
         Bilet bilet = biletList.get(position);
 
-        holder.ucakLogoImageView.setImageResource(R.drawable.plane_icon);
+        holder.ucakLogoImageView.setImageResource(R.drawable.plane_icon_degrade);
         holder.biletNoTextView.setText("Bilet No: " + bilet.getBiletNo());
         holder.ucusNoTextView.setText("Uçuş No: " + bilet.getUcusNo());
         holder.kalkisNoktasiTextView.setText("Kalkış Noktası: " + bilet.getKalkisNoktasi());

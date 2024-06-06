@@ -126,7 +126,7 @@ public class RezerveBiletlerim extends AppCompatActivity {
                             String roundTripSeatNo = snapshot.child("roundTripSeatNo").getValue(String.class);
 
                                 Bilet bilet;
-                                if (!ticketType) {
+                                if (ticketType == false) {
                                     bilet = new Bilet(
                                             flightNumber,
                                             TicketNumber,

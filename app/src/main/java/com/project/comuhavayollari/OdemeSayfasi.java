@@ -860,6 +860,7 @@ public class OdemeSayfasi extends AppCompatActivity {
             int vipUyeIndirimiInt;
             String uyelikIndirimi = "0" ;
             String uyelikTipi = selectedFlightTransport.getMemberType();
+            Toast.makeText(OdemeSayfasi.this , "Member Type :  " + uyelikTipi , Toast.LENGTH_SHORT).show();
             if(uyelikTipi.equals("VipUye")){
                 vipUyeIndirimiInt = (totalPriceInt*25)/100;
                 totalPriceInt = totalPriceInt - vipUyeIndirimiInt;

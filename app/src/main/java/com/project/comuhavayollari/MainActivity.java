@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference usersRef = database.getReference("users");
     private long registrationDateLong;
-    private String mMemberType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.project.comuhavayollari;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +33,7 @@ public class RoundTripSeatSelectionActivity extends AppCompatActivity {
 
     private DatabaseReference mFlightReference ;
     private List<Seat> seats = new ArrayList<>();
+    private String mUserId = FirebaseAuth.getInstance().getUid();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,25 +80,35 @@ public class RoundTripSeatSelectionActivity extends AppCompatActivity {
                     }
 
 
-                    boolean b = currentSeat.equals("a1") || currentSeat.equals("b1") || currentSeat.equals("c1") || currentSeat.equals("d1");
-                    String mMemberType = roundTripSelectedFlight.getMemberType();
-                    if(mMemberType!="VipUye"){
-                        if(b){
-                            Toast.makeText(RoundTripSeatSelectionActivity.this , "Seçilen koltuk VIP üyelere aittir!\n Lütfen başka bir koltuk seçiniz." , Toast.LENGTH_SHORT).show();
-                        }else{
-                            roundTripSelectedFlight.setRoundTripSeatNo(currentSeat);
-                            Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
-                            Intent intent2 = new Intent(RoundTripSeatSelectionActivity.this , SecilenBiletDetaylariActivity.class);
-                            intent2.putExtra("roundTripSelectedFlight" , roundTripSelectedFlight);
-                            startActivity(intent2);
+                    String finalCurrentSeat = currentSeat;
+                    checkMemberType(new OnMemberTypeCheckListener() {
+                        @Override
+                        public void memberTypeCheckListener(boolean isVipUye) {
+                            boolean b = finalCurrentSeat.equals("a1") || finalCurrentSeat.equals("b1") || finalCurrentSeat.equals("c1") || finalCurrentSeat.equals("d1");
+                            boolean mIsVip = isVipUye;
+                            if (roundTripSelectedFlight != null) {
+                                if (mIsVip) {
+                                    roundTripSelectedFlight.setRoundTripSeatNo(finalCurrentSeat);
+                                    Toast.makeText(RoundTripSeatSelectionActivity.this, "Koltuk Seçildi: " + finalCurrentSeat, Toast.LENGTH_SHORT).show();
+                                    Intent intent2 = new Intent(RoundTripSeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
+                                    intent2.putExtra("roundTripSelectedFlight", roundTripSelectedFlight);
+                                    startActivity(intent2);
+
+                                } else {
+                                    if (b) {
+                                        Toast.makeText(RoundTripSeatSelectionActivity.this, "Seçilen koltuk VIP üyelere aittir!\n Lütfen başka bir koltuk seçiniz.", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        roundTripSelectedFlight.setRoundTripSeatNo(finalCurrentSeat);
+                                        Toast.makeText(RoundTripSeatSelectionActivity.this, "Koltuk Seçildi: " + finalCurrentSeat, Toast.LENGTH_SHORT).show();
+                                        Intent intent2 = new Intent(RoundTripSeatSelectionActivity.this, SecilenBiletDetaylariActivity.class);
+                                        intent2.putExtra("roundTripSelectedFlight", roundTripSelectedFlight);
+                                        startActivity(intent2);
+                                    }
+
+                                }
+                            }
                         }
-                    }else{
-                        roundTripSelectedFlight.setRoundTripSeatNo(currentSeat);
-                        Toast.makeText(this, "Koltuk Seçildi: " + currentSeat, Toast.LENGTH_SHORT).show();
-                        Intent intent2 = new Intent(RoundTripSeatSelectionActivity.this , SecilenBiletDetaylariActivity.class);
-                        intent2.putExtra("roundTripSelectedFlight" , roundTripSelectedFlight);
-                        startActivity(intent2);
-                    }
+                    });
 
 
                     break;
@@ -227,4 +241,30 @@ public class RoundTripSeatSelectionActivity extends AppCompatActivity {
 
         return seats;
     }
+    private void checkMemberType(final OnMemberTypeCheckListener listener) {
+        DatabaseReference DaimiUyeTicketCount = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info");
+        DaimiUyeTicketCount.child("uyeTipi").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String mMemberType = snapshot.getValue(String.class);
+                    boolean memberType = false;
+                    if ("VipUye".equals(mMemberType)) {
+                        memberType = true;
+                    }
+                    listener.memberTypeCheckListener(memberType);
+                } else {
+                    Log.d("Firebase", "Değer mevcut değil");
+                    listener.memberTypeCheckListener(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                listener.memberTypeCheckListener(false);
+                Log.d("Firebase", "Veri çekme işlemi başarısız.", error.toException());
+            }
+        });
+    }
+
 }
