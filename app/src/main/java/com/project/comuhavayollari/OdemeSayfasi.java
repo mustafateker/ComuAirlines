@@ -77,7 +77,7 @@ public class OdemeSayfasi extends AppCompatActivity {
                 public void onDiscountChecked(boolean discount) {
                     DaimiUyeDiscount = discount;
                     if (DaimiUyeDiscount) {
-                        Toast.makeText(OdemeSayfasi.this, "Discount is available!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OdemeSayfasi.this, "Daimi Uye İndiriminiz Kullanılabilir!", Toast.LENGTH_SHORT).show();
 
                         if(selectedFlightTransport != null){
 
@@ -101,13 +101,11 @@ public class OdemeSayfasi extends AppCompatActivity {
                                 uyelikIndirimi = String.valueOf(vipUyeIndirimiInt);
                             } else if (uyelikTipi.equals("DaimiUye")) {
                                 //5 bilet sonrasında %10 uyguluyoruz
-                                Toast.makeText(OdemeSayfasi.this , "Member Type : " + selectedFlightTransport.getMemberType() , Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(OdemeSayfasi.this , "Member Type : " + selectedFlightTransport.getMemberType() , Toast.LENGTH_SHORT).show();
                                 if(DaimiUyeDiscount){
                                     daimiUyeIndirimiInt = (totalPriceInt*10)/100;
                                     totalPriceInt = totalPriceInt - daimiUyeIndirimiInt;
                                     uyelikIndirimi = String.valueOf(daimiUyeIndirimiInt);
-
-                                    Toast.makeText(OdemeSayfasi.this , "Total Burda: " + totalPrice , Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -279,6 +277,9 @@ public class OdemeSayfasi extends AppCompatActivity {
                                                         Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
                                                     }
                                                 });
+
+                                                    //Daimi uye ticketCounter ı artır
+
                                                 if(memberType.equals("DaimiUye")){
                                                     //Daimi uye ticketCounter ı artır
                                                     mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
@@ -305,7 +306,6 @@ public class OdemeSayfasi extends AppCompatActivity {
                                                         }
                                                     });
                                                 }
-
 
 
 
@@ -525,6 +525,8 @@ public class OdemeSayfasi extends AppCompatActivity {
                                                             }
                                                         });
 
+
+                                                            //Daimi uye ticketCounter ı artır
                                                         if(memberType.equals("DaimiUye")){
                                                             //Daimi uye ticketCounter ı artır
                                                             mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
@@ -860,7 +862,7 @@ public class OdemeSayfasi extends AppCompatActivity {
             int vipUyeIndirimiInt;
             String uyelikIndirimi = "0" ;
             String uyelikTipi = selectedFlightTransport.getMemberType();
-            Toast.makeText(OdemeSayfasi.this , "Member Type :  " + uyelikTipi , Toast.LENGTH_SHORT).show();
+           // Toast.makeText(OdemeSayfasi.this , "Member Type :  " + uyelikTipi , Toast.LENGTH_SHORT).show();
             if(uyelikTipi.equals("VipUye")){
                 vipUyeIndirimiInt = (totalPriceInt*25)/100;
                 totalPriceInt = totalPriceInt - vipUyeIndirimiInt;
@@ -952,6 +954,32 @@ public class OdemeSayfasi extends AppCompatActivity {
                                                 Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
                                             }
                                         });
+                                        if(memberType.equals("DaimiUye")){
+                                            //Daimi uye ticketCounter ı artır
+                                            mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
+                                            mDaimiUyeTicketCounter.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if(snapshot.exists()){
+                                                        String DaimiUyeTicketCounter = snapshot.getValue(String.class);
+
+                                                        int DaimiUyeTicketCounterInt = Integer.parseInt(DaimiUyeTicketCounter);
+                                                        DaimiUyeTicketCounterInt = DaimiUyeTicketCounterInt + 1;
+                                                        String updatedDaimiUyeTicketCounterInt = String.valueOf(DaimiUyeTicketCounterInt);
+                                                        mDaimiUyeTicketCounter.setValue(updatedDaimiUyeTicketCounterInt);
+
+
+                                                    }else{
+                                                        Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+                                                    Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                                }
+                                            });
+                                        }
                                         //booked referansını burda silcez
                                         //booked silinecek
                                         mBookedTicketCheck.removeValue()
@@ -1000,6 +1028,33 @@ public class OdemeSayfasi extends AppCompatActivity {
                                             }
                                         });
 
+                                        if(memberType.equals("DaimiUye")){
+                                            //Daimi uye ticketCounter ı artır
+                                            mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
+                                            mDaimiUyeTicketCounter.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if(snapshot.exists()){
+                                                        String DaimiUyeTicketCounter = snapshot.getValue(String.class);
+
+                                                        int DaimiUyeTicketCounterInt = Integer.parseInt(DaimiUyeTicketCounter);
+                                                        DaimiUyeTicketCounterInt = DaimiUyeTicketCounterInt + 1;
+                                                        String updatedDaimiUyeTicketCounterInt = String.valueOf(DaimiUyeTicketCounterInt);
+                                                        mDaimiUyeTicketCounter.setValue(updatedDaimiUyeTicketCounterInt);
+
+
+                                                    }else{
+                                                        Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+                                                    Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                                }
+                                            });
+                                        }
+
                                     }
                                 }
                                 //BOOKEDTİCKET YOKSA YİNE BU İŞLEMİ YAPACAK
@@ -1034,6 +1089,33 @@ public class OdemeSayfasi extends AppCompatActivity {
                                         Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
                                     }
                                 });
+
+                                if(memberType.equals("DaimiUye")){
+                                    //Daimi uye ticketCounter ı artır
+                                    mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
+                                    mDaimiUyeTicketCounter.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if(snapshot.exists()){
+                                                String DaimiUyeTicketCounter = snapshot.getValue(String.class);
+
+                                                int DaimiUyeTicketCounterInt = Integer.parseInt(DaimiUyeTicketCounter);
+                                                DaimiUyeTicketCounterInt = DaimiUyeTicketCounterInt + 1;
+                                                String updatedDaimiUyeTicketCounterInt = String.valueOf(DaimiUyeTicketCounterInt);
+                                                mDaimiUyeTicketCounter.setValue(updatedDaimiUyeTicketCounterInt);
+
+
+                                            }else{
+                                                Log.d("FirebaseData" , "Veri bulunamadı.");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                        }
+                                    });
+                                }
 
                             }
 
@@ -1239,6 +1321,32 @@ public class OdemeSayfasi extends AppCompatActivity {
                                                 Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
                                             }
                                         });
+                                        if(memberType.equals("DaimiUye")){
+                                            //Daimi uye ticketCounter ı artır
+                                            mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
+                                            mDaimiUyeTicketCounter.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if(snapshot.exists()){
+                                                        String DaimiUyeTicketCounter = snapshot.getValue(String.class);
+
+                                                        int DaimiUyeTicketCounterInt = Integer.parseInt(DaimiUyeTicketCounter);
+                                                        DaimiUyeTicketCounterInt = DaimiUyeTicketCounterInt + 2;
+                                                        String updatedDaimiUyeTicketCounterInt = String.valueOf(DaimiUyeTicketCounterInt);
+                                                        mDaimiUyeTicketCounter.setValue(updatedDaimiUyeTicketCounterInt);
+
+
+                                                    }else{
+                                                        Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+                                                    Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                                }
+                                            });
+                                        }
 
                                         //booked silinecek
                                         mBookedTicketCheck.removeValue()
@@ -1315,6 +1423,32 @@ public class OdemeSayfasi extends AppCompatActivity {
                                                 Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
                                             }
                                         });
+                                        if(memberType.equals("DaimiUye")){
+                                            //Daimi uye ticketCounter ı artır
+                                            mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
+                                            mDaimiUyeTicketCounter.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if(snapshot.exists()){
+                                                        String DaimiUyeTicketCounter = snapshot.getValue(String.class);
+
+                                                        int DaimiUyeTicketCounterInt = Integer.parseInt(DaimiUyeTicketCounter);
+                                                        DaimiUyeTicketCounterInt = DaimiUyeTicketCounterInt + 2;
+                                                        String updatedDaimiUyeTicketCounterInt = String.valueOf(DaimiUyeTicketCounterInt);
+                                                        mDaimiUyeTicketCounter.setValue(updatedDaimiUyeTicketCounterInt);
+
+
+                                                    }else{
+                                                        Log.d("FirebaseData" , "Veri bulunamadı.");
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+                                                    Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                                }
+                                            });
+                                        }
 
                                     }
                                 }
@@ -1378,6 +1512,32 @@ public class OdemeSayfasi extends AppCompatActivity {
                                         Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
                                     }
                                 });
+                                if(memberType.equals("DaimiUye")){
+                                    //Daimi uye ticketCounter ı artır
+                                    mDaimiUyeTicketCounter = FirebaseDatabase.getInstance().getReference("users").child(mUserId).child("user_info").child("DaimiUyeTicketCount");
+                                    mDaimiUyeTicketCounter.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if(snapshot.exists()){
+                                                String DaimiUyeTicketCounter = snapshot.getValue(String.class);
+
+                                                int DaimiUyeTicketCounterInt = Integer.parseInt(DaimiUyeTicketCounter);
+                                                DaimiUyeTicketCounterInt = DaimiUyeTicketCounterInt + 2;
+                                                String updatedDaimiUyeTicketCounterInt = String.valueOf(DaimiUyeTicketCounterInt);
+                                                mDaimiUyeTicketCounter.setValue(updatedDaimiUyeTicketCounterInt);
+
+
+                                            }else{
+                                                Log.d("FirebaseData" , "Veri bulunamadı.");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Log.d("Firebase" , "Veri çekme işlemi başarısız." , error.toException());
+                                        }
+                                    });
+                                }
                             }
 
                             @Override
@@ -1475,11 +1635,11 @@ public class OdemeSayfasi extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     mTicketCounter = snapshot.getValue(String.class);
-                    Toast.makeText(OdemeSayfasi.this, "Daimi Count: " + mTicketCounter, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(OdemeSayfasi.this, "Daimi Count: " + mTicketCounter, Toast.LENGTH_SHORT).show();
                     int mTicketCounterInt = Integer.parseInt(mTicketCounter);
                     boolean discount = false;
                     if (mTicketCounterInt > 0 && mTicketCounterInt % 5 == 0) {
-                        Toast.makeText(OdemeSayfasi.this, "Total Burdaasdas: ", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(OdemeSayfasi.this, "Total Burdaasdas: ", Toast.LENGTH_SHORT).show();
                         discount = true;
                     }
                     // Callback ile sonucu döndür

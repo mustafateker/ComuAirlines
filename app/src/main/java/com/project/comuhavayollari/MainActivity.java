@@ -322,7 +322,6 @@ public class MainActivity extends AppCompatActivity {
         String registrationDateString = String.valueOf(registrationDate);
         //Toast.makeText(MainActivity.this, "anlık zaman" + currentTimeString , Toast.LENGTH_SHORT).show();
         Toast.makeText(MainActivity.this , "Dakika Kaydolma Suresi" + minutesRegisteredString , Toast.LENGTH_SHORT).show();
-        Toast.makeText(MainActivity.this , "Reg. Date" + registrationDateString , Toast.LENGTH_SHORT).show();
 
         if (minutesRegistered >= 2 && uyelikKriterleriKontrol(purchasedTickets, minutesRegistered, 4)) { // 10 dakika
             return "VipUye";
@@ -341,10 +340,10 @@ public class MainActivity extends AppCompatActivity {
         long minustesReg = minutesRegistered;
         int requiredTicketsPerMinutes = requiredTicketsPerMinute;
         String reqTicktPerMin = String.valueOf(requiredTicketsPerMinutes);
-        Toast.makeText(MainActivity.this, "Req Tickets Per Min : " + reqTicktPerMin , Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, "Req Tickets Per Min : " + reqTicktPerMin , Toast.LENGTH_SHORT).show();
         String minutesRegisteredString = String.valueOf(minustesReg);
-        Toast.makeText(MainActivity.this, "uyelikKriterleriKontrolminReg : " +  minustesReg , Toast.LENGTH_SHORT ).show();
-        Toast.makeText(MainActivity.this, "Purchased Tickets Size: " + purchasedTickets.size(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, "uyelikKriterleriKontrolminReg : " +  minustesReg , Toast.LENGTH_SHORT ).show();
+        //Toast.makeText(MainActivity.this, "Purchased Tickets Size: " + purchasedTickets.size(), Toast.LENGTH_SHORT).show();
         for (long ticket : purchasedTickets) {
             int minuteIndex = (int)((ticket - registrationDateLong) / 60000);
             String minIndexString = String.valueOf(minuteIndex);
@@ -352,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
             String regDate = String.valueOf(registrationDateLong);
             //Toast.makeText(MainActivity.this, "Registration Date: " + regDate, Toast.LENGTH_SHORT).show();
             if (minuteIndex >= 0 && minuteIndex < minutesRegistered) {
-                Toast.makeText(MainActivity.this, "Entered Loop", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Entered Loop", Toast.LENGTH_SHORT).show();
                 ticketsPerMinute[minuteIndex]++;
             }
         }
